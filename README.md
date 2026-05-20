@@ -50,7 +50,7 @@ data/
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/TU_USUARIO/meff-gex.git
+git clone https://github.com/jaralm/gex.git
 cd meff-gex
 
 # 2. Instalar dependencias
@@ -143,7 +143,7 @@ Para leer los CSVs directamente desde GitHub en una hoja de cálculo:
 
 ```
 =IFERROR(
-  IMPORTDATA("https://raw.githubusercontent.com/TU_USUARIO/meff-gex/main/data/"&A1&".csv";";");
+  IMPORTDATA("https://raw.githubusercontent.com/jaralm/gex/main/data/"&A1&".csv";";");
   "Archivo no encontrado"
 )
 ```
