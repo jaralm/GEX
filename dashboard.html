@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No Queda Otra Opción · MEFF · Gamma Exposure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#050508;color:#e2e8f0;font-family:'JetBrains Mono',monospace;min-height:100vh}
+
+/* ── Layout ── */
+.wrap{max-width:1100px;margin:0 auto;padding:32px 24px}
+.header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px;border-bottom:1px solid #1e293b;padding-bottom:16px}
+.title{font-size:13px;letter-spacing:.18em;text-transform:uppercase}
+.title-brand{color:#cbd5e1}
+.title-sep{color:#334155}
+.title-product{color:#334155}
+.subtitle{font-size:11px;color:#334155;text-align:right}
+.subtitle span{color:#475569}
+
+/* ── Controls ── */
+.controls{display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.ctrl-group{display:flex;flex-direction:column;gap:5px;flex:1;min-width:180px}
+.ctrl-label{font-size:9px;letter-spacing:.14em;color:#475569;text-transform:uppercase}
+select{background:#0f0f16;border:1px solid #1e293b;color:#cbd5e1;font-family:'JetBrains Mono',monospace;font-size:12px;padding:9px 12px;border-radius:7px;cursor:pointer;outline:none;width:100%;transition:border-color .15s}
+select:focus,select:hover{border-color:#334155}
+
+/* ── KPI grid ── */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.kpi{background:#0d0d16;border:1px solid #1e293b;border-radius:9px;padding:12px 14px;transition:border-color .2s}
+.kpi-label{font-size:9px;letter-spacing:.12em;color:#475569;text-transform:uppercase;display:block;margin-bottom:6px}
+.kpi-value{font-size:16px;font-weight:600;display:block;line-height:1}
+.kpi-sub{font-size:10px;color:#334155;margin-top:5px;display:block}
+.kpi.spot{border-color:#78350f55}
+.kpi.cwall{border-color:#14532d55}
+.kpi.pwall{border-color:#7f1d1d55}
+.kpi.zgamma{border-color:#3b0764 55}
+
+/* ── GEX totals ── */
+.totals{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.total{background:#0d0d16;border:1px solid #1e293b;border-radius:9px;padding:10px 14px}
+.total-label{font-size:9px;letter-spacing:.12em;color:#475569;text-transform:uppercase;display:block;margin-bottom:4px}
+.total-value{font-size:13px;font-weight:600;display:block}
+
+/* ── Chart ── */
+.chart-card{background:#0d0d16;border:1px solid #1e293b;border-radius:12px;padding:20px 16px 12px;margin-bottom:16px}
+.chart-wrap{position:relative;width:100%;height:400px}
+
+/* ── Legend ── */
+.legend{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.leg{display:flex;align-items:center;gap:7px;font-size:10px;letter-spacing:.08em;color:#475569;text-transform:uppercase}
+.leg-box{width:11px;height:11px;border-radius:2px;flex-shrink:0}
+.leg-dash{width:14px;height:2px;border-radius:1px;flex-shrink:0}
+
+/* ── Footer ── */
+.footer{font-size:10px;color:#1e293b;text-align:center;margin-top:20px;line-height:1.8}
+
+/* ── Nav button ── */
+.nav-btn{background:#0d0d16;border:1px solid #1e293b;color:#94a3b8;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;padding:7px 14px;border-radius:7px;cursor:pointer;text-transform:uppercase;transition:border-color .15s,color .15s;white-space:nowrap}
+.nav-btn:hover{border-color:#334155;color:#cbd5e1}
+
+/* ── Loading / Error ── */
+.state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px}
+.spinner{width:32px;height:32px;border:2px solid #1e293b;border-top-color:#475569;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.state-msg{font-size:11px;color:#475569;letter-spacing:.1em}
+.err-msg{font-size:12px;color:#7f1d1d;background:#0d0000;border:1px solid #450a0a;border-radius:8px;padding:16px 20px;max-width:480px;line-height:1.7}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- Loading -->
+  <div id="stLoading" class="state">
+    <div class="spinner"></div>
+    <span class="state-msg">Cargando datos MEFF...</span>
+  </div>
+
+  <!-- Error -->
+  <div id="stError" class="state" style="display:none">
+    <div class="err-msg" id="errMsg"></div>
+    <span class="state-msg">Ejecuta: python3 -m http.server 8080</span>
+  </div>
+
+  <!-- Dashboard -->
+  <div id="stDash" style="display:none">
+
+    <div class="header">
+      <span class="title"><span class="title-brand">No Queda Otra Opción</span><span class="title-sep"> &nbsp;·&nbsp; MEFF &nbsp;·&nbsp; </span><span class="title-product">Gamma Exposure</span></span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="subtitle">
+          Boletín <span id="hdrDate">—</span> &nbsp;·&nbsp; Generado <span id="hdrGen">—</span>
+        </div>
+        <button class="nav-btn" onclick="showScreen(2)">Net GEX →</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="ctrl-group">
+        <span class="ctrl-label">Subyacente</span>
+        <select id="selAccion"></select>
+      </div>
+      <div class="ctrl-group">
+        <span class="ctrl-label">Vencimiento</span>
+        <select id="selVcto"></select>
+      </div>
+    </div>
+
+    <!-- KPIs principales -->
+    <div class="kpis">
+      <div class="kpi spot">
+        <span class="kpi-label">Spot</span>
+        <span class="kpi-value" id="kSpot" style="color:#f59e0b">—</span>
+        <span class="kpi-sub">precio cierre</span>
+      </div>
+      <div class="kpi cwall">
+        <span class="kpi-label">Call Wall *</span>
+        <span class="kpi-value" id="kCW" style="color:#22c55e">—</span>
+        <span class="kpi-sub" id="kCWsub">resistencia</span>
+      </div>
+      <div class="kpi pwall">
+        <span class="kpi-label">Put Wall *</span>
+        <span class="kpi-value" id="kPW" style="color:#ef4444">—</span>
+        <span class="kpi-sub" id="kPWsub">soporte</span>
+      </div>
+      <div class="kpi zgamma">
+        <span class="kpi-label">Zero Gamma *</span>
+        <span class="kpi-value" id="kZG" style="color:#a78bfa">—</span>
+        <span class="kpi-sub" id="kZGsub">cruza GEX neto</span>
+      </div>
+    </div>
+
+    <!-- GEX totales -->
+    <div class="totals">
+      <div class="total">
+        <span class="total-label">GEX neto total</span>
+        <span class="total-value" id="tNet">—</span>
+      </div>
+      <div class="total">
+        <span class="total-label">GEX call total</span>
+        <span class="total-value" style="color:#22c55e" id="tCall">—</span>
+      </div>
+      <div class="total">
+        <span class="total-label">GEX put total</span>
+        <span class="total-value" style="color:#ef4444" id="tPut">—</span>
+      </div>
+    </div>
+
+    <!-- Gráfico -->
+    <div class="chart-card">
+      <div class="chart-wrap">
+        <canvas id="gdChart"
+          role="img"
+          aria-label="Gamma Exposure por strike: barras verdes para CALL GEX, rojas para PUT GEX">
+          GEX chart
+        </canvas>
+      </div>
+      <div class="legend">
+        <span class="leg"><span class="leg-box" style="background:#16a34a"></span>Call GEX</span>
+        <span class="leg"><span class="leg-box" style="background:#dc2626"></span>Put GEX</span>
+        <span class="leg"><span class="leg-dash" style="background:#f59e0b"></span>Spot</span>
+        <span class="leg"><span class="leg-dash" style="background:#22c55e"></span>Call Wall</span>
+        <span class="leg"><span class="leg-dash" style="background:#ef4444"></span>Put Wall</span>
+        <span class="leg"><span class="leg-dash" style="background:#a78bfa"></span>Zero γ</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      Tasa libre de riesgo BCE: <span id="ftrTasa">—</span>&nbsp;%
+      &nbsp;·&nbsp; Vencimiento: 3er viernes del mes
+      &nbsp;·&nbsp; Fuente: MEFF
+      &nbsp;·&nbsp; GEX = Gamma × OI × Multiplicador × Spot²
+      <br>* Todos los vencimientos
+      &nbsp;·&nbsp; <a href="mailto:joseantonio@noquedaotraopcion.com" style="color:inherit;text-decoration:none">joseantonio@noquedaotraopcion.com</a>
+    </div>
+
+  </div><!-- /stDash -->
+
+  <!-- ── Pantalla 2: Net GEX ── -->
+  <div id="stScreen2" style="display:none">
+
+    <div class="header">
+      <span class="title"><span class="title-brand">No Queda Otra Opción</span><span class="title-sep"> &nbsp;·&nbsp; MEFF &nbsp;·&nbsp; </span><span class="title-product">Net GEX</span></span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="subtitle">
+          Boletín <span id="hdrDate2">—</span> &nbsp;·&nbsp; Generado <span id="hdrGen2">—</span>
+        </div>
+        <button class="nav-btn" onclick="showScreen(1)">← GEX por Strike</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="ctrl-group" style="max-width:320px">
+        <span class="ctrl-label">Subyacente</span>
+        <select id="selAccion2"></select>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi spot">
+        <span class="kpi-label">Spot</span>
+        <span class="kpi-value" id="k2Spot" style="color:#f59e0b">—</span>
+        <span class="kpi-sub">precio cierre</span>
+      </div>
+      <div class="kpi zgamma">
+        <span class="kpi-label">Régimen spot</span>
+        <span class="kpi-value" id="k2Regime">—</span>
+        <span class="kpi-sub">±500 del spot</span>
+      </div>
+      <div class="kpi zgamma">
+        <span class="kpi-label">Gamma flip *</span>
+        <span class="kpi-value" id="k2Flip" style="color:#a78bfa">—</span>
+        <span class="kpi-sub">cruce cero más cercano</span>
+      </div>
+      <div class="kpi">
+        <span class="kpi-label">GEX neto total</span>
+        <span class="kpi-value" id="k2Total">—</span>
+        <span class="kpi-sub">todos los strikes</span>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-wrap">
+        <canvas id="netGexChart"
+          role="img"
+          aria-label="GEX neto por strike: línea con sombreado verde cuando positivo y rojo cuando negativo">
+          Net GEX chart
+        </canvas>
+      </div>
+      <div class="legend">
+        <span class="leg"><span class="leg-dash" style="background:#38bdf8"></span>GEX neto</span>
+        <span class="leg"><span class="leg-box" style="background:rgba(34,197,94,0.25);border:1px solid #16a34a"></span>GEX positivo</span>
+        <span class="leg"><span class="leg-box" style="background:rgba(239,68,68,0.25);border:1px solid #dc2626"></span>GEX negativo</span>
+        <span class="leg"><span class="leg-dash" style="background:#f59e0b"></span>Spot</span>
+        <span class="leg"><span class="leg-dash" style="background:#a78bfa"></span>Gamma flip</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      Eje Y clamped ±40 M &nbsp;·&nbsp; outliers marcados con ▲▼
+      &nbsp;·&nbsp; GEX neto = call GEX − |put GEX| &nbsp;·&nbsp; Todos los vencimientos
+      <br>* Cruce literal del perfil &nbsp;·&nbsp; GEX = Gamma × OI × Multiplicador × Spot² &nbsp;·&nbsp; Fuente: MEFF
+      &nbsp;·&nbsp; <a href="mailto:joseantonio@noquedaotraopcion.com" style="color:inherit;text-decoration:none">joseantonio@noquedaotraopcion.com</a>
+    </div>
+
+  </div><!-- /stScreen2 -->
+</div><!-- /wrap -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+'use strict';
+
+// ── Formato de números ──────────────────────────────────────────────────────
+
+function fmtGex(v) {
+  if (v === null || v === undefined || isNaN(v)) return '—';
+  const a = Math.abs(v), sg = v < 0 ? '-' : '+';
+  if (a >= 1e9) return sg + (a / 1e9).toFixed(2) + 'B';
+  if (a >= 1e6) return sg + (a / 1e6).toFixed(2) + 'M';
+  if (a >= 1e3) return sg + (a / 1e3).toFixed(1) + 'K';
+  return sg + a.toFixed(0);
+}
+
+function fmtStrike(v, accion) {
+  if (v === null || v === undefined) return '—';
+  if (accion && accion.toUpperCase().includes('IBEX'))
+    return Math.round(v).toLocaleString('es-ES');
+  return Number.isInteger(v) ? v.toString() : v.toFixed(2);
+}
+
+// ── Plugin: líneas verticales ───────────────────────────────────────────────
+
+const linesPlugin = {
+  id: 'lines',
+  afterDraw(chart) {
+    const cfg = chart.options.plugins.lines || {};
+    const ctx = chart.ctx;
+    const xs  = chart.scales.x;
+    const ys  = chart.scales.y;
+    const lbls = chart.data.labels.map(Number);
+
+    function xPixel(val) {
+      if (val === null || val === undefined) return null;
+      if (val <= lbls[0]) return xs.getPixelForValue(0);
+      if (val >= lbls[lbls.length - 1]) return xs.getPixelForValue(lbls.length - 1);
+      for (let i = 0; i < lbls.length - 1; i++) {
+        if (val >= lbls[i] && val <= lbls[i + 1]) {
+          const t = (val - lbls[i]) / (lbls[i + 1] - lbls[i]);
+          return xs.getPixelForValue(i) + t * (xs.getPixelForValue(i + 1) - xs.getPixelForValue(i));
+        }
+      }
+      return null;
+    }
+
+    function drawLine(val, color, dash, label, yOff) {
+      const xp = xPixel(val);
+      if (xp === null) return;
+      ctx.save();
+      ctx.beginPath(); ctx.moveTo(xp, ys.top); ctx.lineTo(xp, ys.bottom);
+      ctx.strokeStyle = color; ctx.lineWidth = 1.5; ctx.setLineDash(dash); ctx.stroke();
+      ctx.fillStyle = color; ctx.font = 'bold 9px JetBrains Mono, monospace';
+      ctx.textAlign = 'center';
+      const tx = Math.min(Math.max(xp, 32), chart.width - 32);
+      ctx.fillText(label, tx, ys.top + yOff);
+      ctx.restore();
+    }
+
+    if (cfg.spot !== undefined) drawLine(cfg.spot, '#f59e0b', [6, 3], cfg.spotLbl || '', 11);
+    if (cfg.cw   !== undefined) drawLine(cfg.cw,   '#22c55e', [4, 4], cfg.cwLbl   || '', 23);
+    if (cfg.pw   !== undefined) drawLine(cfg.pw,   '#ef4444', [4, 4], cfg.pwLbl   || '', 35);
+    if (cfg.zg   !== undefined) drawLine(cfg.zg,   '#a78bfa', [3, 5], cfg.zgLbl   || '', 47);
+  }
+};
+Chart.register(linesPlugin);
+
+// ── Estado global ───────────────────────────────────────────────────────────
+
+let DATA  = null;
+let chart = null;
+let chart2 = null;
+const CAP2 = 40;
+
+// ── Navegación entre pantallas ──────────────────────────────────────────────
+
+function showScreen(n) {
+  document.getElementById('stDash').style.display    = n === 1 ? '' : 'none';
+  document.getElementById('stScreen2').style.display = n === 2 ? '' : 'none';
+  if (n === 2) renderNetGex();
+}
+
+// ── Cálculo de gamma flips (cruces literales de cero) ───────────────────────
+
+function findFlips(strikes, valuesM) {
+  const flips = [];
+  for (let i = 0; i < valuesM.length - 1; i++) {
+    const a = valuesM[i], b = valuesM[i + 1];
+    if (a * b < 0 && (Math.abs(a) > 0.5 || Math.abs(b) > 0.5)) {
+      const t = -a / (b - a);
+      flips.push(Math.round(strikes[i] + t * (strikes[i + 1] - strikes[i])));
+    }
+  }
+  return [...new Set(flips)];
+}
+
+// ── Plugin líneas + anotaciones para Net GEX ────────────────────────────────
+
+const netGexPlugin = {
+  id: 'netGexLines',
+  afterDraw(chart) {
+    const cfg = chart.options.plugins.netGexLines || {};
+    if (!cfg.active) return;
+    const ctx3 = chart.ctx;
+    const xs   = chart.scales.x;
+    const ys   = chart.scales.y;
+    const lbls = chart.data.labels.map(Number);
+
+    function xpx(val) {
+      for (let i = 0; i < lbls.length - 1; i++) {
+        if (val >= lbls[i] && val <= lbls[i + 1]) {
+          const t = (val - lbls[i]) / (lbls[i + 1] - lbls[i]);
+          return xs.getPixelForValue(i) + t * (xs.getPixelForValue(i + 1) - xs.getPixelForValue(i));
+        }
+      }
+      return val < lbls[0] ? xs.getPixelForValue(0) : xs.getPixelForValue(lbls.length - 1);
+    }
+
+    function vline(val, color, dash, label, yOff) {
+      const xp = xpx(val);
+      if (xp < xs.left || xp > xs.right) return;
+      ctx3.save();
+      ctx3.beginPath(); ctx3.moveTo(xp, ys.top); ctx3.lineTo(xp, ys.bottom);
+      ctx3.strokeStyle = color; ctx3.lineWidth = 1.5; ctx3.setLineDash(dash); ctx3.stroke();
+      if (label) {
+        ctx3.fillStyle = color;
+        ctx3.font = 'bold 9px JetBrains Mono, monospace';
+        ctx3.textAlign = 'center';
+        ctx3.fillText(label, Math.min(Math.max(xp, xs.left + 40), xs.right - 40), ys.top + yOff);
+      }
+      ctx3.restore();
+    }
+
+    if (cfg.spot != null) vline(cfg.spot, '#f59e0b', [8, 3], fmtStrike(cfg.spot, cfg.accion), 12);
+    (cfg.flips || []).slice(0, 3).forEach((f, i) =>
+      vline(f, '#a78bfa', [4, 4], fmtStrike(f, cfg.accion), 24 + i * 11)
+    );
+
+    (cfg.outliers || []).forEach(({ strike, value }) => {
+      const xp = xpx(strike);
+      if (xp < xs.left || xp > xs.right) return;
+      const pos = value > 0;
+      ctx3.save();
+      ctx3.fillStyle = pos ? '#4ade80' : '#f87171';
+      ctx3.font = 'bold 9px JetBrains Mono, monospace';
+      ctx3.textAlign = 'center';
+      ctx3.fillText(
+        `${pos ? '▲' : '▼'} ${pos ? '+' : ''}${value.toFixed(0)}M`,
+        Math.min(Math.max(xp, xs.left + 36), xs.right - 36),
+        pos ? ys.top + 4 : ys.bottom - 14
+      );
+      ctx3.restore();
+    });
+  }
+};
+Chart.register(netGexPlugin);
+
+// ── KPIs ────────────────────────────────────────────────────────────────────
+
+function getKPIs(accion, rows) {
+  // KPIs pre-calculados por gex_calculator.py (sweep correcto para zero gamma)
+  const k = (DATA.kpis_por_accion || {})[accion];
+  if (k) {
+    // call_wall y put_wall vienen del JSON; cwGex/pwGex los leemos del perfil
+    const cwRow = rows.find(r => r.strike === k.call_wall) || {};
+    const pwRow = rows.find(r => r.strike === k.put_wall)  || {};
+    return {
+      cw: k.call_wall, pw: k.put_wall, zg: k.zero_gamma,
+      cwGex: cwRow.call_gex || 0, pwGex: pwRow.put_gex || 0,
+      gexTotal: k.gex_total, regime: k.regime
+    };
+  }
+  // Fallback: calcular en JS si el JSON es antiguo y no tiene kpis_por_accion
+  if (!rows.length) return { cw: null, pw: null, zg: null, cwGex: 0, pwGex: 0 };
+  const cw = rows.reduce((m, r) => r.call_gex > m.call_gex ? r : m, rows[0]);
+  const pw = rows.reduce((m, r) => r.put_gex  < m.put_gex  ? r : m, rows[0]);
+  return { cw: cw.strike, pw: pw.strike, zg: null,
+           cwGex: cw.call_gex, pwGex: pw.put_gex,
+           gexTotal: rows.reduce((s,r)=>s+r.net_gex,0), regime: null };
+}
+
+// ── Datos filtrados ─────────────────────────────────────────────────────────
+
+function getRows(accion, vcto) {
+  if (vcto === 'Todos') {
+    return DATA.gex_por_strike
+      .filter(r => r.accion === accion)
+      .sort((a, b) => a.strike - b.strike);
+  }
+  return DATA.gex_por_strike_vcto
+    .filter(r => r.accion === accion && r.fecha_vencimiento === vcto)
+    .sort((a, b) => a.strike - b.strike);
+}
+
+// ── Render ──────────────────────────────────────────────────────────────────
+
+function render() {
+  const accion = document.getElementById('selAccion').value;
+  const vcto   = document.getElementById('selVcto').value;
+  const rows   = getRows(accion, vcto);
+
+  if (!rows.length) return;
+
+  const spot      = rows[0].spot;
+  const kpi       = getKPIs(accion, rows);
+  const labels    = rows.map(r => String(r.strike));
+  const callData  = rows.map(r => r.call_gex);
+  const putData   = rows.map(r => r.put_gex);
+  const totalCall = callData.reduce((a, b) => a + b, 0);
+  const totalPut  = putData.reduce((a, b)  => a + b, 0);
+  const totalNet  = totalCall + totalPut;
+
+  // KPI cards
+  document.getElementById('kSpot').textContent   = fmtStrike(spot, accion);
+  document.getElementById('kCW').textContent     = fmtStrike(kpi.cw, accion);
+  document.getElementById('kCWsub').textContent  = fmtGex(kpi.cwGex);
+  document.getElementById('kPW').textContent     = fmtStrike(kpi.pw, accion);
+  document.getElementById('kPWsub').textContent  = fmtGex(kpi.pwGex);
+  document.getElementById('kZG').textContent     = fmtStrike(kpi.zg, accion);
+  document.getElementById('kZGsub').textContent  = 'cruza GEX neto';
+
+  // Totales
+  document.getElementById('tNet').textContent  = fmtGex(totalNet);
+  document.getElementById('tNet').style.color  = totalNet >= 0 ? '#22c55e' : '#ef4444';
+  if (kpi.regime) {
+    const regEl = document.getElementById('tRegime');
+    if (regEl) {
+      regEl.textContent = kpi.regime;
+      regEl.style.color = kpi.regime === 'POSITIVO' ? '#22c55e' : '#ef4444';
+    }
+  }
+  document.getElementById('tCall').textContent = fmtGex(totalCall);
+  document.getElementById('tPut').textContent  = fmtGex(totalPut);
+
+  // Gráfico
+  const ctx = document.getElementById('gdChart').getContext('2d');
+  if (chart) chart.destroy();
+
+  chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Call GEX',
+          data: callData,
+          backgroundColor: 'rgba(22,163,74,0.72)',
+          borderColor: 'rgba(22,163,74,0.9)',
+          borderWidth: 1, borderRadius: 3, borderSkipped: false
+        },
+        {
+          label: 'Put GEX',
+          data: putData,
+          backgroundColor: 'rgba(220,38,38,0.72)',
+          borderColor: 'rgba(220,38,38,0.9)',
+          borderWidth: 1, borderRadius: 3, borderSkipped: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      grouped: false,
+      animation: { duration: 300, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0f172a',
+          titleColor: '#94a3b8',
+          bodyColor: '#e2e8f0',
+          borderColor: '#1e293b',
+          borderWidth: 1,
+          callbacks: {
+            title: items => `Strike: ${items[0].label}`,
+            label: item  => `${item.dataset.label}: ${fmtGex(item.parsed.y)}`
+          }
+        },
+        lines: {
+          spot, spotLbl: fmtStrike(spot, accion),
+          cw:   kpi.cw, cwLbl: fmtStrike(kpi.cw, accion),
+          pw:   kpi.pw, pwLbl: fmtStrike(kpi.pw, accion),
+          zg:   kpi.zg, zgLbl: fmtStrike(kpi.zg, accion)
+        }
+      },
+      scales: {
+        x: {
+          grid:   { color: 'rgba(255,255,255,0.03)', lineWidth: 1 },
+          ticks:  { color: '#475569', font: { family: 'JetBrains Mono', size: 11 }, maxRotation: 45 },
+          border: { color: '#1e293b' }
+        },
+        y: {
+          grid:   { color: 'rgba(255,255,255,0.03)', lineWidth: 1 },
+          ticks:  { color: '#475569', font: { family: 'JetBrains Mono', size: 11 }, callback: v => fmtGex(v) },
+          border: { color: '#1e293b' }
+        }
+      }
+    }
+  });
+}
+
+// ── Selectores ──────────────────────────────────────────────────────────────
+
+const MESES_JS = {
+  ene:1,jan:1,feb:2,mar:3,abr:4,apr:4,may:5,jun:6,
+  jul:7,ago:8,aug:8,sep:9,oct:10,nov:11,dic:12,dec:12
+};
+function vctoKey(v) {
+  const m = v.match(/([A-Za-z]+)-(\d{2,4})/);
+  if (!m) return 99999999;
+  const mes  = MESES_JS[m[1].toLowerCase().slice(0,3)] || 99;
+  const anio = parseInt(m[2]) + (m[2].length <= 2 ? 2000 : 0);
+  return anio * 100 + mes;
+}
+
+function populateVcto() {
+  const accion = document.getElementById('selAccion').value;
+  const sel    = document.getElementById('selVcto');
+  sel.innerHTML = '<option value="Todos">Todos los vencimientos</option>';
+  const vctos = (DATA.vencimientos[accion] || []).slice().sort((a,b) => vctoKey(a) - vctoKey(b));
+  vctos.forEach(v => {
+    const o = document.createElement('option');
+    o.value = v; o.textContent = v; sel.appendChild(o);
+  });
+}
+
+function populateAccion() {
+  const sel = document.getElementById('selAccion');
+  sel.innerHTML = '';
+  DATA.subyacentes.forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s; sel.appendChild(o);
+  });
+}
+
+// ── Selector subyacente pantalla 2 ──────────────────────────────────────────
+
+function populateAccion2() {
+  const sel = document.getElementById('selAccion2');
+  sel.innerHTML = '';
+  DATA.subyacentes.forEach(s => {
+    const o = document.createElement('option');
+    o.value = s; o.textContent = s; sel.appendChild(o);
+  });
+}
+
+// ── Render pantalla 2 ───────────────────────────────────────────────────────
+
+function renderNetGex() {
+  const accion = document.getElementById('selAccion2').value;
+  const rows = DATA.gex_por_strike
+    .filter(r => r.accion === accion)
+    .sort((a, b) => a.strike - b.strike);
+
+  if (!rows.length) return;
+
+  const spot    = rows[0].spot;
+  const scale   = 1e6;
+  const strikes = rows.map(r => r.strike);
+  const rawM    = rows.map(r => r.net_gex / scale);
+  const clamped = rawM.map(v => Math.max(-CAP2, Math.min(CAP2, v)));
+  const outliers = rows
+    .filter(r => Math.abs(r.net_gex / scale) > CAP2)
+    .map(r => ({ strike: r.strike, value: r.net_gex / scale }));
+
+  const flips     = findFlips(strikes, rawM);
+  const nearFlips = flips.filter(f => Math.abs(f - spot) < spot * 0.15);
+  const nearM     = rows
+    .filter(r => Math.abs(r.strike - spot) <= 500)
+    .reduce((s, r) => s + r.net_gex / scale, 0);
+  const totalM    = rawM.reduce((a, b) => a + b, 0);
+  const regColor  = nearM < 0 ? '#ef4444' : '#22c55e';
+
+  // KPIs
+  document.getElementById('k2Spot').textContent    = fmtStrike(spot, accion);
+  document.getElementById('k2Regime').textContent  = nearM < 0 ? 'NEGATIVO' : 'POSITIVO';
+  document.getElementById('k2Regime').style.color  = regColor;
+  document.getElementById('k2Flip').textContent    = nearFlips.length ? fmtStrike(nearFlips[0], accion) : '—';
+  document.getElementById('k2Total').textContent   = (totalM >= 0 ? '+' : '') + totalM.toFixed(1) + ' M';
+  document.getElementById('k2Total').style.color   = totalM >= 0 ? '#22c55e' : '#ef4444';
+
+  const pointBg = rawM.map(v => Math.abs(v) >= CAP2 ? (v > 0 ? '#22c55e' : '#ef4444') : 'transparent');
+  const pointR  = rawM.map(v => Math.abs(v) >= CAP2 ? 5 : 0);
+
+  const ctx3 = document.getElementById('netGexChart').getContext('2d');
+  if (chart2) chart2.destroy();
+
+  chart2 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+      labels: strikes.map(String),
+      datasets: [{
+        data: clamped,
+        borderColor: '#38bdf8',
+        borderWidth: 2,
+        pointBackgroundColor: pointBg,
+        pointBorderColor: pointBg,
+        pointRadius: pointR,
+        pointHoverRadius: 6,
+        tension: 0.25,
+        fill: {
+          target: 'origin',
+          above: 'rgba(34,197,94,0.18)',
+          below: 'rgba(239,68,68,0.18)'
+        }
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 300, easing: 'easeOutQuart' },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#0f172a',
+          titleColor: '#94a3b8',
+          bodyColor: '#e2e8f0',
+          borderColor: '#1e293b',
+          borderWidth: 1,
+          callbacks: {
+            title: items => `Strike: ${fmtStrike(Number(items[0].label), accion)}`,
+            label: item => {
+              const real = rawM[item.dataIndex];
+              const s = real >= 0 ? '+' : '';
+              const ot = Math.abs(real) >= CAP2 ? ' ⚠ outlier' : '';
+              return `GEX neto: ${s}${real.toFixed(2)} M${ot}`;
+            }
+          }
+        },
+        netGexLines: {
+          active: true,
+          spot, accion,
+          flips: nearFlips,
+          outliers
+        }
+      },
+      scales: {
+        x: {
+          grid:   { color: 'rgba(255,255,255,0.03)', lineWidth: 1 },
+          ticks:  {
+            color: '#475569',
+            font: { family: 'JetBrains Mono', size: 11 },
+            maxRotation: 45,
+            autoSkip: true,
+            maxTicksLimit: 20,
+            callback: (v, i) => {
+              const s = strikes[i];
+              if (accion && accion.toUpperCase().includes('IBEX')) return s % 500 === 0 ? s.toLocaleString('es-ES') : '';
+              return i % 3 === 0 ? s : '';
+            }
+          },
+          border: { color: '#1e293b' }
+        },
+        y: {
+          min: -CAP2, max: CAP2,
+          grid: {
+            color:     ctx => ctx.tick.value === 0 ? 'rgba(148,163,184,0.55)' : 'rgba(255,255,255,0.04)',
+            lineWidth: ctx => ctx.tick.value === 0 ? 1.5 : 1
+          },
+          ticks:  {
+            color: '#475569',
+            font: { family: 'JetBrains Mono', size: 11 },
+            callback: v => (v > 0 ? '+' : '') + v + ' M'
+          },
+          border: { color: '#1e293b' }
+        }
+      }
+    }
+  });
+}
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+
+async function init() {
+  try {
+    const res = await fetch('data/meff_gex_latest.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status} — no se encontró data/meff_gex_latest.json`);
+    DATA = await res.json();
+
+    // Header
+    document.getElementById('hdrDate').textContent = DATA.meta.fecha_boletin || '—';
+    document.getElementById('hdrGen').textContent  = DATA.meta.generado       || '—';
+    document.getElementById('ftrTasa').textContent = ((DATA.meta.tasa_libre_riesgo || 0) * 100).toFixed(1);
+
+    // Mostrar dashboard
+    document.getElementById('stLoading').style.display = 'none';
+    document.getElementById('stDash').style.display    = '';
+
+    // Selectores pantalla 1
+    populateAccion();
+    document.getElementById('selAccion').addEventListener('change', () => { populateVcto(); render(); });
+    document.getElementById('selVcto').addEventListener('change', render);
+    populateVcto();
+    render();
+
+    // Pantalla 2
+    document.getElementById('hdrDate2').textContent = DATA.meta.fecha_boletin || '—';
+    document.getElementById('hdrGen2').textContent  = DATA.meta.generado       || '—';
+    populateAccion2();
+    document.getElementById('selAccion2').addEventListener('change', renderNetGex);
+
+  } catch (err) {
+    document.getElementById('stLoading').style.display = 'none';
+    document.getElementById('stError').style.display   = '';
+    document.getElementById('errMsg').textContent =
+      `Error al cargar los datos:\n${err.message}\n\n` +
+      `Asegúrate de ejecutar python3 -m http.server 8080\n` +
+      `en la carpeta raíz del proyecto y que existe\n` +
+      `data/meff_gex_latest.json`;
+  }
+}
+
+init();
+</script>
+</body>
+</html>
