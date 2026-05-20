@@ -1,4 +1,5 @@
 import re
+import json
 import requests
 from bs4 import BeautifulSoup, Tag
 import pandas as pd
@@ -376,6 +377,145 @@ def construir_informe(titulo: str, df_subset: pd.DataFrame, n: int) -> str:
     return "\n".join(lineas)
 
 
+# ── Generación de JSON para dashboard_opciones.html ───────────────────────────
+
+def _parse_num(val_str):
+    """Convierte string numérico español a float. Devuelve 0.0 si falla."""
+    if not val_str or str(val_str).strip() in ("", "-", "—"):
+        return 0.0
+    try:
+        return float(str(val_str).replace(".", "").replace(",", "."))
+    except ValueError:
+        return 0.0
+
+
+def generar_json_dashboard(df, fecha_boletin):
+    """
+    Genera data/meff_opciones_latest.json con la estructura que espera
+    dashboard_opciones.html.
+
+    Estructura:
+      meta                  → fecha_boletin, generado
+      totales               → subyacentes, vol_total, oi_total
+      top10_volumen         → top 10 filas por volumen (todas las acciones)
+      vol_por_subyacente    → volumen call/put/total y OI por acción
+      mini_ibex_spot        → float con el spot del MINI IBEX-35
+      mini_ibex_por_strike  → volumen y OI call/put por strike (MINI IBEX-35)
+      mini_ibex_top5        → top 5 posiciones MINI IBEX-35 por volumen
+    """
+
+    df2 = df.copy()
+    df2["_vol"] = vol_a_numero(df2["volumen_contratos"])
+    df2["_oi"]  = vol_a_numero(df2["posicion_abierta"])
+
+    # ── meta ──────────────────────────────────────────────────────────────────
+    meta = {
+        "fecha_boletin": fecha_boletin,
+        "generado": datetime.today().strftime("%d/%m/%Y %H:%M"),
+        "fuente": "MEFF — Mercado Oficial de Futuros y Opciones Financieros en España",
+    }
+
+    # ── totales globales ──────────────────────────────────────────────────────
+    totales = {
+        "subyacentes": int(df2["accion"].nunique()),
+        "vol_total":   int(df2["_vol"].sum()),
+        "oi_total":    int(df2["_oi"].sum()),
+    }
+
+    # ── top 10 por volumen (todas las acciones) ───────────────────────────────
+    top10_df = df2.sort_values("_vol", ascending=False).head(10)
+    top10 = []
+    for _, r in top10_df.iterrows():
+        spot_val = _parse_num(r.get("spot", ""))
+        top10.append({
+            "accion":           r["accion"],
+            "tipo":             r["tipo"],
+            "strike":           r["strike"],
+            "fecha_vencimiento": r["fecha_vencimiento"],
+            "volumen":          int(r["_vol"]) if pd.notna(r["_vol"]) else 0,
+            "oi":               int(r["_oi"])  if pd.notna(r["_oi"])  else 0,
+            "spot":             spot_val if spot_val else None,
+        })
+
+    # ── volumen por subyacente ────────────────────────────────────────────────
+    vol_sub = []
+    for accion, grp in df2.groupby("accion", sort=False):
+        calls = grp[grp["tipo"] == "CALL"]
+        puts  = grp[grp["tipo"] == "PUT"]
+        vol_call  = int(calls["_vol"].sum())
+        vol_put   = int(puts["_vol"].sum())
+        vol_total = vol_call + vol_put
+        oi_total  = int(grp["_oi"].sum())
+        vol_sub.append({
+            "accion":    accion,
+            "vol_call":  vol_call,
+            "vol_put":   vol_put,
+            "vol_total": vol_total,
+            "oi_total":  oi_total,
+        })
+    # ordenar por volumen total descendente
+    vol_sub.sort(key=lambda x: x["vol_total"], reverse=True)
+
+    # ── MINI IBEX-35 específico ───────────────────────────────────────────────
+    mask_mini = df2["accion"].str.upper().str.contains("MINI IBEX", na=False)
+    df_mini = df2[mask_mini].copy()
+
+    # Spot del MINI IBEX-35
+    mini_spot = None
+    spots_mini = df_mini[df_mini["spot"] != ""]["spot"]
+    if not spots_mini.empty:
+        mini_spot = _parse_num(spots_mini.iloc[0]) or None
+
+    # Volumen y OI por strike (MINI IBEX-35)
+    mini_por_strike = []
+    if not df_mini.empty:
+        df_mini["_strike_num"] = df_mini["strike"].apply(_parse_num)
+        for strike_val, grp in df_mini.groupby("_strike_num", sort=True):
+            calls = grp[grp["tipo"] == "CALL"]
+            puts  = grp[grp["tipo"] == "PUT"]
+            mini_por_strike.append({
+                "strike":   strike_val,
+                "vol_call": int(calls["_vol"].sum()),
+                "vol_put":  int(puts["_vol"].sum()),
+                "oi_call":  int(calls["_oi"].sum()),
+                "oi_put":   int(puts["_oi"].sum()),
+            })
+
+    # Top 5 MINI IBEX-35
+    mini_top5 = []
+    if not df_mini.empty:
+        top5_df = df_mini.sort_values("_vol", ascending=False).head(5).reset_index(drop=True)
+        for i, r in top5_df.iterrows():
+            mini_top5.append({
+                "rank":             i + 1,
+                "tipo":             r["tipo"],
+                "strike":           r["strike"],
+                "fecha_vencimiento": r["fecha_vencimiento"],
+                "volumen":          int(r["_vol"]) if pd.notna(r["_vol"]) else 0,
+                "oi":               int(r["_oi"])  if pd.notna(r["_oi"])  else 0,
+            })
+
+    # ── Ensamblar y guardar ───────────────────────────────────────────────────
+    payload = {
+        "meta":                 meta,
+        "totales":              totales,
+        "top10_volumen":        top10,
+        "vol_por_subyacente":   vol_sub,
+        "mini_ibex_spot":       mini_spot,
+        "mini_ibex_por_strike": mini_por_strike,
+        "mini_ibex_top5":       mini_top5,
+    }
+
+    ruta = f"{CARPETA}/meff_opciones_latest.json"
+    with open(ruta, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+
+    print(f"JSON dashboard guardado: {ruta}")
+    return ruta
+
+
+# ── Main ───────────────────────────────────────────────────────────────────────
+
 def main():
 
     dia_semana = datetime.today().weekday()
@@ -450,6 +590,9 @@ def main():
             f.write(txt_mini)
         print(f"TXT MINI IBEX guardado: {nombre_txt_mini}")
         print(txt_mini)
+
+    # ── Generar JSON para dashboard_opciones.html ─────────────────────────────
+    generar_json_dashboard(df, fecha_boletin_val)
 
     # ── Enviar email con ambos informes ───────────────────────────────────────
     contenido_email = txt_top10
