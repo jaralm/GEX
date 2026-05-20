@@ -4,7 +4,7 @@ on:
   schedule:
     # 08:00 CET (06:00 UTC) — lunes a viernes
     # Captura el boletín del día anterior (lógica ya implementada en meff_opciones.py)
-    - cron: '0 6 * * 1-5'
+    - cron: '0 6 * * 2-6'
   workflow_dispatch:
     # Permite lanzarlo manualmente desde la pestaña Actions de GitHub
     # útil para reprocesar un día o verificar que funciona
