@@ -1,23 +1,23 @@
-name: MEFF Pipeline Diario
+name: MEFF Daily Pipeline
 
 on:
   schedule:
-    # 08:00 CET (06:00 UTC) — lunes a viernes
-    # Captura el boletín del día anterior (lógica ya implementada en meff_opciones.py)
-    - cron: '0 6 * * 2-6'
-  workflow_dispatch:
-    # Permite lanzarlo manualmente desde la pestaña Actions de GitHub
-    # útil para reprocesar un día o verificar que funciona
+    - cron: '0 6 * * 2-6'   # martes–sábado a las 08:00 CET (06:00 UTC)
+  workflow_dispatch:          # permite lanzarlo manualmente desde GitHub
+
+permissions:
+  contents: write             # necesario para el commit y push de datos
 
 jobs:
-  pipeline:
+  meff-daily:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repositorio
         uses: actions/checkout@v4
 
-      - name: Configurar Python 3.11
+      - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -25,22 +25,17 @@ jobs:
       - name: Instalar dependencias
         run: pip install requests beautifulsoup4 pandas numpy
 
-      - name: Paso 1 — Scraping MEFF + email
+      - name: Ejecutar pipeline MEFF
         env:
-          EMAIL_ORIGEN:   ${{ secrets.EMAIL_ORIGEN }}
-          EMAIL_DESTINO:  ${{ secrets.EMAIL_DESTINO }}
-          PASSWORD_APP:   ${{ secrets.PASSWORD_APP }}
+          EMAIL_ORIGEN:  ${{ secrets.EMAIL_ORIGEN }}
+          EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
+          PASSWORD_APP:  ${{ secrets.PASSWORD_APP }}
         run: python3 meff_opciones.py
 
-      - name: Paso 2 — Calcular GEX y generar JSON
-        run: python3 meff_gex.py
-
-      - name: Paso 3 — Commit y push de los datos nuevos
+      - name: Commit y push de datos nuevos
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
-          git diff --staged --quiet && echo "Sin cambios, nada que commitear" || (
-            git commit -m "datos $(date +'%d/%m/%Y')" &&
-            git push
-          )
+          git diff --staged --quiet || git commit -m "datos MEFF $(date +'%Y-%m-%d')"
+          git push
