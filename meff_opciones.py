@@ -23,6 +23,7 @@ Dependencias:
 
 import re
 import json
+import math
 import requests
 import glob
 import os
@@ -549,10 +550,10 @@ def calcular_dex_vcto(df_raw: pd.DataFrame, r: float = TASA_LIBRE_RIESGO) -> pd.
         T    = max(dias, 1) / 365.0
         iv   = iv_pct / 100.0
 
-        # Delta Black-Scholes escalar usando np.erf (sin dependencias externas)
+        # Delta Black-Scholes escalar usando math.erf (stdlib, sin dependencias externas)
         try:
-            d1  = (np.log(S / K) + (r + 0.5 * iv**2) * T) / (iv * np.sqrt(T))
-            nd1 = float(0.5 * (1.0 + np.erf(d1 / np.sqrt(2.0))))
+            d1  = (math.log(S / K) + (r + 0.5 * iv**2) * T) / (iv * math.sqrt(T))
+            nd1 = 0.5 * (1.0 + math.erf(d1 / math.sqrt(2.0)))
         except Exception:
             continue
 
