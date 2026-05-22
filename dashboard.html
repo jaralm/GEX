@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NO QUEDA OTRA OPCIÓN · MEFF · GEX</title>
+  <title>MEFF · Dashboard</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -13,23 +13,24 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:         #050508;
-      --bg2:        #0d0d14;
-      --bg3:        #13131e;
-      --border:     #1e1e2e;
-      --border2:    #2a2a40;
-      --text:       #e2e8f0;
-      --muted:      #64748b;
-      --call:       #22c55e;
-      --call-dim:   rgba(34,197,94,.15);
-      --put:        #ef4444;
-      --put-dim:    rgba(239,68,68,.15);
-      --spot:       #f59e0b;
-      --spot-dim:   rgba(245,158,11,.15);
-      --violet:     #a78bfa;
-      --violet-dim: rgba(167,139,250,.15);
-      --accent:     #6366f1;
-      --cyan:       #06b6d4;
+      --bg:        #050508;
+      --bg2:       #0d0d14;
+      --bg3:       #13131e;
+      --border:    #1e1e2e;
+      --border2:   #2a2a40;
+      --text:      #e2e8f0;
+      --muted:     #64748b;
+      --call:      #22c55e;
+      --call-dim:  rgba(34,197,94,.15);
+      --put:       #ef4444;
+      --put-dim:   rgba(239,68,68,.15);
+      --spot:      #f59e0b;
+      --spot-dim:  rgba(245,158,11,.15);
+      --violet:    #a78bfa;
+      --violet-dim:rgba(167,139,250,.15);
+      --cyan:      #22d3ee;
+      --cyan-dim:  rgba(34,211,238,.15);
+      --accent:    #6366f1;
     }
 
     body {
@@ -39,54 +40,28 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      height: 100vh;
     }
 
-    /* ── Header ── */
+    /* ── Header ──────────────────────────────────────────────────────────────── */
     .header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 28px;
+      padding: 16px 28px;
       border-bottom: 1px solid var(--border);
       background: var(--bg2);
       flex-shrink: 0;
     }
-    .header h1 { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-    .brand     { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: .06em; }
-    .subbrand  { font-size: 16px; font-weight: 600; color: var(--text);   letter-spacing: .05em; }
-    .dot       { color: var(--muted); font-size: 14px; }
-    .title     { font-size: 14px; font-weight: 400; color: var(--muted); letter-spacing: .04em; }
-    .meta-fecha { font-size: 10px; color: var(--muted); white-space: nowrap; }
+    .header h1 { display: flex; align-items: baseline; gap: 8px; }
+    .brand  { font-size: 22px; font-weight: 700; color: var(--accent); letter-spacing: .05em; }
+    .dot    { color: var(--muted); font-size: 18px; }
+    .title  { font-size: 16px; font-weight: 400; color: var(--text); }
+    .meta-fecha { font-size: 11px; color: var(--muted); }
 
-    /* ── Footer ── */
-    .footer {
-      flex-shrink: 0;
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
-      padding: 8px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      align-items: center;
-      text-align: center;
-    }
-    .footer-line {
-      font-size: 9px;
-      color: var(--muted);
-      letter-spacing: .03em;
-      line-height: 1.5;
-    }
-    .footer-line a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .footer-line a:hover { text-decoration: underline; }
-
-    /* ── Tab nav ── */
+    /* ── Tab nav ─────────────────────────────────────────────────────────────── */
     .tab-nav {
       display: flex;
+      gap: 0;
       background: var(--bg2);
       border-bottom: 1px solid var(--border);
       padding: 0 28px;
@@ -101,7 +76,7 @@
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
-      padding: 11px 20px;
+      padding: 12px 20px;
       letter-spacing: .06em;
       transition: color .15s, border-color .15s;
     }
@@ -109,210 +84,98 @@
     .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
     .tab-icon { margin-right: 6px; font-size: 13px; }
 
-    /* ── Controls ── */
+    /* ── Controls ────────────────────────────────────────────────────────────── */
     .controls {
       display: flex;
-      gap: 14px;
-      padding: 12px 28px;
+      gap: 16px;
+      padding: 16px 28px;
       background: var(--bg2);
       border-bottom: 1px solid var(--border);
       flex-wrap: wrap;
-      align-items: flex-end;
-      flex-shrink: 0;
+      align-items: center;
     }
     .control-group { display: flex; flex-direction: column; gap: 4px; }
-    .control-group label { font-size: 9px; color: var(--muted); letter-spacing: .07em; }
+    .control-group label { font-size: 10px; color: var(--muted); letter-spacing: .06em; }
     select {
       background: var(--bg3);
       border: 1px solid var(--border2);
       color: var(--text);
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
-      padding: 5px 10px;
+      padding: 6px 10px;
       border-radius: 4px;
       cursor: pointer;
-      min-width: 155px;
+      min-width: 160px;
     }
     select:focus { outline: none; border-color: var(--accent); }
 
-    /* ── Toggle buttons ── */
-    .toggle-group { display: flex; }
+    /* ── Toggle buttons (metric switch for Tab OPCIONES) ─────────────────────── */
+    .toggle-group { display: flex; gap: 0; }
     .toggle-btn {
       background: var(--bg3);
       border: 1px solid var(--border2);
       color: var(--muted);
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
-      padding: 5px 13px;
+      padding: 6px 14px;
       cursor: pointer;
       transition: background .15s, color .15s;
-      white-space: nowrap;
     }
     .toggle-btn:first-child { border-radius: 4px 0 0 4px; }
-    .toggle-btn:last-child  { border-radius: 0 4px 4px 0; }
-    .toggle-btn:not(:first-child) { border-left: none; }
+    .toggle-btn:last-child  { border-radius: 0 4px 4px 0; border-left: none; }
     .toggle-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-    /* ── KPI strip ── */
+    /* ── KPI strip ────────────────────────────────────────────────────────────── */
     .kpi-strip {
       display: flex;
-      gap: 8px;
-      padding: 12px 28px;
+      gap: 12px;
+      padding: 16px 28px;
       flex-wrap: wrap;
-      flex-shrink: 0;
     }
     .kpi-card {
       background: var(--bg2);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 9px 14px;
+      padding: 12px 18px;
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      min-width: 110px;
-      flex: 1;
+      gap: 4px;
+      min-width: 130px;
     }
-    .kpi-card .lbl { font-size: 9px; color: var(--muted); letter-spacing: .07em; }
-    .kpi-card .val { font-size: 17px; font-weight: 600; line-height: 1.2; }
-    .kpi-card .sub { font-size: 9px; color: var(--muted); }
+    .kpi-card .lbl { font-size: 10px; color: var(--muted); letter-spacing: .06em; }
+    .kpi-card .val { font-size: 20px; font-weight: 600; }
+    .kpi-card .sub { font-size: 10px; color: var(--muted); }
     .c-spot   { color: var(--spot); }
     .c-call   { color: var(--call); }
     .c-put    { color: var(--put);  }
     .c-violet { color: var(--violet); }
-    .c-muted  { color: var(--muted); }
     .c-cyan   { color: var(--cyan); }
+    .c-muted  { color: var(--muted); }
 
-    /* ── Tab content ── */
-    .tab-content { display: none; flex-direction: column; flex: 1; overflow: hidden; }
-    .tab-content.active { display: flex; }
+    /* ── Totals row ───────────────────────────────────────────────────────────── */
+    .totals-row {
+      display: flex;
+      gap: 24px;
+      padding: 4px 28px 12px;
+      flex-wrap: wrap;
+    }
+    .total-item { font-size: 11px; }
+    .total-item .t-lbl { color: var(--muted); margin-right: 6px; }
 
-    /* ── Chart wrap ── */
+    /* ── Chart container ─────────────────────────────────────────────────────── */
     .chart-wrap {
       flex: 1;
-      padding: 10px 28px 20px;
-      min-height: 0;
+      padding: 12px 28px 24px;
+      min-height: 320px;
       position: relative;
     }
     canvas { width: 100% !important; }
 
-    /* ── Table wrap ── */
-    .table-wrap {
-      flex: 1;
-      padding: 0 28px 20px;
-      overflow: auto;
-      min-height: 0;
-    }
-    .data-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 11px;
-    }
-    .data-table thead {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: var(--bg2);
-    }
-    .data-table thead tr { border-bottom: 2px solid var(--border2); }
-    .data-table th {
-      padding: 9px 12px;
-      text-align: right;
-      color: var(--muted);
-      font-size: 9px;
-      letter-spacing: .07em;
-      cursor: pointer;
-      user-select: none;
-      white-space: nowrap;
-      font-weight: 500;
-    }
-    .data-table th:first-child { text-align: left; padding-left: 16px; }
-    .data-table th:hover { color: var(--text); }
-    .data-table td {
-      padding: 6px 12px;
-      text-align: right;
-      border-bottom: 1px solid var(--border);
-      white-space: nowrap;
-    }
-    .data-table td:first-child { text-align: left; padding-left: 16px; }
-    .data-table tr:hover td { background: var(--bg3) !important; }
-    .row-spot td { background: rgba(245,158,11,.06); }
-    .row-cw   td { background: rgba(34,197,94,.06);  }
-    .row-pw   td { background: rgba(239,68,68,.06);  }
+    /* ── Tab sections ────────────────────────────────────────────────────────── */
+    .tab-content { display: none; flex-direction: column; flex: 1; }
+    .tab-content.active { display: flex; }
 
-    /* ── Strike cell ── */
-    .strike-cell { display: flex; flex-direction: column; gap: 1px; }
-    .strike-main { display: flex; align-items: center; gap: 5px; font-weight: 500; font-size: 11px; }
-    .strike-pct  { font-size: 8px; color: var(--muted); padding-left: 1px; }
-
-    /* ── Badges ── */
-    .badge {
-      display: inline-block;
-      padding: 1px 4px;
-      border-radius: 3px;
-      font-size: 7px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      vertical-align: middle;
-    }
-    .badge-spot { background: rgba(245,158,11,.2); color: var(--spot); }
-    .badge-cw   { background: rgba(34,197,94,.2);  color: var(--call); }
-    .badge-pw   { background: rgba(239,68,68,.2);  color: var(--put); }
-
-    /* ── IV cell ── */
-    .iv-cell {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 5px;
-    }
-    .iv-bar-wrap {
-      width: 40px;
-      height: 4px;
-      background: var(--border);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .iv-bar { height: 100%; border-radius: 2px; }
-    .iv-num { font-size: 10px; min-width: 36px; text-align: right; }
-
-    /* ── Informes tab ── */
-    .informes-wrap {
-      flex: 1;
-      padding: 20px 28px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      overflow: auto;
-    }
-    .informe-block {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 18px 22px;
-    }
-    .informe-header {
-      font-size: 9px;
-      color: var(--accent);
-      letter-spacing: .1em;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .informe-pre {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text);
-      white-space: pre;
-      overflow-x: auto;
-      line-height: 1.65;
-    }
-    .informe-empty {
-      font-size: 12px;
-      color: var(--muted);
-      font-style: normal;
-    }
-
-    /* ── Error overlay ── */
+    /* ── Error overlay ───────────────────────────────────────────────────────── */
     .err-overlay {
       display: none;
       position: fixed; inset: 0;
@@ -342,7 +205,7 @@
       font-size: 12px;
     }
 
-    /* ── Loading pulse ── */
+    /* ── Loading pulse ────────────────────────────────────────────────────────── */
     @keyframes pulse { 0%,100%{opacity:.3} 50%{opacity:.9} }
     .dot-pulse {
       display: inline-block; width: 6px; height: 6px;
@@ -352,21 +215,19 @@
     .dot-pulse:nth-child(2){animation-delay:.2s}
     .dot-pulse:nth-child(3){animation-delay:.4s}
 
-    ::-webkit-scrollbar       { width: 6px; height: 6px; }
+    ::-webkit-scrollbar       { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
   </style>
 </head>
 <body>
 
-<!-- ── Header ── -->
+<!-- ── Header ──────────────────────────────────────────────────────────────── -->
 <div class="header">
   <h1>
-    <span class="brand">NO QUEDA OTRA OPCIÓN</span>
+    <span class="brand">MEFF</span>
     <span class="dot">·</span>
-    <span class="subbrand">MEFF</span>
-    <span class="dot">·</span>
-    <span class="title">GAMMA EXPOSURE</span>
+    <span class="title">Dashboard</span>
   </h1>
   <span class="meta-fecha" id="meta-fecha">
     <span class="dot-pulse"></span>
@@ -375,23 +236,25 @@
   </span>
 </div>
 
-<!-- ── Tab navigation ── -->
+<!-- ── Tab navigation ──────────────────────────────────────────────────────── -->
 <div class="tab-nav">
-  <button class="tab-btn active" onclick="switchTab('gex')" id="tbtn-gex">
+  <button class="tab-btn active" onclick="switchTab('gex')"       id="tbtn-gex">
     <span class="tab-icon">γ</span>GEX
   </button>
-  <button class="tab-btn" onclick="switchTab('informes')" id="tbtn-informes">
-    <span class="tab-icon">◈</span>TOP POSICIONES
+  <button class="tab-btn"        onclick="switchTab('dex')"       id="tbtn-dex">
+    <span class="tab-icon">Δ</span>DEX
   </button>
-  <button class="tab-btn" onclick="switchTab('historico')" id="tbtn-historico">
-    <span class="tab-icon">◎</span>FLUJO Y POSICIONAMIENTO
+  <button class="tab-btn"        onclick="switchTab('opciones')"  id="tbtn-opciones">
+    <span class="tab-icon">◈</span>OPCIONES
+  </button>
+  <button class="tab-btn"        onclick="switchTab('historico')" id="tbtn-historico">
+    <span class="tab-icon">◎</span>HISTÓRICO
   </button>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 1 — GEX
-════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TAB GEX — GAMMA EXPOSURE POR STRIKE
+════════════════════════════════════════════════════════════════════════════ -->
 <div id="tab-gex" class="tab-content active">
 
   <div class="controls">
@@ -401,60 +264,24 @@
     </div>
     <div class="control-group">
       <label>VENCIMIENTO</label>
-      <select id="gex-sel-vcto" onchange="gexRefresh()"></select>
-    </div>
-    <div class="control-group">
-      <label>MODO</label>
-      <div class="toggle-group">
-        <button class="toggle-btn" id="btn-net" onclick="gexSetMode('net')">Net GEX</button>
-        <button class="toggle-btn active" id="btn-cp" onclick="gexSetMode('callput')">Call/Put</button>
-      </div>
-    </div>
-    <div class="control-group">
-      <label>VISTA</label>
-      <div class="toggle-group">
-        <button class="toggle-btn active" id="btn-graph" onclick="gexSetView('graph')">Graph</button>
-        <button class="toggle-btn" id="btn-table" onclick="gexSetView('table')">Table</button>
-      </div>
+      <select id="gex-sel-vcto" onchange="gexRender()"></select>
     </div>
   </div>
 
-  <!-- KPI strip: 8 cards -->
   <div class="kpi-strip">
     <div class="kpi-card">
       <div class="lbl">SPOT</div>
-      <div class="val c-spot" id="gex-kpi-spot">—</div>
-      <div class="sub" id="gex-kpi-spot-sub">—</div>
-    </div>
-    <div class="kpi-card">
-      <div class="lbl">NET GEX</div>
-      <div class="val" id="gex-kpi-net">—</div>
-      <div class="sub" id="gex-kpi-ratio">—</div>
-    </div>
-    <div class="kpi-card">
-      <div class="lbl">CALL GEX</div>
-      <div class="val c-call" id="gex-kpi-call">—</div>
-      <div class="sub" id="gex-kpi-call-oi">—</div>
-    </div>
-    <div class="kpi-card">
-      <div class="lbl">PUT GEX</div>
-      <div class="val c-put" id="gex-kpi-put">—</div>
-      <div class="sub" id="gex-kpi-put-oi">—</div>
-    </div>
-    <div class="kpi-card">
-      <div class="lbl">TOTAL GEX</div>
-      <div class="val c-cyan" id="gex-kpi-total">—</div>
-      <div class="sub" id="gex-kpi-total-oi">—</div>
+      <div class="val c-spot"   id="gex-kpi-spot">—</div>
     </div>
     <div class="kpi-card">
       <div class="lbl">CALL WALL</div>
-      <div class="val c-call" id="gex-kpi-cw">—</div>
-      <div class="sub" id="gex-kpi-cw-pct">—</div>
+      <div class="val c-call"   id="gex-kpi-cw">—</div>
+      <div class="sub">máx GEX call</div>
     </div>
     <div class="kpi-card">
       <div class="lbl">PUT WALL</div>
-      <div class="val c-put" id="gex-kpi-pw">—</div>
-      <div class="sub" id="gex-kpi-pw-pct">—</div>
+      <div class="val c-put"    id="gex-kpi-pw">—</div>
+      <div class="sub">mín GEX put</div>
     </div>
     <div class="kpi-card">
       <div class="lbl">ZERO GAMMA</div>
@@ -463,53 +290,142 @@
     </div>
   </div>
 
-  <!-- Graph area -->
-  <div id="gex-graph-area" class="chart-wrap">
+  <div class="totals-row">
+    <div class="total-item">
+      <span class="t-lbl">GEX NETO</span>
+      <span id="gex-tot-net" style="font-weight:600">—</span>
+    </div>
+    <div class="total-item">
+      <span class="t-lbl">GEX CALL</span>
+      <span id="gex-tot-call" class="c-call">—</span>
+    </div>
+    <div class="total-item">
+      <span class="t-lbl">GEX PUT</span>
+      <span id="gex-tot-put" class="c-put">—</span>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
     <canvas id="chart-gex"></canvas>
   </div>
+</div>
 
-  <!-- Table area (hidden by default) -->
-  <div id="gex-table-area" class="table-wrap" style="display:none">
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th onclick="gexTableSort('strike')">STRIKE <span id="sort-strike">↓</span></th>
-          <th onclick="gexTableSort('call_iv')">IV CALL <span id="sort-call_iv">↕</span></th>
-          <th onclick="gexTableSort('put_iv')">IV PUT <span id="sort-put_iv">↕</span></th>
-          <th onclick="gexTableSort('net_gex')">NET GEX <span id="sort-net_gex">↕</span></th>
-          <th onclick="gexTableSort('call_gex')">CALL GEX <span id="sort-call_gex">↕</span></th>
-          <th onclick="gexTableSort('put_gex')">PUT GEX <span id="sort-put_gex">↕</span></th>
-          <th onclick="gexTableSort('call_oi')">CALL OI <span id="sort-call_oi">↕</span></th>
-          <th onclick="gexTableSort('put_oi')">PUT OI <span id="sort-put_oi">↕</span></th>
-          <th onclick="gexTableSort('total_oi')">TOTAL OI <span id="sort-total_oi">↕</span></th>
-        </tr>
-      </thead>
-      <tbody id="gex-table-body"></tbody>
-    </table>
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TAB DEX — DELTA EXPOSURE POR STRIKE
+════════════════════════════════════════════════════════════════════════════ -->
+<div id="tab-dex" class="tab-content">
+
+  <div class="controls">
+    <div class="control-group">
+      <label>SUBYACENTE</label>
+      <select id="dex-sel-activo" onchange="dexOnActivoChange()"></select>
+    </div>
+    <div class="control-group">
+      <label>VENCIMIENTO</label>
+      <select id="dex-sel-vcto" onchange="dexRender()"></select>
+    </div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="lbl">SPOT</div>
+      <div class="val c-spot"  id="dex-kpi-spot">—</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">CALL WALL</div>
+      <div class="val c-call"  id="dex-kpi-cw">—</div>
+      <div class="sub">máx DEX call</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">PUT WALL</div>
+      <div class="val c-put"   id="dex-kpi-pw">—</div>
+      <div class="sub">mín DEX put</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">ZERO DELTA</div>
+      <div class="val c-cyan"  id="dex-kpi-zd">—</div>
+      <div class="sub" id="dex-kpi-regime">—</div>
+    </div>
+  </div>
+
+  <div class="totals-row">
+    <div class="total-item">
+      <span class="t-lbl">DEX NETO</span>
+      <span id="dex-tot-net" style="font-weight:600">—</span>
+    </div>
+    <div class="total-item">
+      <span class="t-lbl">DEX CALL</span>
+      <span id="dex-tot-call" class="c-call">—</span>
+    </div>
+    <div class="total-item">
+      <span class="t-lbl">DEX PUT</span>
+      <span id="dex-tot-put" class="c-put">—</span>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="chart-dex"></canvas>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TAB OPCIONES — VOLUMEN / OI POR STRIKE
+════════════════════════════════════════════════════════════════════════════ -->
+<div id="tab-opciones" class="tab-content">
 
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 2 — INFORMES
-════════════════════════════════════════════════════════════════ -->
-<div id="tab-informes" class="tab-content">
-  <div class="informes-wrap">
-    <div class="informe-block">
-      <div class="informe-header" id="inf-title-top10">TOP 10 · VOLUMEN CONTRATOS</div>
-      <pre class="informe-pre" id="inf-text-top10"><span class="informe-empty">Ejecuta el pipeline para generar este informe</span></pre>
+  <div class="controls">
+    <div class="control-group">
+      <label>SUBYACENTE</label>
+      <select id="opc-sel-activo" onchange="opcOnActivoChange()"></select>
     </div>
-    <div class="informe-block">
-      <div class="informe-header" id="inf-title-mini">TOP 5 · MINI IBEX-35 (CALL+PUT)</div>
-      <pre class="informe-pre" id="inf-text-mini"><span class="informe-empty">Ejecuta el pipeline para generar este informe</span></pre>
+    <div class="control-group">
+      <label>VENCIMIENTO</label>
+      <select id="opc-sel-vcto" onchange="opcRender()"></select>
     </div>
+    <div class="control-group">
+      <label>MÉTRICA</label>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="opc-btn-vol" onclick="opcSetMetric('volumen')">Volumen</button>
+        <button class="toggle-btn"        id="opc-btn-oi"  onclick="opcSetMetric('oi')">OI</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="kpi-strip">
+    <div class="kpi-card">
+      <div class="lbl">SPOT</div>
+      <div class="val c-spot" id="opc-kpi-spot">—</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">CALL TOTAL</div>
+      <div class="val c-call" id="opc-kpi-call">—</div>
+      <div class="sub" id="opc-kpi-call-lbl">volumen</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">PUT TOTAL</div>
+      <div class="val c-put"  id="opc-kpi-put">—</div>
+      <div class="sub" id="opc-kpi-put-lbl">volumen</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">RATIO C/P</div>
+      <div class="val c-muted" id="opc-kpi-ratio">—</div>
+      <div class="sub">call / put</div>
+    </div>
+    <div class="kpi-card">
+      <div class="lbl">ATM STRIKE</div>
+      <div class="val c-spot"  id="opc-kpi-atm">—</div>
+      <div class="sub">más cercano al spot</div>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <canvas id="chart-opciones"></canvas>
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
-     TAB 3 — HISTÓRICO DE VOLUMEN
-════════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TAB HISTÓRICO — VOLUMEN HISTÓRICO
+════════════════════════════════════════════════════════════════════════════ -->
 <div id="tab-historico" class="tab-content">
 
   <div class="controls">
@@ -521,23 +437,16 @@
       <label>VENCIMIENTO</label>
       <select id="his-sel-vcto" onchange="hisRender()"></select>
     </div>
-    <div class="control-group">
-      <label>MÉTRICA</label>
-      <div class="toggle-group">
-        <button class="toggle-btn active" id="his-btn-vol" onclick="hisSetMetric('volumen')">Volumen</button>
-        <button class="toggle-btn"        id="his-btn-oi"  onclick="hisSetMetric('oi')">OI</button>
-      </div>
-    </div>
   </div>
 
   <div class="kpi-strip">
     <div class="kpi-card">
-      <div class="lbl" id="his-kpi-call-lbl">CALL (período)</div>
+      <div class="lbl">VOL. CALL (período)</div>
       <div class="val c-call"  id="his-kpi-call">—</div>
       <div class="sub" id="his-kpi-call-pct">—</div>
     </div>
     <div class="kpi-card">
-      <div class="lbl" id="his-kpi-put-lbl">PUT (período)</div>
+      <div class="lbl">VOL. PUT (período)</div>
       <div class="val c-put"   id="his-kpi-put">—</div>
       <div class="sub" id="his-kpi-put-pct">—</div>
     </div>
@@ -558,8 +467,7 @@
   </div>
 </div>
 
-
-<!-- ── Error overlay ── -->
+<!-- ── Error overlay ───────────────────────────────────────────────────────── -->
 <div class="err-overlay" id="err-overlay">
   <div class="err-box">
     <h2>⚠ No se pudo cargar el dashboard</h2>
@@ -570,34 +478,24 @@
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════════════
+<!-- ═══════════════════════════════════════════════════════════════════════════
      JAVASCRIPT
-════════════════════════════════════════════════════════════════ -->
+════════════════════════════════════════════════════════════════════════════ -->
 <script>
 'use strict';
 
 // ── Estado global ─────────────────────────────────────────────────────────────
 const state = {
-  gex: {
-    data:      null,
-    chart:     null,
-    activo:    null,
-    vcto:      null,
-    mode:      'callput',   // 'net' | 'callput'
-    view:      'graph',     // 'graph' | 'table'
-    tableSort: { col: 'strike', dir: 'desc' },
-  },
-  opciones:  { data: null },                               // backing data; no tab propio
-  historico: { data: null, chart: null, activo: null, vcto: null, metric: 'volumen' },
-  informes:  { data: null },
+  gex:      { data: null, chart: null, activo: null, vcto: null },
+  dex:      { data: null, chart: null, activo: null, vcto: null },
+  opciones: { data: null, chart: null, activo: null, vcto: null, metric: 'volumen' },
+  historico:{ data: null, chart: null, activo: null, vcto: null },
   tab: 'gex',
 };
 
 // ── Utilidades ────────────────────────────────────────────────────────────────
 
 function fmtGex(v) {
-  if (v == null || isNaN(v)) return '—';
   const a = Math.abs(v);
   if (a >= 1e9) return (v / 1e9).toFixed(2) + 'B';
   if (a >= 1e6) return (v / 1e6).toFixed(2) + 'M';
@@ -612,7 +510,7 @@ function fmtNum(v) {
   return v.toLocaleString('es-ES', { maximumFractionDigits: 0 });
 }
 
-function fmtPrice(v, dec = 2) {
+function fmtPrice(v, dec=2) {
   if (v == null || isNaN(v)) return '—';
   return v.toLocaleString('es-ES', { minimumFractionDigits: dec, maximumFractionDigits: dec });
 }
@@ -627,32 +525,27 @@ function switchTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(e => e.classList.remove('active'));
   el('tab-' + tab).classList.add('active');
   el('tbtn-' + tab).classList.add('active');
-  const chartMap = { gex: state.gex.chart, historico: state.historico.chart };
+
+  const chartMap = {
+    gex: state.gex.chart,
+    dex: state.dex.chart,
+    opciones: state.opciones.chart,
+    historico: state.historico.chart
+  };
   const ch = chartMap[tab];
   if (ch) setTimeout(() => ch.resize(), 10);
 }
 
-
 // ═════════════════════════════════════════════════════════════════════════════
-// TAB 1 — GEX
+// TAB GEX — GAMMA EXPOSURE
 // ═════════════════════════════════════════════════════════════════════════════
 
 function initGex() {
   const d = state.gex.data;
   if (!d) return;
 
-  if (d.meta) {
-    // Header derecho: Boletín [fecha] · Generado [hora]
-    const parts = [];
-    if (d.meta.fecha_boletin) parts.push('Boletín ' + d.meta.fecha_boletin);
-    if (d.meta.generado)      parts.push('Generado ' + d.meta.generado);
-    el('meta-fecha').textContent = parts.join(' · ');
-
-    // Footer: tasa libre de riesgo
-    if (d.meta.tasa_libre_riesgo != null) {
-      const tasaPct = (d.meta.tasa_libre_riesgo * 100).toFixed(1).replace('.', ',') + '%';
-      el('footer-tasa').textContent = tasaPct;
-    }
+  if (d.meta && d.meta.fecha_boletin) {
+    el('meta-fecha').textContent = 'Boletín ' + d.meta.fecha_boletin;
   }
 
   const sel = el('gex-sel-activo');
@@ -663,9 +556,7 @@ function initGex() {
     sel.appendChild(o);
   });
 
-  const defaultActivo =
-    (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) ||
-    (d.subyacentes || [])[0] || '';
+  const defaultActivo = (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) || (d.subyacentes || [])[0] || '';
   sel.value = defaultActivo;
   state.gex.activo = defaultActivo;
 
@@ -679,7 +570,8 @@ function gexOnActivoChange() {
 
   const sel = el('gex-sel-vcto');
   sel.innerHTML = '<option value="todos">Todos los vencimientos</option>';
-  ((d.vencimientos || {})[activo] || []).forEach(v => {
+  const vctos = (d.vencimientos || {})[activo] || [];
+  vctos.forEach(v => {
     const o = document.createElement('option');
     o.value = v; o.textContent = v;
     sel.appendChild(o);
@@ -687,30 +579,11 @@ function gexOnActivoChange() {
   sel.value = 'todos';
   state.gex.vcto = 'todos';
 
-  gexRefresh();
-}
-
-function gexSetMode(mode) {
-  state.gex.mode = mode;
-  el('btn-net').classList.toggle('active', mode === 'net');
-  el('btn-cp').classList.toggle('active',  mode === 'callput');
-  gexRefresh();
-}
-
-function gexSetView(view) {
-  state.gex.view = view;
-  el('btn-graph').classList.toggle('active', view === 'graph');
-  el('btn-table').classList.toggle('active', view === 'table');
-  el('gex-graph-area').style.display = view === 'graph' ? '' : 'none';
-  el('gex-table-area').style.display = view === 'table' ? '' : 'none';
-  gexRefresh();
-  if (view === 'graph' && state.gex.chart) {
-    setTimeout(() => state.gex.chart.resize(), 30);
-  }
+  gexRender();
 }
 
 function gexGetData() {
-  const d      = state.gex.data;
+  const d = state.gex.data;
   const activo = state.gex.activo;
   const vcto   = el('gex-sel-vcto').value;
   state.gex.vcto = vcto;
@@ -719,102 +592,12 @@ function gexGetData() {
   if (vcto === 'todos') {
     rows = (d.gex_por_strike || []).filter(r => r.accion === activo);
   } else {
-    rows = (d.gex_por_strike_vcto || []).filter(
-      r => r.accion === activo && r.fecha_vencimiento === vcto
-    );
+    rows = (d.gex_por_strike_vcto || []).filter(r => r.accion === activo && r.fecha_vencimiento === vcto);
   }
   return rows.sort((a, b) => a.strike - b.strike);
 }
 
-function gexRefresh() {
-  if (!state.gex.data || !state.gex.activo) return;
-  const rows = gexGetData();
-  const kpis = (state.gex.data.kpis_por_accion || {})[state.gex.activo] || {};
-  gexUpdateKPIs(rows, kpis);
-  if (state.gex.view === 'graph') {
-    gexRenderGraph(rows, kpis);
-  } else {
-    gexRenderTable(rows, kpis);
-  }
-}
-
-// ── KPI strip ─────────────────────────────────────────────────────────────────
-
-function gexUpdateKPIs(rows, kpis) {
-  const activo = state.gex.activo;
-  const vcto   = el('gex-sel-vcto').value;
-  const spot   = kpis.spot;
-
-  const totCall  = rows.reduce((s, r) => s + (r.call_gex || 0), 0);
-  const totPut   = rows.reduce((s, r) => s + (r.put_gex  || 0), 0);
-  const totNet   = rows.reduce((s, r) => s + (r.net_gex  || 0), 0);
-  const totGross = Math.abs(totCall) + Math.abs(totPut);
-  const absPut   = Math.abs(totPut);
-  const ratio    = absPut > 0 ? (Math.abs(totCall) / absPut).toFixed(2) : '—';
-
-  // OI totals from opciones backing data
-  let callOi = null, putOi = null;
-  if (state.opciones.data) {
-    let opc = state.opciones.data.datos.filter(r => r.accion === activo);
-    if (vcto !== 'todos') opc = opc.filter(r => r.fecha_vencimiento === vcto);
-    callOi = opc.filter(r => r.tipo === 'CALL').reduce((s, r) => s + (r.posicion_abierta || 0), 0);
-    putOi  = opc.filter(r => r.tipo === 'PUT' ).reduce((s, r) => s + (r.posicion_abierta || 0), 0);
-  }
-
-  const dec = (spot != null && spot >= 1000) ? 0 : 2;
-
-  // SPOT
-  el('gex-kpi-spot').textContent     = spot != null ? fmtPrice(spot, dec) : '—';
-  el('gex-kpi-spot-sub').textContent = activo;
-
-  // NET GEX
-  const netEl = el('gex-kpi-net');
-  netEl.textContent  = fmtGex(totNet);
-  netEl.style.color  = totNet >= 0 ? 'var(--call)' : 'var(--put)';
-  el('gex-kpi-ratio').textContent = 'Ratio: ' + ratio;
-
-  // CALL GEX
-  el('gex-kpi-call').textContent    = fmtGex(totCall);
-  el('gex-kpi-call-oi').textContent = callOi != null ? fmtNum(callOi) + ' OI' : '—';
-
-  // PUT GEX
-  el('gex-kpi-put').textContent    = fmtGex(totPut);
-  el('gex-kpi-put-oi').textContent = putOi  != null ? fmtNum(putOi)  + ' OI' : '—';
-
-  // TOTAL GEX (|call| + |put|)
-  el('gex-kpi-total').textContent    = fmtGex(totGross);
-  const totOi = (callOi != null && putOi != null) ? callOi + putOi : null;
-  el('gex-kpi-total-oi').textContent = totOi != null ? fmtNum(totOi) + ' OI' : '—';
-
-  // CALL WALL
-  const cw = kpis.call_wall;
-  el('gex-kpi-cw').textContent = cw != null ? fmtPrice(cw, cw >= 1000 ? 0 : 2) : '—';
-  if (cw != null && spot != null) {
-    const pct = ((cw - spot) / spot * 100);
-    el('gex-kpi-cw-pct').textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
-  } else {
-    el('gex-kpi-cw-pct').textContent = '—';
-  }
-
-  // PUT WALL
-  const pw = kpis.put_wall;
-  el('gex-kpi-pw').textContent = pw != null ? fmtPrice(pw, pw >= 1000 ? 0 : 2) : '—';
-  if (pw != null && spot != null) {
-    const pct = ((pw - spot) / spot * 100);
-    el('gex-kpi-pw-pct').textContent = (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%';
-  } else {
-    el('gex-kpi-pw-pct').textContent = '—';
-  }
-
-  // ZERO GAMMA
-  const zg = kpis.zero_gamma;
-  el('gex-kpi-zg').textContent     = zg != null ? fmtPrice(zg, zg >= 1000 ? 0 : 2) : 'n/a';
-  el('gex-kpi-regime').textContent = kpis.regime || '—';
-  el('gex-kpi-regime').style.color = kpis.regime === 'POSITIVO' ? 'var(--call)' : 'var(--put)';
-}
-
-// ── Plugin líneas verticales (Spot / C·Wall / P·Wall / Zero Gamma) ────────────
-
+// Plugin líneas verticales para Tab GEX
 const gexLinesPlugin = {
   id: 'gexLines',
   afterDraw(chart) {
@@ -832,7 +615,7 @@ const gexLinesPlugin = {
     const yBot   = yScale.bottom;
 
     function xForPrice(price) {
-      if (price == null || isNaN(price) || !labels.length) return null;
+      if (price == null || isNaN(price) || labels.length === 0) return null;
       for (let i = 0; i < labels.length; i++) {
         if (labels[i] >= price) {
           if (i === 0) return xScale.getPixelForValue(labels[0]);
@@ -873,84 +656,80 @@ const gexLinesPlugin = {
   }
 };
 
-// ── Render gráfico ─────────────────────────────────────────────────────────────
+function gexRender() {
+  const rows   = gexGetData();
+  const activo = state.gex.activo;
+  const d      = state.gex.data;
+  const kpis   = (d.kpis_por_accion || {})[activo] || {};
 
-function gexRenderGraph(rows, kpis) {
-  const mode   = state.gex.mode;
-  const labels = rows.map(r => r.strike);
+  el('gex-kpi-spot').textContent   = kpis.spot      != null ? fmtPrice(kpis.spot, kpis.spot >= 1000 ? 0 : 2) : '—';
+  el('gex-kpi-cw').textContent     = kpis.call_wall  != null ? fmtPrice(kpis.call_wall,  kpis.call_wall  >= 1000 ? 0 : 2) : '—';
+  el('gex-kpi-pw').textContent     = kpis.put_wall   != null ? fmtPrice(kpis.put_wall,   kpis.put_wall   >= 1000 ? 0 : 2) : '—';
+  el('gex-kpi-zg').textContent     = kpis.zero_gamma != null ? fmtPrice(kpis.zero_gamma, kpis.zero_gamma >= 1000 ? 0 : 2) : 'n/a';
+  el('gex-kpi-regime').textContent = kpis.regime     || '—';
+  el('gex-kpi-regime').style.color = kpis.regime === 'POSITIVO' ? 'var(--call)' : 'var(--put)';
 
-  let datasets;
-  if (mode === 'net') {
-    datasets = [{
-      label:           'NET GEX',
-      data:            rows.map(r => r.net_gex || 0),
-      backgroundColor: rows.map(r => (r.net_gex || 0) >= 0 ? 'rgba(34,197,94,.65)' : 'rgba(239,68,68,.65)'),
-      borderColor:     rows.map(r => (r.net_gex || 0) >= 0 ? 'rgba(34,197,94,.9)'  : 'rgba(239,68,68,.9)'),
-      borderWidth:  1,
-      borderRadius: 1,
-    }];
-  } else {
-    datasets = [
-      {
-        label:           'CALL GEX',
-        data:            rows.map(r => r.call_gex || 0),
-        backgroundColor: 'rgba(34,197,94,.65)',
-        borderColor:     'rgba(34,197,94,.9)',
-        borderWidth:  1,
-        borderRadius: 1,
-      },
-      {
-        label:           'PUT GEX',
-        data:            rows.map(r => r.put_gex || 0),
-        backgroundColor: 'rgba(239,68,68,.65)',
-        borderColor:     'rgba(239,68,68,.9)',
-        borderWidth:  1,
-        borderRadius: 1,
-      },
-    ];
-  }
+  const totCall = rows.reduce((s, r) => s + (r.call_gex || 0), 0);
+  const totPut  = rows.reduce((s, r) => s + (r.put_gex  || 0), 0);
+  const totNet  = rows.reduce((s, r) => s + (r.net_gex  || 0), 0);
+  const netEl = el('gex-tot-net');
+  netEl.textContent = fmtGex(totNet);
+  netEl.style.color = totNet >= 0 ? 'var(--call)' : 'var(--put)';
+  el('gex-tot-call').textContent = fmtGex(totCall);
+  el('gex-tot-put').textContent  = fmtGex(totPut);
 
-  // Destruir siempre para evitar conflictos entre 1 y 2 datasets
-  if (state.gex.chart) {
-    state.gex.chart.destroy();
-    state.gex.chart = null;
-  }
+  const labels   = rows.map(r => r.strike);
+  const callData = rows.map(r =>  (r.call_gex || 0));
+  const putData  = rows.map(r =>   (r.put_gex  || 0));
 
-  state.gex.chart = new Chart(el('chart-gex'), {
+  const cfg = {
     type: 'bar',
-    data: { labels, datasets },
-    options: {
-      responsive:          true,
-      maintainAspectRatio: false,
-      animation:           { duration: 200 },
-      plugins: {
-        legend: {
-          display:  mode === 'callput',
-          labels: {
-            color:    '#94a3b8',
-            font:     { family: 'JetBrains Mono', size: 11 },
-            boxWidth: 12,
-          },
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'CALL GEX',
+          data: callData,
+          backgroundColor: 'rgba(34,197,94,.65)',
+          borderColor:     'rgba(34,197,94,.9)',
+          borderWidth: 1,
+          borderRadius: 1,
         },
+        {
+          label: 'PUT GEX',
+          data: putData,
+          backgroundColor: 'rgba(239,68,68,.65)',
+          borderColor:     'rgba(239,68,68,.9)',
+          borderWidth: 1,
+          borderRadius: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 250 },
+      plugins: {
+        legend: { display: false },
         tooltip: {
           backgroundColor: '#13131e',
-          borderColor:     '#2a2a40',
-          borderWidth:     1,
-          titleColor:      '#e2e8f0',
-          bodyColor:       '#94a3b8',
+          borderColor: '#2a2a40',
+          borderWidth: 1,
+          titleColor: '#e2e8f0',
+          bodyColor: '#94a3b8',
           titleFont: { family: 'JetBrains Mono', size: 11 },
           bodyFont:  { family: 'JetBrains Mono', size: 11 },
           callbacks: {
-            title: items => 'Strike ' + Number(items[0].label).toLocaleString('es-ES'),
-            label: item  => ' ' + item.dataset.label + ': ' + fmtGex(item.raw),
+            title: items => 'Strike ' + items[0].label.toLocaleString('es-ES'),
+            label: item => ' ' + item.dataset.label + ': ' + fmtGex(item.raw),
           },
         },
       },
       scales: {
         x: {
+          stacked: false,
           ticks: {
-            color: '#64748b',
-            font:  { family: 'JetBrains Mono', size: 9 },
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 9 },
             maxTicksLimit: 20,
             callback: v => {
               const lbl = labels[v];
@@ -961,8 +740,7 @@ function gexRenderGraph(rows, kpis) {
         },
         y: {
           ticks: {
-            color: '#64748b',
-            font:  { family: 'JetBrains Mono', size: 10 },
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 10 },
             callback: v => fmtGex(v),
           },
           grid: { color: '#1e1e2e' },
@@ -970,177 +748,466 @@ function gexRenderGraph(rows, kpis) {
       },
     },
     plugins: [gexLinesPlugin],
-  });
-}
+  };
 
-// ── Render tabla ──────────────────────────────────────────────────────────────
-
-function gexTableSort(col) {
-  const sort = state.gex.tableSort;
-  sort.dir = (sort.col === col && sort.dir === 'desc') ? 'asc' : 'desc';
-  sort.col = col;
-  const rows = gexGetData();
-  const kpis = (state.gex.data.kpis_por_accion || {})[state.gex.activo] || {};
-  gexRenderTable(rows, kpis);
-}
-
-function gexRenderTable(rows, kpis) {
-  const activo   = state.gex.activo;
-  const vcto     = el('gex-sel-vcto').value;
-  const spot     = kpis.spot;
-  const callWall = kpis.call_wall;
-  const putWall  = kpis.put_wall;
-  const EPS      = 0.001;
-
-  // Strike más cercano al spot → badge SPOT
-  let atmStrike = null;
-  if (spot != null && rows.length > 0) {
-    atmStrike = rows.reduce(
-      (best, r) => Math.abs(r.strike - spot) < Math.abs(best - spot) ? r.strike : best,
-      rows[0].strike
-    );
+  if (state.gex.chart) {
+    state.gex.chart.data    = cfg.data;
+    state.gex.chart.options = cfg.options;
+    state.gex.chart.update('none');
+  } else {
+    state.gex.chart = new Chart(el('chart-gex'), cfg);
   }
+}
 
-  // OI y IV desde opciones (backing data)
-  const opcMap = {};
-  if (state.opciones.data) {
-    let opc = state.opciones.data.datos.filter(r => r.accion === activo);
-    if (vcto !== 'todos') opc = opc.filter(r => r.fecha_vencimiento === vcto);
-    opc.forEach(r => {
-      const k = r.strike;
-      if (k == null) return;
-      if (!opcMap[k]) opcMap[k] = { call_oi: 0, put_oi: 0, call_iv: null, put_iv: null };
-      if (r.tipo === 'CALL') {
-        opcMap[k].call_oi += (r.posicion_abierta || 0);
-        if (r.volatilidad_cierre != null && opcMap[k].call_iv == null)
-          opcMap[k].call_iv = r.volatilidad_cierre;
+// ═════════════════════════════════════════════════════════════════════════════
+// TAB DEX — DELTA EXPOSURE
+// ═════════════════════════════════════════════════════════════════════════════
+
+function initDex() {
+  const d = state.dex.data;
+  if (!d) return;
+
+  const sel = el('dex-sel-activo');
+  sel.innerHTML = '';
+  (d.subyacentes || []).forEach(ac => {
+    const o = document.createElement('option');
+    o.value = ac; o.textContent = ac;
+    sel.appendChild(o);
+  });
+
+  const defaultActivo = (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) || (d.subyacentes || [])[0] || '';
+  sel.value = defaultActivo;
+  state.dex.activo = defaultActivo;
+
+  dexOnActivoChange();
+}
+
+function dexOnActivoChange() {
+  const activo = el('dex-sel-activo').value;
+  state.dex.activo = activo;
+  const d = state.dex.data;
+
+  const sel = el('dex-sel-vcto');
+  sel.innerHTML = '<option value="todos">Todos los vencimientos</option>';
+  const vctos = (d.vencimientos || {})[activo] || [];
+  vctos.forEach(v => {
+    const o = document.createElement('option');
+    o.value = v; o.textContent = v;
+    sel.appendChild(o);
+  });
+  sel.value = 'todos';
+  state.dex.vcto = 'todos';
+
+  dexRender();
+}
+
+function dexGetData() {
+  const d = state.dex.data;
+  const activo = state.dex.activo;
+  const vcto   = el('dex-sel-vcto').value;
+  state.dex.vcto = vcto;
+
+  let rows;
+  if (vcto === 'todos') {
+    rows = (d.dex_por_strike || []).filter(r => r.accion === activo);
+  } else {
+    rows = (d.dex_por_strike_vcto || []).filter(r => r.accion === activo && r.fecha_vencimiento === vcto);
+  }
+  return rows.sort((a, b) => a.strike - b.strike);
+}
+
+// Plugin líneas verticales para Tab DEX
+const dexLinesPlugin = {
+  id: 'dexLines',
+  afterDraw(chart) {
+    const activo = state.dex.activo;
+    const d = state.dex.data;
+    if (!d || !activo) return;
+    const kpis = (d.kpis_dex_por_accion || {})[activo];
+    if (!kpis) return;
+
+    const ctx    = chart.ctx;
+    const xScale = chart.scales.x;
+    const yScale = chart.scales.y;
+    const labels = chart.data.labels.map(Number);
+    const yTop   = yScale.top;
+    const yBot   = yScale.bottom;
+
+    function xForPrice(price) {
+      if (price == null || isNaN(price) || labels.length === 0) return null;
+      for (let i = 0; i < labels.length; i++) {
+        if (labels[i] >= price) {
+          if (i === 0) return xScale.getPixelForValue(labels[0]);
+          const t  = (price - labels[i-1]) / (labels[i] - labels[i-1]);
+          const p0 = xScale.getPixelForValue(labels[i-1]);
+          const p1 = xScale.getPixelForValue(labels[i]);
+          return p0 + t * (p1 - p0);
+        }
       }
-      if (r.tipo === 'PUT') {
-        opcMap[k].put_oi += (r.posicion_abierta || 0);
-        if (r.volatilidad_cierre != null && opcMap[k].put_iv == null)
-          opcMap[k].put_iv = r.volatilidad_cierre;
-      }
+      return xScale.getPixelForValue(labels[labels.length - 1]);
+    }
+
+    function drawLine(price, color, label) {
+      const x = xForPrice(price);
+      if (x == null) return;
+      ctx.save();
+      ctx.strokeStyle = color;
+      ctx.lineWidth   = 1.5;
+      ctx.setLineDash([4, 3]);
+      ctx.globalAlpha = 0.85;
+      ctx.beginPath();
+      ctx.moveTo(x, yTop);
+      ctx.lineTo(x, yBot);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+      ctx.fillStyle   = color;
+      ctx.font        = '500 10px JetBrains Mono, monospace';
+      ctx.textAlign   = 'center';
+      ctx.fillText(label, x, yTop - 4);
+      ctx.restore();
+    }
+
+    drawLine(kpis.spot,        '#f59e0b', 'SPOT');
+    drawLine(kpis.call_wall,   '#22c55e', 'C·WALL');
+    drawLine(kpis.put_wall,    '#ef4444', 'P·WALL');
+    drawLine(kpis.zero_delta,  '#22d3ee', 'ZERO·Δ');
+  }
+};
+
+function dexRender() {
+  const rows   = dexGetData();
+  const activo = state.dex.activo;
+  const d      = state.dex.data;
+  const kpis   = (d.kpis_dex_por_accion || {})[activo] || {};
+
+  const dec = (v) => v != null && v >= 1000 ? 0 : 2;
+
+  el('dex-kpi-spot').textContent   = kpis.spot       != null ? fmtPrice(kpis.spot,      dec(kpis.spot))      : '—';
+  el('dex-kpi-cw').textContent     = kpis.call_wall  != null ? fmtPrice(kpis.call_wall,  dec(kpis.call_wall)) : '—';
+  el('dex-kpi-pw').textContent     = kpis.put_wall   != null ? fmtPrice(kpis.put_wall,   dec(kpis.put_wall))  : '—';
+  el('dex-kpi-zd').textContent     = kpis.zero_delta != null ? fmtPrice(kpis.zero_delta, dec(kpis.zero_delta)) : 'n/a';
+  el('dex-kpi-regime').textContent = kpis.regime     || '—';
+  el('dex-kpi-regime').style.color = kpis.regime === 'LONG' ? 'var(--call)' : 'var(--put)';
+
+  const totCall = rows.reduce((s, r) => s + (r.call_dex || 0), 0);
+  const totPut  = rows.reduce((s, r) => s + (r.put_dex  || 0), 0);
+  const totNet  = rows.reduce((s, r) => s + (r.net_dex  || 0), 0);
+  const netEl = el('dex-tot-net');
+  netEl.textContent = fmtGex(totNet);
+  netEl.style.color = totNet >= 0 ? 'var(--call)' : 'var(--put)';
+  el('dex-tot-call').textContent = fmtGex(totCall);
+  el('dex-tot-put').textContent  = fmtGex(totPut);
+
+  const labels   = rows.map(r => r.strike);
+  const callData = rows.map(r =>  (r.call_dex || 0));
+  const putData  = rows.map(r =>   (r.put_dex  || 0));
+
+  const cfg = {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'CALL DEX',
+          data: callData,
+          backgroundColor: 'rgba(34,197,94,.65)',
+          borderColor:     'rgba(34,197,94,.9)',
+          borderWidth: 1,
+          borderRadius: 1,
+        },
+        {
+          label: 'PUT DEX',
+          data: putData,
+          backgroundColor: 'rgba(239,68,68,.65)',
+          borderColor:     'rgba(239,68,68,.9)',
+          borderWidth: 1,
+          borderRadius: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 250 },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#13131e',
+          borderColor: '#2a2a40',
+          borderWidth: 1,
+          titleColor: '#e2e8f0',
+          bodyColor: '#94a3b8',
+          titleFont: { family: 'JetBrains Mono', size: 11 },
+          bodyFont:  { family: 'JetBrains Mono', size: 11 },
+          callbacks: {
+            title: items => 'Strike ' + items[0].label.toLocaleString('es-ES'),
+            label: item => ' ' + item.dataset.label + ': ' + fmtGex(item.raw),
+          },
+        },
+      },
+      scales: {
+        x: {
+          stacked: false,
+          ticks: {
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 9 },
+            maxTicksLimit: 20,
+            callback: v => {
+              const lbl = labels[v];
+              return lbl >= 1000 ? lbl.toLocaleString('es-ES') : lbl;
+            },
+          },
+          grid: { color: '#1e1e2e' },
+        },
+        y: {
+          ticks: {
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 10 },
+            callback: v => fmtGex(v),
+          },
+          grid: { color: '#1e1e2e' },
+        },
+      },
+    },
+    plugins: [dexLinesPlugin],
+  };
+
+  if (state.dex.chart) {
+    state.dex.chart.data    = cfg.data;
+    state.dex.chart.options = cfg.options;
+    state.dex.chart.update('none');
+  } else {
+    state.dex.chart = new Chart(el('chart-dex'), cfg);
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// TAB OPCIONES — VOLUMEN / OI POR STRIKE
+// ═════════════════════════════════════════════════════════════════════════════
+
+function initOpciones() {
+  const d = state.opciones.data;
+  if (!d) return;
+
+  const sel = el('opc-sel-activo');
+  sel.innerHTML = '';
+  (d.subyacentes || []).forEach(ac => {
+    const o = document.createElement('option');
+    o.value = ac; o.textContent = ac;
+    sel.appendChild(o);
+  });
+
+  const defaultActivo = (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) || (d.subyacentes || [])[0] || '';
+  sel.value = defaultActivo;
+  state.opciones.activo = defaultActivo;
+
+  opcOnActivoChange();
+}
+
+function opcOnActivoChange() {
+  const activo = el('opc-sel-activo').value;
+  state.opciones.activo = activo;
+  const d = state.opciones.data;
+
+  const sel = el('opc-sel-vcto');
+  sel.innerHTML = '<option value="todos">Todos los vencimientos</option>';
+  const vctos = (d.vencimientos || {})[activo] || [];
+  vctos.forEach(v => {
+    const o = document.createElement('option');
+    o.value = v; o.textContent = v;
+    sel.appendChild(o);
+  });
+  sel.value = 'todos';
+  state.opciones.vcto = 'todos';
+
+  opcRender();
+}
+
+function opcSetMetric(metric) {
+  state.opciones.metric = metric;
+  el('opc-btn-vol').classList.toggle('active', metric === 'volumen');
+  el('opc-btn-oi').classList.toggle('active',  metric === 'oi');
+  opcRender();
+}
+
+function opcGetRows() {
+  const d      = state.opciones.data;
+  const activo = state.opciones.activo;
+  const vcto   = el('opc-sel-vcto').value;
+  state.opciones.vcto = vcto;
+
+  let rows = (d.datos || []).filter(r => r.accion === activo);
+  if (vcto !== 'todos') rows = rows.filter(r => r.fecha_vencimiento === vcto);
+  return rows;
+}
+
+function opcRender() {
+  const rows   = opcGetRows();
+  const metric = state.opciones.metric;
+  const field  = metric === 'volumen' ? 'volumen_contratos' : 'posicion_abierta';
+  const lbl    = metric === 'volumen' ? 'Volumen' : 'Posición Abierta';
+
+  const strikeMap = {};
+  rows.forEach(r => {
+    if (r.strike == null || isNaN(r.strike)) return;
+    const k = r.strike;
+    if (!strikeMap[k]) strikeMap[k] = { call: 0, put: 0, spot: r.spot };
+    if (r.tipo === 'CALL') strikeMap[k].call += (r[field] || 0);
+    if (r.tipo === 'PUT')  strikeMap[k].put  += (r[field] || 0);
+  });
+
+  const strikes  = Object.keys(strikeMap).map(Number).sort((a,b) => a - b);
+  const callData = strikes.map(k =>  strikeMap[k].call);
+  const putData  = strikes.map(k => -strikeMap[k].put);
+
+  const spot = rows.find(r => r.spot != null)?.spot || null;
+  const totCall = strikes.reduce((s, k) => s + strikeMap[k].call, 0);
+  const totPut  = strikes.reduce((s, k) => s + strikeMap[k].put,  0);
+  const ratio   = totPut > 0 ? (totCall / totPut).toFixed(2) : '—';
+
+  let atmStrike = null;
+  if (spot != null) {
+    let minDist = Infinity;
+    strikes.forEach(k => {
+      const dist = Math.abs(k - spot);
+      if (dist < minDist) { minDist = dist; atmStrike = k; }
     });
   }
 
-  // Merge
-  let tableData = rows.map(r => {
-    const opc    = opcMap[r.strike] || {};
-    const callOi = opc.call_oi || 0;
-    const putOi  = opc.put_oi  || 0;
-    return {
-      strike:   r.strike,
-      net_gex:  r.net_gex  || 0,
-      call_gex: r.call_gex || 0,
-      put_gex:  r.put_gex  || 0,
-      call_oi:  callOi,
-      put_oi:   putOi,
-      total_oi: callOi + putOi,
-      call_iv:  opc.call_iv,
-      put_iv:   opc.put_iv,
-      is_spot:  r.strike === atmStrike,
-      is_cw:    callWall != null && Math.abs(r.strike - callWall) < EPS,
-      is_pw:    putWall  != null && Math.abs(r.strike - putWall)  < EPS,
-      pct_spot: spot != null ? ((r.strike - spot) / spot * 100) : null,
-    };
-  });
+  el('opc-kpi-spot').textContent  = spot != null ? fmtPrice(spot, spot >= 1000 ? 0 : 2) : '—';
+  el('opc-kpi-call').textContent  = fmtNum(totCall);
+  el('opc-kpi-put').textContent   = fmtNum(totPut);
+  el('opc-kpi-ratio').textContent = typeof ratio === 'string' ? ratio : ratio;
+  el('opc-kpi-atm').textContent   = atmStrike != null ? fmtPrice(atmStrike, atmStrike >= 1000 ? 0 : 2) : '—';
+  el('opc-kpi-call-lbl').textContent = lbl.toLowerCase();
+  el('opc-kpi-put-lbl').textContent  = lbl.toLowerCase();
 
-  // Ordenar
-  const { col, dir } = state.gex.tableSort;
-  tableData.sort((a, b) => {
-    const av = a[col] ?? -Infinity;
-    const bv = b[col] ?? -Infinity;
-    return dir === 'desc' ? bv - av : av - bv;
-  });
+  const cfg = {
+    type: 'bar',
+    data: {
+      labels: strikes,
+      datasets: [
+        {
+          label: 'CALL ' + lbl,
+          data: callData,
+          backgroundColor: 'rgba(34,197,94,.65)',
+          borderColor:     'rgba(34,197,94,.9)',
+          borderWidth: 1,
+          borderRadius: 1,
+        },
+        {
+          label: 'PUT ' + lbl,
+          data: putData,
+          backgroundColor: 'rgba(239,68,68,.65)',
+          borderColor:     'rgba(239,68,68,.9)',
+          borderWidth: 1,
+          borderRadius: 1,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: { duration: 200 },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: '#13131e',
+          borderColor: '#2a2a40',
+          borderWidth: 1,
+          titleColor: '#e2e8f0',
+          bodyColor: '#94a3b8',
+          titleFont: { family: 'JetBrains Mono', size: 11 },
+          bodyFont:  { family: 'JetBrains Mono', size: 11 },
+          callbacks: {
+            title: items => 'Strike ' + Number(items[0].label).toLocaleString('es-ES'),
+            label: item => {
+              const raw = Math.abs(item.raw);
+              return ' ' + item.dataset.label + ': ' + fmtNum(raw);
+            },
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 9 },
+            maxTicksLimit: 20,
+            callback: (v, idx) => {
+              const k = strikes[idx];
+              return k >= 1000 ? k.toLocaleString('es-ES') : k;
+            },
+          },
+          grid: { color: '#1e1e2e' },
+        },
+        y: {
+          ticks: {
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 10 },
+            callback: v => fmtNum(Math.abs(v)),
+          },
+          grid: { color: '#1e1e2e' },
+        },
+      },
+    },
+    plugins: [opcSpotLinePlugin],
+  };
 
-  // Escala para barras IV
-  const maxCIv = Math.max(1, ...tableData.map(r => r.call_iv || 0));
-  const maxPIv = Math.max(1, ...tableData.map(r => r.put_iv  || 0));
+  if (state.opciones.chart) {
+    state.opciones.chart.data    = cfg.data;
+    state.opciones.chart.options = cfg.options;
+    state.opciones.chart.update('none');
+  } else {
+    state.opciones.chart = new Chart(el('chart-opciones'), cfg);
+  }
+}
 
-  const dec = (spot != null && spot >= 1000) ? 0 : 2;
+// Plugin línea spot para Tab OPCIONES
+const opcSpotLinePlugin = {
+  id: 'opcSpot',
+  afterDraw(chart) {
+    const rows = opcGetRows();
+    const spot = rows.find(r => r.spot != null)?.spot || null;
+    if (spot == null) return;
 
-  function ivCell(iv, maxIv, color) {
-    if (iv == null) {
-      return '<td class="c-muted" style="font-size:9px;text-align:right">—</td>';
+    const ctx    = chart.ctx;
+    const xScale = chart.scales.x;
+    const yScale = chart.scales.y;
+    const labels = chart.data.labels.map(Number);
+
+    function xFor(price) {
+      for (let i = 0; i < labels.length; i++) {
+        if (labels[i] >= price) {
+          if (i === 0) return xScale.getPixelForValue(labels[0]);
+          const t  = (price - labels[i-1]) / (labels[i] - labels[i-1]);
+          const p0 = xScale.getPixelForValue(labels[i-1]);
+          const p1 = xScale.getPixelForValue(labels[i]);
+          return p0 + t * (p1 - p0);
+        }
+      }
+      return xScale.getPixelForValue(labels[labels.length - 1]);
     }
-    const pct = Math.min((iv / maxIv) * 100, 100).toFixed(1);
-    return `<td>
-      <div class="iv-cell">
-        <div class="iv-bar-wrap">
-          <div class="iv-bar" style="width:${pct}%;background:${color}"></div>
-        </div>
-        <span class="iv-num">${iv.toFixed(1)}%</span>
-      </div>
-    </td>`;
+
+    const x = xFor(spot);
+    ctx.save();
+    ctx.strokeStyle = '#f59e0b';
+    ctx.lineWidth   = 1.5;
+    ctx.setLineDash([4, 3]);
+    ctx.globalAlpha = 0.85;
+    ctx.beginPath();
+    ctx.moveTo(x, yScale.top);
+    ctx.lineTo(x, yScale.bottom);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.globalAlpha = 1;
+    ctx.fillStyle   = '#f59e0b';
+    ctx.font        = '500 10px JetBrains Mono, monospace';
+    ctx.textAlign   = 'center';
+    ctx.fillText('SPOT', x, yScale.top - 4);
+    ctx.restore();
   }
-
-  const tbody = el('gex-table-body');
-  tbody.innerHTML = tableData.map(r => {
-    let rowCls = '';
-    if      (r.is_spot) rowCls = 'row-spot';
-    else if (r.is_cw)   rowCls = 'row-cw';
-    else if (r.is_pw)   rowCls = 'row-pw';
-
-    const badges = [
-      r.is_spot ? '<span class="badge badge-spot">SPOT</span>'    : '',
-      r.is_cw   ? '<span class="badge badge-cw">CALL WALL</span>' : '',
-      r.is_pw   ? '<span class="badge badge-pw">PUT WALL</span>'  : '',
-    ].join('');
-
-    const pctStr = r.pct_spot != null
-      ? (r.pct_spot >= 0 ? '+' : '') + r.pct_spot.toFixed(2) + '%'
-      : '';
-
-    const netColor = r.net_gex >= 0 ? 'var(--call)' : 'var(--put)';
-
-    return `<tr class="${rowCls}">
-      <td>
-        <div class="strike-cell">
-          <div class="strike-main">${fmtPrice(r.strike, dec)}${badges}</div>
-          <div class="strike-pct">${pctStr}</div>
-        </div>
-      </td>
-      ${ivCell(r.call_iv, maxCIv, 'var(--call)')}
-      ${ivCell(r.put_iv,  maxPIv, 'var(--put)')}
-      <td style="color:${netColor}">${fmtGex(r.net_gex)}</td>
-      <td class="c-call">${fmtGex(r.call_gex)}</td>
-      <td class="c-put">${fmtGex(r.put_gex)}</td>
-      <td>${fmtNum(r.call_oi)}</td>
-      <td>${fmtNum(r.put_oi)}</td>
-      <td>${fmtNum(r.total_oi)}</td>
-    </tr>`;
-  }).join('');
-
-  // Indicadores de orden en cabecera
-  const COLS = ['strike','call_iv','put_iv','net_gex','call_gex','put_gex','call_oi','put_oi','total_oi'];
-  COLS.forEach(c => {
-    const sp = el('sort-' + c);
-    if (sp) sp.textContent = c === col ? (dir === 'desc' ? '↓' : '↑') : '↕';
-  });
-}
-
+};
 
 // ═════════════════════════════════════════════════════════════════════════════
-// TAB 2 — INFORMES
-// ═════════════════════════════════════════════════════════════════════════════
-
-function initInformes() {
-  const d = state.informes.data;
-  if (!d) return;
-
-  const fecha = (d.meta && d.meta.fecha_boletin) ? d.meta.fecha_boletin : '';
-  if (fecha) {
-    el('inf-title-top10').textContent = 'TOP 10 · VOLUMEN CONTRATOS  ·  Boletín: ' + fecha;
-    el('inf-title-mini').textContent  = 'TOP 5 · MINI IBEX-35 (CALL+PUT)  ·  Boletín: ' + fecha;
-  }
-
-  el('inf-text-top10').textContent = d.top10_text     || '(sin datos)';
-  el('inf-text-mini').textContent  = d.mini_ibex_text || '(sin datos)';
-}
-
-
-// ═════════════════════════════════════════════════════════════════════════════
-// TAB 3 — HISTÓRICO
+// TAB HISTÓRICO — VOLUMEN HISTÓRICO
 // ═════════════════════════════════════════════════════════════════════════════
 
 function initHistorico() {
@@ -1155,15 +1222,14 @@ function initHistorico() {
     sel.appendChild(o);
   });
 
-  const defaultActivo =
-    (d.acciones || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) ||
-    (d.acciones || [])[0] || '';
+  const defaultActivo = (d.acciones || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) || (d.acciones || [])[0] || '';
   sel.value = defaultActivo;
   state.historico.activo = defaultActivo;
 
   hisOnActivoChange();
-  el('his-kpi-dias').textContent = d.num_dias              || '—';
-  el('his-kpi-upd').textContent  = d.ultima_actualizacion  || '';
+
+  el('his-kpi-dias').textContent = d.num_dias || '—';
+  el('his-kpi-upd').textContent  = d.ultima_actualizacion || '';
 }
 
 function hisOnActivoChange() {
@@ -1173,7 +1239,8 @@ function hisOnActivoChange() {
 
   const sel = el('his-sel-vcto');
   sel.innerHTML = '<option value="todos">Todos los vencimientos</option>';
-  ((d.vencimientos || {})[activo] || []).forEach(v => {
+  const vctos = (d.vencimientos || {})[activo] || [];
+  vctos.forEach(v => {
     const o = document.createElement('option');
     o.value = v; o.textContent = v;
     sel.appendChild(o);
@@ -1184,122 +1251,112 @@ function hisOnActivoChange() {
   hisRender();
 }
 
-function hisSetMetric(metric) {
-  state.historico.metric = metric;
-  el('his-btn-vol').classList.toggle('active', metric === 'volumen');
-  el('his-btn-oi').classList.toggle('active',  metric === 'oi');
-  hisRender();
-}
-
 function hisRender() {
   const d      = state.historico.data;
   const activo = state.historico.activo;
   const vcto   = el('his-sel-vcto').value;
-  const metric = state.historico.metric;
   state.historico.vcto = vcto;
-
-  const field = metric === 'volumen' ? 'volumen_contratos' : 'posicion_abierta';
-  const lbl   = metric === 'volumen' ? 'VOL.' : 'OI';
-
-  // Actualizar etiquetas KPI
-  el('his-kpi-call-lbl').textContent = lbl + ' CALL (período)';
-  el('his-kpi-put-lbl').textContent  = lbl + ' PUT (período)';
 
   let rows = (d.datos || []).filter(r => r.accion === activo);
   if (vcto !== 'todos') rows = rows.filter(r => r.fecha_vencimiento === vcto);
 
-  const fechas   = [...new Set(rows.map(r => r.fecha_boletin))].sort();
-  const callMap  = {}, putMap = {};
-  fechas.forEach(f => { callMap[f] = 0; putMap[f] = 0; });
+  const fechas = [...new Set(rows.map(r => r.fecha_boletin))].sort();
+
+  const callPorFecha = {};
+  const putPorFecha  = {};
+  fechas.forEach(f => { callPorFecha[f] = 0; putPorFecha[f] = 0; });
   rows.forEach(r => {
-    if (r.tipo === 'CALL') callMap[r.fecha_boletin] += (r[field] || 0);
-    if (r.tipo === 'PUT')  putMap[r.fecha_boletin]  += (r[field] || 0);
+    if (r.tipo === 'CALL') callPorFecha[r.fecha_boletin] += (r.volumen_contratos || 0);
+    if (r.tipo === 'PUT')  putPorFecha[r.fecha_boletin]  += (r.volumen_contratos || 0);
   });
 
-  const callData = fechas.map(f => callMap[f]);
-  const putData  = fechas.map(f => putMap[f]);
+  const callData = fechas.map(f => callPorFecha[f]);
+  const putData  = fechas.map(f => putPorFecha[f]);
+
   const totCall  = callData.reduce((s, v) => s + v, 0);
   const totPut   = putData.reduce((s, v)  => s + v, 0);
-  const totAll   = totCall + totPut;
   const ratio    = totPut > 0 ? (totCall / totPut).toFixed(2) : '—';
+  const totTotal = totCall + totPut;
 
   el('his-kpi-call').textContent     = fmtNum(totCall);
   el('his-kpi-put').textContent      = fmtNum(totPut);
   el('his-kpi-ratio').textContent    = ratio;
-  el('his-kpi-call-pct').textContent = totAll > 0 ? ((totCall / totAll) * 100).toFixed(1) + '% del total' : '—';
-  el('his-kpi-put-pct').textContent  = totAll > 0 ? ((totPut  / totAll) * 100).toFixed(1) + '% del total' : '—';
+  el('his-kpi-call-pct').textContent = totTotal > 0 ? ((totCall / totTotal) * 100).toFixed(1) + '% del total' : '—';
+  el('his-kpi-put-pct').textContent  = totTotal > 0 ? ((totPut  / totTotal) * 100).toFixed(1) + '% del total' : '—';
 
-  const labFechas = fechas.map(f => {
-    const p = f.split('/');
-    return p.length >= 2 ? p[0] + '/' + p[1] : f;
+  const labelsFecha = fechas.map(f => {
+    const parts = f.split('/');
+    return parts.length >= 2 ? parts[0] + '/' + parts[1] : f;
   });
 
   const cfg = {
     type: 'line',
     data: {
-      labels: labFechas,
+      labels: labelsFecha,
       datasets: [
         {
-          label:                'CALL',
-          data:                 callData,
-          borderColor:          '#22c55e',
-          backgroundColor:      'rgba(34,197,94,.12)',
-          borderWidth:          2,
-          pointRadius:          3,
+          label: 'CALL',
+          data: callData,
+          borderColor:     '#22c55e',
+          backgroundColor: 'rgba(34,197,94,.12)',
+          borderWidth: 2,
+          pointRadius: 3,
           pointBackgroundColor: '#22c55e',
-          tension:              0.3,
-          fill:                 true,
+          tension: 0.3,
+          fill: true,
         },
         {
-          label:                'PUT',
-          data:                 putData,
-          borderColor:          '#ef4444',
-          backgroundColor:      'rgba(239,68,68,.12)',
-          borderWidth:          2,
-          pointRadius:          3,
+          label: 'PUT',
+          data: putData,
+          borderColor:     '#ef4444',
+          backgroundColor: 'rgba(239,68,68,.12)',
+          borderWidth: 2,
+          pointRadius: 3,
           pointBackgroundColor: '#ef4444',
-          tension:              0.3,
-          fill:                 true,
+          tension: 0.3,
+          fill: true,
         },
       ],
     },
     options: {
-      responsive:          true,
+      responsive: true,
       maintainAspectRatio: false,
-      animation:           { duration: 200 },
+      animation: { duration: 200 },
       plugins: {
         legend: {
-          display:  true,
+          display: true,
           position: 'top',
           labels: {
-            color:    '#94a3b8',
-            font:     { family: 'JetBrains Mono', size: 11 },
+            color: '#94a3b8',
+            font: { family: 'JetBrains Mono', size: 11 },
             boxWidth: 12,
           },
         },
         tooltip: {
           backgroundColor: '#13131e',
-          borderColor:     '#2a2a40',
-          borderWidth:     1,
-          titleColor:      '#e2e8f0',
-          bodyColor:       '#94a3b8',
+          borderColor: '#2a2a40',
+          borderWidth: 1,
+          titleColor: '#e2e8f0',
+          bodyColor: '#94a3b8',
           titleFont: { family: 'JetBrains Mono', size: 11 },
           bodyFont:  { family: 'JetBrains Mono', size: 11 },
           callbacks: {
             title: items => 'Boletín ' + fechas[items[0].dataIndex],
-            label: item  => ' ' + item.dataset.label + ': ' + fmtNum(item.raw),
+            label: item => ' ' + item.dataset.label + ': ' + fmtNum(item.raw),
           },
         },
       },
       scales: {
         x: {
-          ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 15 },
-          grid:  { color: '#1e1e2e' },
+          ticks: {
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 10 },
+            maxTicksLimit: 15,
+          },
+          grid: { color: '#1e1e2e' },
         },
         y: {
           ticks: {
-            color: '#64748b',
-            font:  { family: 'JetBrains Mono', size: 10 },
+            color: '#64748b', font: { family: 'JetBrains Mono', size: 10 },
             callback: v => fmtNum(v),
           },
           grid: { color: '#1e1e2e' },
@@ -1317,9 +1374,9 @@ function hisRender() {
   }
 }
 
-
 // ═════════════════════════════════════════════════════════════════════════════
-// INIT — carga los 4 JSONs en paralelo
+// INIT — carga los 3 JSONs en paralelo
+// GEX + DEX comparten el mismo JSON (meff_gex_latest.json)
 // ═════════════════════════════════════════════════════════════════════════════
 
 async function loadAll() {
@@ -1327,52 +1384,50 @@ async function loadAll() {
     'data/meff_gex_latest.json',
     'data/meff_opciones_latest.json',
     'data/meff_volumen_historico.json',
-    'data/meff_informes_latest.json',
   ];
 
-  const results = await Promise.allSettled(
-    urls.map(u => fetch(u).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }))
-  );
+  const results = await Promise.allSettled(urls.map(u => fetch(u).then(r => {
+    if (!r.ok) throw new Error(r.status);
+    return r.json();
+  })));
 
-  const [resGex, resOpc, resHis, resInf] = results;
+  const [resGex, resOpc, resHis] = results;
+
   let anyOk = false;
 
-  if (resGex.status === 'fulfilled') { state.gex.data      = resGex.value; anyOk = true; }
-  else console.warn('meff_gex_latest.json no disponible:', resGex.reason);
+  if (resGex.status === 'fulfilled') {
+    // GEX y DEX leen del mismo JSON — sin petición adicional
+    state.gex.data = resGex.value;
+    state.dex.data = resGex.value;
+    initGex();
+    initDex();
+    anyOk = true;
+  } else {
+    console.warn('meff_gex_latest.json no disponible:', resGex.reason);
+  }
 
-  if (resOpc.status === 'fulfilled') { state.opciones.data  = resOpc.value; anyOk = true; }
-  else console.warn('meff_opciones_latest.json no disponible:', resOpc.reason);
+  if (resOpc.status === 'fulfilled') {
+    state.opciones.data = resOpc.value;
+    initOpciones();
+    anyOk = true;
+  } else {
+    console.warn('meff_opciones_latest.json no disponible:', resOpc.reason);
+  }
 
-  if (resHis.status === 'fulfilled') { state.historico.data = resHis.value; anyOk = true; }
-  else console.warn('meff_volumen_historico.json no disponible:', resHis.reason);
+  if (resHis.status === 'fulfilled') {
+    state.historico.data = resHis.value;
+    initHistorico();
+    anyOk = true;
+  } else {
+    console.warn('meff_volumen_historico.json no disponible:', resHis.reason);
+  }
 
-  if (resInf.status === 'fulfilled') { state.informes.data  = resInf.value; anyOk = true; }
-  else console.warn('meff_informes_latest.json no disponible:', resInf.reason);
-
-  // Inicializar en orden: historico e informes primero, gex al final
-  // (así cuando initGex() se ejecuta ya tiene opciones.data disponible para los OI)
-  if (state.historico.data) initHistorico();
-  if (state.informes.data)  initInformes();
-  if (state.gex.data)       initGex();
-
-  if (!anyOk) el('err-overlay').classList.add('show');
+  if (!anyOk) {
+    el('err-overlay').classList.add('show');
+  }
 }
 
 loadAll();
 </script>
-<!-- ── Footer ── -->
-<div class="footer">
-  <div class="footer-line">
-    Tasa libre de riesgo BCE: <span id="footer-tasa">2,5%</span>
-    &nbsp;·&nbsp; Vencimiento: 3er viernes del mes
-    &nbsp;·&nbsp; Fuente: MEFF
-    &nbsp;·&nbsp; GEX = Gamma × OI × Multiplicador × Spot²
-  </div>
-  <div class="footer-line">
-    * Todos los vencimientos
-    &nbsp;·&nbsp; <a href="mailto:joseantonio@noquedaotraopcion.com">joseantonio@noquedaotraopcion.com</a>
-  </div>
-</div>
-
 </body>
 </html>
