@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MEFF · Dashboard</title>
+  <title>NO QUEDA OTRA OPCIÓN · MEFF · GEX</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -48,16 +48,41 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 28px;
+      padding: 12px 28px;
       border-bottom: 1px solid var(--border);
       background: var(--bg2);
       flex-shrink: 0;
     }
-    .header h1 { display: flex; align-items: baseline; gap: 8px; }
-    .brand  { font-size: 20px; font-weight: 700; color: var(--accent); letter-spacing: .05em; }
-    .dot    { color: var(--muted); font-size: 16px; }
-    .title  { font-size: 14px; font-weight: 400; color: var(--text); }
-    .meta-fecha { font-size: 11px; color: var(--muted); }
+    .header h1 { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .brand     { font-size: 16px; font-weight: 700; color: var(--accent); letter-spacing: .06em; }
+    .subbrand  { font-size: 16px; font-weight: 600; color: var(--text);   letter-spacing: .05em; }
+    .dot       { color: var(--muted); font-size: 14px; }
+    .title     { font-size: 14px; font-weight: 400; color: var(--muted); letter-spacing: .04em; }
+    .meta-fecha { font-size: 10px; color: var(--muted); white-space: nowrap; }
+
+    /* ── Footer ── */
+    .footer {
+      flex-shrink: 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg2);
+      padding: 8px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-line {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .03em;
+      line-height: 1.5;
+    }
+    .footer-line a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .footer-line a:hover { text-decoration: underline; }
 
     /* ── Tab nav ── */
     .tab-nav {
@@ -337,9 +362,11 @@
 <!-- ── Header ── -->
 <div class="header">
   <h1>
-    <span class="brand">MEFF</span>
+    <span class="brand">NO QUEDA OTRA OPCIÓN</span>
     <span class="dot">·</span>
-    <span class="title">Dashboard</span>
+    <span class="subbrand">MEFF</span>
+    <span class="dot">·</span>
+    <span class="title">GAMMA EXPOSURE</span>
   </h1>
   <span class="meta-fecha" id="meta-fecha">
     <span class="dot-pulse"></span>
@@ -354,7 +381,7 @@
     <span class="tab-icon">γ</span>GEX
   </button>
   <button class="tab-btn" onclick="switchTab('informes')" id="tbtn-informes">
-    <span class="tab-icon">◈</span>INFORMES
+    <span class="tab-icon">◈</span>TOP POSICIONES
   </button>
   <button class="tab-btn" onclick="switchTab('historico')" id="tbtn-historico">
     <span class="tab-icon">◎</span>HISTÓRICO
@@ -607,8 +634,18 @@ function initGex() {
   const d = state.gex.data;
   if (!d) return;
 
-  if (d.meta && d.meta.fecha_boletin) {
-    el('meta-fecha').textContent = 'Boletín ' + d.meta.fecha_boletin;
+  if (d.meta) {
+    // Header derecho: Boletín [fecha] · Generado [hora]
+    const parts = [];
+    if (d.meta.fecha_boletin) parts.push('Boletín ' + d.meta.fecha_boletin);
+    if (d.meta.generado)      parts.push('Generado ' + d.meta.generado);
+    el('meta-fecha').textContent = parts.join(' · ');
+
+    // Footer: tasa libre de riesgo
+    if (d.meta.tasa_libre_riesgo != null) {
+      const tasaPct = (d.meta.tasa_libre_riesgo * 100).toFixed(1).replace('.', ',') + '%';
+      el('footer-tasa').textContent = tasaPct;
+    }
   }
 
   const sel = el('gex-sel-activo');
@@ -1301,5 +1338,19 @@ async function loadAll() {
 
 loadAll();
 </script>
+<!-- ── Footer ── -->
+<div class="footer">
+  <div class="footer-line">
+    Tasa libre de riesgo BCE: <span id="footer-tasa">2,5%</span>
+    &nbsp;·&nbsp; Vencimiento: 3er viernes del mes
+    &nbsp;·&nbsp; Fuente: MEFF
+    &nbsp;·&nbsp; GEX = Gamma × OI × Multiplicador × Spot²
+  </div>
+  <div class="footer-line">
+    * Todos los vencimientos
+    &nbsp;·&nbsp; <a href="mailto:joseantonio@noquedaotraopcion.com">joseantonio@noquedaotraopcion.com</a>
+  </div>
+</div>
+
 </body>
 </html>
