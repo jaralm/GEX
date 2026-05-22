@@ -27,6 +27,7 @@ Convenio DEX:
 """
 
 import re
+import math
 import numpy as np
 import pandas as pd
 from datetime import date, datetime
@@ -106,9 +107,11 @@ def _parsear_vencimiento(texto: str) -> date | None:
 def _ncdf(x) -> np.ndarray:
     """
     CDF de la normal estándar. Compatible con escalares float y arrays numpy.
-    Implementada con np.erf — sin dependencias externas (no requiere scipy).
+    Usa math.erf (stdlib) a través de np.vectorize — sin dependencias externas.
     """
-    return 0.5 * (1.0 + np.erf(np.asarray(x, dtype=float) / np.sqrt(2.0)))
+    return np.vectorize(lambda v: 0.5 * (1.0 + math.erf(v / math.sqrt(2.0))))(
+        np.asarray(x, dtype=float)
+    )
 
 
 # ── Modelo Black-Scholes: Gamma ───────────────────────────────────────────────
