@@ -384,7 +384,7 @@
     <span class="tab-icon">◈</span>TOP POSICIONES
   </button>
   <button class="tab-btn" onclick="switchTab('historico')" id="tbtn-historico">
-    <span class="tab-icon">◎</span>HISTÓRICO
+    <span class="tab-icon">◎</span>FLUJO Y POSICIONAMIENTO
   </button>
 </div>
 
@@ -521,16 +521,23 @@
       <label>VENCIMIENTO</label>
       <select id="his-sel-vcto" onchange="hisRender()"></select>
     </div>
+    <div class="control-group">
+      <label>MÉTRICA</label>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="his-btn-vol" onclick="hisSetMetric('volumen')">Volumen</button>
+        <button class="toggle-btn"        id="his-btn-oi"  onclick="hisSetMetric('oi')">OI</button>
+      </div>
+    </div>
   </div>
 
   <div class="kpi-strip">
     <div class="kpi-card">
-      <div class="lbl">VOL. CALL (período)</div>
+      <div class="lbl" id="his-kpi-call-lbl">CALL (período)</div>
       <div class="val c-call"  id="his-kpi-call">—</div>
       <div class="sub" id="his-kpi-call-pct">—</div>
     </div>
     <div class="kpi-card">
-      <div class="lbl">VOL. PUT (período)</div>
+      <div class="lbl" id="his-kpi-put-lbl">PUT (período)</div>
       <div class="val c-put"   id="his-kpi-put">—</div>
       <div class="sub" id="his-kpi-put-pct">—</div>
     </div>
@@ -582,7 +589,7 @@ const state = {
     tableSort: { col: 'strike', dir: 'desc' },
   },
   opciones:  { data: null },                               // backing data; no tab propio
-  historico: { data: null, chart: null, activo: null, vcto: null },
+  historico: { data: null, chart: null, activo: null, vcto: null, metric: 'volumen' },
   informes:  { data: null },
   tab: 'gex',
 };
@@ -1177,11 +1184,26 @@ function hisOnActivoChange() {
   hisRender();
 }
 
+function hisSetMetric(metric) {
+  state.historico.metric = metric;
+  el('his-btn-vol').classList.toggle('active', metric === 'volumen');
+  el('his-btn-oi').classList.toggle('active',  metric === 'oi');
+  hisRender();
+}
+
 function hisRender() {
   const d      = state.historico.data;
   const activo = state.historico.activo;
   const vcto   = el('his-sel-vcto').value;
+  const metric = state.historico.metric;
   state.historico.vcto = vcto;
+
+  const field = metric === 'volumen' ? 'volumen_contratos' : 'posicion_abierta';
+  const lbl   = metric === 'volumen' ? 'VOL.' : 'OI';
+
+  // Actualizar etiquetas KPI
+  el('his-kpi-call-lbl').textContent = lbl + ' CALL (período)';
+  el('his-kpi-put-lbl').textContent  = lbl + ' PUT (período)';
 
   let rows = (d.datos || []).filter(r => r.accion === activo);
   if (vcto !== 'todos') rows = rows.filter(r => r.fecha_vencimiento === vcto);
@@ -1190,8 +1212,8 @@ function hisRender() {
   const callMap  = {}, putMap = {};
   fechas.forEach(f => { callMap[f] = 0; putMap[f] = 0; });
   rows.forEach(r => {
-    if (r.tipo === 'CALL') callMap[r.fecha_boletin] += (r.volumen_contratos || 0);
-    if (r.tipo === 'PUT')  putMap[r.fecha_boletin]  += (r.volumen_contratos || 0);
+    if (r.tipo === 'CALL') callMap[r.fecha_boletin] += (r[field] || 0);
+    if (r.tipo === 'PUT')  putMap[r.fecha_boletin]  += (r[field] || 0);
   });
 
   const callData = fechas.map(f => callMap[f]);
