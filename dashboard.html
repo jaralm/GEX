@@ -172,7 +172,31 @@
     .tab-content { display: none; flex-direction: column; flex: 1; }
     .tab-content.active { display: flex; }
 
-    /* ── Error overlay ───────────────────────────────────────────────────────── */
+    /* ── Tab notice (sin datos / error por pestaña) ───────────────────────────── */
+    .tab-notice {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      gap: 16px;
+      padding: 48px 28px;
+      text-align: center;
+    }
+    .tab-notice.show { display: flex; }
+    .tab-notice .notice-icon { font-size: 32px; }
+    .tab-notice h3 { font-size: 14px; color: var(--text); font-weight: 600; }
+    .tab-notice p  { font-size: 12px; color: var(--muted); line-height: 1.8; max-width: 420px; }
+    .tab-notice code {
+      background: var(--bg3);
+      color: var(--accent);
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ── Error overlay (fallo total) ─────────────────────────────────────────── */
     .err-overlay {
       display: none;
       position: fixed; inset: 0;
@@ -302,6 +326,15 @@
   <div class="chart-wrap">
     <canvas id="chart-gex"></canvas>
   </div>
+
+  <!-- Mensaje de error específico de esta pestaña -->
+  <div class="tab-notice" id="notice-gex">
+    <div class="notice-icon">⚠</div>
+    <h3>Datos GEX no disponibles</h3>
+    <p>No se pudo cargar <strong>meff_gex_latest.json</strong>.<br>
+       Ejecuta el pipeline para generarlo:</p>
+    <code>python3 meff_opciones.py</code>
+  </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════════════════════════
@@ -309,7 +342,7 @@
 ════════════════════════════════════════════════════════════════════════════ -->
 <div id="tab-opciones" class="tab-content">
 
-  <div class="controls">
+  <div class="controls" id="opc-controls">
     <div class="control-group">
       <label>SUBYACENTE</label>
       <select id="opc-sel-activo" onchange="opcOnActivoChange()"></select>
@@ -327,7 +360,7 @@
     </div>
   </div>
 
-  <div class="kpi-strip">
+  <div class="kpi-strip" id="opc-kpi-strip">
     <div class="kpi-card">
       <div class="lbl">SPOT</div>
       <div class="val c-spot" id="opc-kpi-spot">—</div>
@@ -354,8 +387,17 @@
     </div>
   </div>
 
-  <div class="chart-wrap">
+  <div class="chart-wrap" id="opc-chart-wrap">
     <canvas id="chart-opciones"></canvas>
+  </div>
+
+  <!-- Mensaje de error específico de esta pestaña -->
+  <div class="tab-notice" id="notice-opciones">
+    <div class="notice-icon">⚠</div>
+    <h3>Datos de opciones no disponibles</h3>
+    <p>No se pudo cargar <strong>meff_opciones_latest.json</strong>.<br>
+       Ejecuta el pipeline para generarlo:</p>
+    <code>python3 meff_opciones.py</code>
   </div>
 </div>
 
@@ -364,7 +406,7 @@
 ════════════════════════════════════════════════════════════════════════════ -->
 <div id="tab-historico" class="tab-content">
 
-  <div class="controls">
+  <div class="controls" id="his-controls">
     <div class="control-group">
       <label>SUBYACENTE</label>
       <select id="his-sel-activo" onchange="hisOnActivoChange()"></select>
@@ -375,7 +417,7 @@
     </div>
   </div>
 
-  <div class="kpi-strip">
+  <div class="kpi-strip" id="his-kpi-strip">
     <div class="kpi-card">
       <div class="lbl">VOL. CALL (período)</div>
       <div class="val c-call"  id="his-kpi-call">—</div>
@@ -398,12 +440,21 @@
     </div>
   </div>
 
-  <div class="chart-wrap">
+  <div class="chart-wrap" id="his-chart-wrap">
     <canvas id="chart-historico"></canvas>
+  </div>
+
+  <!-- Mensaje de error específico de esta pestaña -->
+  <div class="tab-notice" id="notice-historico">
+    <div class="notice-icon">⚠</div>
+    <h3>Histórico no disponible</h3>
+    <p>No se pudo cargar <strong>meff_volumen_historico.json</strong>.<br>
+       Ejecuta el pipeline para generarlo (necesita al menos 1 CSV en data/):</p>
+    <code>python3 meff_opciones.py</code>
   </div>
 </div>
 
-<!-- ── Error overlay ───────────────────────────────────────────────────────── -->
+<!-- ── Error overlay (fallo total — los 3 JSONs fallan) ───────────────────── -->
 <div class="err-overlay" id="err-overlay">
   <div class="err-box">
     <h2>⚠ No se pudo cargar el dashboard</h2>
@@ -452,19 +503,38 @@ function fmtPrice(v, dec=2) {
 
 function el(id) { return document.getElementById(id); }
 
-// ── Tab switching ─────────────────────────────────────────────────────────────
+// ── Mostrar/ocultar aviso de error por pestaña ────────────────────────────────
+// Cuando un JSON no carga, oculta controles/KPIs/chart y muestra el aviso.
+function markTabUnavailable(tabKey) {
+  const map = {
+    gex:       { controls: null,           kpis: null,             chart: null,             notice: 'notice-gex'       },
+    opciones:  { controls: 'opc-controls', kpis: 'opc-kpi-strip',  chart: 'opc-chart-wrap', notice: 'notice-opciones'  },
+    historico: { controls: 'his-controls', kpis: 'his-kpi-strip',  chart: 'his-chart-wrap', notice: 'notice-historico' },
+  };
+  const ids = map[tabKey];
+  if (!ids) return;
+  if (ids.controls) { const e = el(ids.controls); if (e) e.style.display = 'none'; }
+  if (ids.kpis)     { const e = el(ids.kpis);     if (e) e.style.display = 'none'; }
+  if (ids.chart)    { const e = el(ids.chart);    if (e) e.style.display = 'none'; }
+  const notice = el(ids.notice);
+  if (notice) notice.classList.add('show');
+  console.warn(`[MEFF] JSON para pestaña "${tabKey}" no disponible. Ejecuta: python3 meff_opciones.py`);
+}
 
+// ── Tab switching ─────────────────────────────────────────────────────────────
 function switchTab(tab) {
   state.tab = tab;
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(e => e.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(e => e.classList.remove('active'));
   el('tab-' + tab).classList.add('active');
   el('tbtn-' + tab).classList.add('active');
 
-  // Resize chart so it fills the newly visible container
+  // Resize + update del chart cuando el contenedor pasa a ser visible
   const chartMap = { gex: state.gex.chart, opciones: state.opciones.chart, historico: state.historico.chart };
   const ch = chartMap[tab];
-  if (ch) setTimeout(() => ch.resize(), 10);
+  if (ch) {
+    setTimeout(() => { ch.resize(); ch.update('none'); }, 10);
+  }
 }
 
 // ═════════════════════════════════════════════════════════════════════════════
@@ -475,12 +545,10 @@ function initGex() {
   const d = state.gex.data;
   if (!d) return;
 
-  // Actualizar fecha en header
   if (d.meta && d.meta.fecha_boletin) {
     el('meta-fecha').textContent = 'Boletín ' + d.meta.fecha_boletin;
   }
 
-  // Selector subyacente
   const sel = el('gex-sel-activo');
   sel.innerHTML = '';
   (d.subyacentes || []).forEach(ac => {
@@ -489,8 +557,8 @@ function initGex() {
     sel.appendChild(o);
   });
 
-  // Default: IBEX-35 o primero
-  const defaultActivo = (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) || (d.subyacentes || [])[0] || '';
+  const defaultActivo = (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI'))
+                     || (d.subyacentes || [])[0] || '';
   sel.value = defaultActivo;
   state.gex.activo = defaultActivo;
 
@@ -498,6 +566,7 @@ function initGex() {
 }
 
 function gexOnActivoChange() {
+  if (!state.gex.data) return;
   const activo = el('gex-sel-activo').value;
   state.gex.activo = activo;
   const d = state.gex.data;
@@ -518,6 +587,7 @@ function gexOnActivoChange() {
 
 function gexGetData() {
   const d = state.gex.data;
+  if (!d) return [];
   const activo = state.gex.activo;
   const vcto   = el('gex-sel-vcto').value;
   state.gex.vcto = vcto;
@@ -574,7 +644,6 @@ const gexLinesPlugin = {
       ctx.moveTo(x, yTop);
       ctx.lineTo(x, yBot);
       ctx.stroke();
-
       ctx.setLineDash([]);
       ctx.globalAlpha = 1;
       ctx.fillStyle   = color;
@@ -594,19 +663,18 @@ const gexLinesPlugin = {
 
 function gexRender() {
   const rows   = gexGetData();
+  if (!state.gex.data) return;
   const activo = state.gex.activo;
   const d      = state.gex.data;
   const kpis   = (d.kpis_por_accion || {})[activo] || {};
 
-  // KPI cards
-  el('gex-kpi-spot').textContent   = kpis.spot      != null ? fmtPrice(kpis.spot, kpis.spot >= 1000 ? 0 : 2) : '—';
+  el('gex-kpi-spot').textContent   = kpis.spot      != null ? fmtPrice(kpis.spot,      kpis.spot      >= 1000 ? 0 : 2) : '—';
   el('gex-kpi-cw').textContent     = kpis.call_wall  != null ? fmtPrice(kpis.call_wall,  kpis.call_wall  >= 1000 ? 0 : 2) : '—';
   el('gex-kpi-pw').textContent     = kpis.put_wall   != null ? fmtPrice(kpis.put_wall,   kpis.put_wall   >= 1000 ? 0 : 2) : '—';
   el('gex-kpi-zg').textContent     = kpis.zero_gamma != null ? fmtPrice(kpis.zero_gamma, kpis.zero_gamma >= 1000 ? 0 : 2) : 'n/a';
   el('gex-kpi-regime').textContent = kpis.regime     || '—';
   el('gex-kpi-regime').style.color = kpis.regime === 'POSITIVO' ? 'var(--call)' : 'var(--put)';
 
-  // Totals
   const totCall = rows.reduce((s, r) => s + (r.call_gex || 0), 0);
   const totPut  = rows.reduce((s, r) => s + (r.put_gex  || 0), 0);
   const totNet  = rows.reduce((s, r) => s + (r.net_gex  || 0), 0);
@@ -616,7 +684,6 @@ function gexRender() {
   el('gex-tot-call').textContent = fmtGex(totCall);
   el('gex-tot-put').textContent  = fmtGex(totPut);
 
-  // Chart data
   const labels   = rows.map(r => r.strike);
   const callData = rows.map(r =>  (r.call_gex || 0));
   const putData  = rows.map(r =>   (r.put_gex  || 0));
@@ -714,7 +781,8 @@ function initOpciones() {
     sel.appendChild(o);
   });
 
-  const defaultActivo = (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) || (d.subyacentes || [])[0] || '';
+  const defaultActivo = (d.subyacentes || []).find(s => s.includes('IBEX-35') && !s.includes('MINI'))
+                     || (d.subyacentes || [])[0] || '';
   sel.value = defaultActivo;
   state.opciones.activo = defaultActivo;
 
@@ -722,6 +790,7 @@ function initOpciones() {
 }
 
 function opcOnActivoChange() {
+  if (!state.opciones.data) return;
   const activo = el('opc-sel-activo').value;
   state.opciones.activo = activo;
   const d = state.opciones.data;
@@ -741,6 +810,7 @@ function opcOnActivoChange() {
 }
 
 function opcSetMetric(metric) {
+  if (!state.opciones.data) return;   // ← guarda: evita crash si JSON no cargó
   state.opciones.metric = metric;
   el('opc-btn-vol').classList.toggle('active', metric === 'volumen');
   el('opc-btn-oi').classList.toggle('active',  metric === 'oi');
@@ -748,6 +818,7 @@ function opcSetMetric(metric) {
 }
 
 function opcGetRows() {
+  if (!state.opciones.data) return [];   // ← guarda: evita TypeError en d.datos
   const d      = state.opciones.data;
   const activo = state.opciones.activo;
   const vcto   = el('opc-sel-vcto').value;
@@ -759,12 +830,12 @@ function opcGetRows() {
 }
 
 function opcRender() {
+  if (!state.opciones.data) return;   // ← guarda
   const rows   = opcGetRows();
   const metric = state.opciones.metric;
   const field  = metric === 'volumen' ? 'volumen_contratos' : 'posicion_abierta';
   const lbl    = metric === 'volumen' ? 'Volumen' : 'Posición Abierta';
 
-  // Agrupar por strike+tipo → sumar métrica
   const strikeMap = {};
   rows.forEach(r => {
     if (r.strike == null || isNaN(r.strike)) return;
@@ -776,15 +847,13 @@ function opcRender() {
 
   const strikes  = Object.keys(strikeMap).map(Number).sort((a,b) => a - b);
   const callData = strikes.map(k =>  strikeMap[k].call);
-  const putData  = strikes.map(k => -strikeMap[k].put);  // negativo para ir hacia abajo
+  const putData  = strikes.map(k => -strikeMap[k].put);
 
-  // KPIs
   const spot = rows.find(r => r.spot != null)?.spot || null;
   const totCall = strikes.reduce((s, k) => s + strikeMap[k].call, 0);
   const totPut  = strikes.reduce((s, k) => s + strikeMap[k].put,  0);
   const ratio   = totPut > 0 ? (totCall / totPut).toFixed(2) : '—';
 
-  // ATM
   let atmStrike = null;
   if (spot != null) {
     let minDist = Infinity;
@@ -885,6 +954,7 @@ function opcRender() {
 const opcSpotLinePlugin = {
   id: 'opcSpot',
   afterDraw(chart) {
+    if (!state.opciones.data) return;   // ← guarda
     const rows = opcGetRows();
     const spot = rows.find(r => r.spot != null)?.spot || null;
     if (spot == null) return;
@@ -943,7 +1013,8 @@ function initHistorico() {
     sel.appendChild(o);
   });
 
-  const defaultActivo = (d.acciones || []).find(s => s.includes('IBEX-35') && !s.includes('MINI')) || (d.acciones || [])[0] || '';
+  const defaultActivo = (d.acciones || []).find(s => s.includes('IBEX-35') && !s.includes('MINI'))
+                     || (d.acciones || [])[0] || '';
   sel.value = defaultActivo;
   state.historico.activo = defaultActivo;
 
@@ -954,6 +1025,7 @@ function initHistorico() {
 }
 
 function hisOnActivoChange() {
+  if (!state.historico.data) return;   // ← guarda
   const activo = el('his-sel-activo').value;
   state.historico.activo = activo;
   const d = state.historico.data;
@@ -973,6 +1045,7 @@ function hisOnActivoChange() {
 }
 
 function hisRender() {
+  if (!state.historico.data) return;   // ← guarda
   const d      = state.historico.data;
   const activo = state.historico.activo;
   const vcto   = el('his-sel-vcto').value;
@@ -981,10 +1054,8 @@ function hisRender() {
   let rows = (d.datos || []).filter(r => r.accion === activo);
   if (vcto !== 'todos') rows = rows.filter(r => r.fecha_vencimiento === vcto);
 
-  // Fechas únicas ordenadas cronológicamente
   const fechas = [...new Set(rows.map(r => r.fecha_boletin))].sort();
 
-  // Para cada fecha, sumar CALL y PUT
   const callPorFecha = {};
   const putPorFecha  = {};
   fechas.forEach(f => { callPorFecha[f] = 0; putPorFecha[f] = 0; });
@@ -996,10 +1067,9 @@ function hisRender() {
   const callData = fechas.map(f => callPorFecha[f]);
   const putData  = fechas.map(f => putPorFecha[f]);
 
-  // KPIs
-  const totCall = callData.reduce((s, v) => s + v, 0);
-  const totPut  = putData.reduce((s, v)  => s + v, 0);
-  const ratio   = totPut > 0 ? (totCall / totPut).toFixed(2) : '—';
+  const totCall  = callData.reduce((s, v) => s + v, 0);
+  const totPut   = putData.reduce((s, v)  => s + v, 0);
+  const ratio    = totPut > 0 ? (totCall / totPut).toFixed(2) : '—';
   const totTotal = totCall + totPut;
 
   el('his-kpi-call').textContent     = fmtNum(totCall);
@@ -1008,9 +1078,7 @@ function hisRender() {
   el('his-kpi-call-pct').textContent = totTotal > 0 ? ((totCall / totTotal) * 100).toFixed(1) + '% del total' : '—';
   el('his-kpi-put-pct').textContent  = totTotal > 0 ? ((totPut  / totTotal) * 100).toFixed(1) + '% del total' : '—';
 
-  // Etiquetas de fecha simplificadas (dd/mm)
   const labelsFecha = fechas.map(f => {
-    // Formato "dd/mm/yy" o "dd/mm/yyyy" → mostrar solo dd/mm
     const parts = f.split('/');
     return parts.length >= 2 ? parts[0] + '/' + parts[1] : f;
   });
@@ -1112,39 +1180,44 @@ async function loadAll() {
   ];
 
   const results = await Promise.allSettled(urls.map(u => fetch(u).then(r => {
-    if (!r.ok) throw new Error(r.status);
+    if (!r.ok) throw new Error(`HTTP ${r.status} — ${u}`);
     return r.json();
   })));
 
   const [resGex, resOpc, resHis] = results;
-
   let anyOk = false;
 
+  // ── Tab 1: GEX ────────────────────────────────────────────────────────────
   if (resGex.status === 'fulfilled') {
     state.gex.data = resGex.value;
     initGex();
     anyOk = true;
   } else {
-    console.warn('meff_gex_latest.json no disponible:', resGex.reason);
+    markTabUnavailable('gex');
+    console.error('[MEFF] meff_gex_latest.json:', resGex.reason);
   }
 
+  // ── Tab 2: Opciones ───────────────────────────────────────────────────────
   if (resOpc.status === 'fulfilled') {
     state.opciones.data = resOpc.value;
     initOpciones();
     anyOk = true;
   } else {
-    console.warn('meff_opciones_latest.json no disponible:', resOpc.reason);
+    markTabUnavailable('opciones');
+    console.error('[MEFF] meff_opciones_latest.json:', resOpc.reason);
   }
 
+  // ── Tab 3: Histórico ──────────────────────────────────────────────────────
   if (resHis.status === 'fulfilled') {
     state.historico.data = resHis.value;
     initHistorico();
     anyOk = true;
   } else {
-    console.warn('meff_volumen_historico.json no disponible:', resHis.reason);
+    markTabUnavailable('historico');
+    console.error('[MEFF] meff_volumen_historico.json:', resHis.reason);
   }
 
-  // Mostrar error solo si ningún JSON cargó
+  // ── Overlay solo si fallan los 3 ──────────────────────────────────────────
   if (!anyOk) {
     el('err-overlay').classList.add('show');
   }
