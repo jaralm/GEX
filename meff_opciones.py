@@ -12,9 +12,10 @@ Outputs:
     ✉  Email con ambos informes (Gmail SMTP)
 
     data/meff_gex_YYYYMMDD.json              ← GEX con fecha (respaldo)
-    data/meff_gex_latest.json                ← Tab 1 dashboard (GEX por strike)
-    data/meff_opciones_latest.json           ← Tab 2 dashboard (volumen/OI por strike)
-    data/meff_volumen_historico.json         ← Tab 3 dashboard (histórico últimos 20 días)
+    data/meff_gex_latest.json                ← Tab γ  dashboard (GEX por strike)
+    data/meff_opciones_latest.json           ← backing data   (OI/IV para tabla GEX)
+    data/meff_volumen_historico.json         ← Tab ◎  dashboard (histórico últimos 20 días)
+    data/meff_informes_latest.json           ← Tab ◈  dashboard (top10 + top5 mini ibex)
 
 Dependencias:
     pip3 install requests beautifulsoup4 pandas numpy
@@ -754,6 +755,63 @@ def construir_historico():
     )
 
 
+# ── Generador JSON Tab Informes: Top 10 + Top 5 MINI IBEX ────────────────────
+
+def generar_json_informes(df: pd.DataFrame, txt_top10: str, txt_mini: str,
+                           fecha_boletin: str, hoy: str):
+    """
+    Genera meff_informes_latest.json (Tab ◈ INFORMES del dashboard).
+
+    Incluye el texto preformateado que ya se envía por email, guardado en JSON
+    para que el dashboard lo muestre directamente en el <pre> de la pestaña.
+    También incluye los datos estructurados para uso futuro.
+
+    Args:
+        df:             DataFrame scrapeado (strings, antes del CSV re-read).
+        txt_top10:      Texto preformateado del informe top 10 (ya construido).
+        txt_mini:       Texto preformateado del informe MINI IBEX (ya construido).
+        fecha_boletin:  Fecha del boletín en formato dd/mm/yy o dd/mm/yyyy.
+        hoy:            Fecha de hoy en formato YYYYMMDD.
+    """
+    print("\n── Generando JSON Informes (Tab ◈) ───────────────────────────")
+
+    cols_informe = ["fecha_boletin", "accion", "tipo", "fecha_vencimiento",
+                    "strike", "volumen_contratos", "posicion_abierta"]
+
+    def top_n_data(df_subset: pd.DataFrame, n: int) -> list:
+        """Devuelve los n registros con mayor volumen como lista de dicts."""
+        df_v = df_subset[df_subset["volumen_contratos"] != ""].copy()
+        df_v["_vol_num"] = vol_a_numero(df_v["volumen_contratos"])
+        top = df_v.sort_values("_vol_num", ascending=False).head(n)
+        resultado = []
+        for _, row in top.iterrows():
+            resultado.append({c: str(row.get(c, "")) for c in cols_informe if c in top.columns})
+        return resultado
+
+    top10_data = top_n_data(df, 10)
+
+    mask_mini = df["accion"].str.upper().str.contains("MINI IBEX", na=False)
+    df_mini   = df[mask_mini].copy()
+    mini_data = top_n_data(df_mini, 5) if not df_mini.empty else []
+
+    resultado = {
+        "meta": {
+            "fecha_boletin": fecha_boletin,
+            "generado":      datetime.now().strftime("%d/%m/%Y %H:%M"),
+        },
+        "top10_text":     txt_top10,
+        "mini_ibex_text": txt_mini,
+        "top10_data":     top10_data,
+        "mini_ibex_data": mini_data,
+    }
+
+    nombre = f"{CARPETA}/meff_informes_latest.json"
+    with open(nombre, "w", encoding="utf-8") as f:
+        json.dump(resultado, f, ensure_ascii=False, indent=2)
+    print(f"  Informes JSON guardado: {nombre}  "
+          f"({len(top10_data)} top10 · {len(mini_data)} mini ibex)")
+
+
 # ── Main ───────────────────────────────────────────────────────────────────────
 
 def main():
@@ -830,6 +888,9 @@ def main():
         contenido_email += "\n\n" + txt_mini
     enviar_email(contenido_email)
 
+    # ── JSON Informes: Top 10 + Top 5 para el Tab Informes del dashboard ───────
+    generar_json_informes(df, txt_top10, txt_mini, fecha_boletin_val, hoy)
+
     # ── Lee el CSV recién guardado para pasarlo a los generadores JSON ─────────
     df_raw = pd.read_csv(nombre_csv, sep=";", encoding="utf-8-sig", dtype=str)
 
@@ -842,7 +903,7 @@ def main():
     # ── JSON Tab 3: Histórico de volumen (últimos 20 CSVs) ────────────────────
     construir_historico()
 
-    print("\n✓ Pipeline completo — CSV + TXT + email + 3 JSONs generados.")
+    print("\n✓ Pipeline completo — CSV + TXT + email + 4 JSONs generados.")
 
 
 if __name__ == "__main__":
