@@ -672,12 +672,12 @@ def generar_json_opciones(df_raw: pd.DataFrame, fecha_boletin: str, hoy: str):
 def construir_historico():
     """
     Lee todos los CSVs disponibles en data/ (hasta 20 días) y genera
-    meff_volumen_historico.json (Tab 3 del dashboard unificado).
+    meff_volumen_historico.json (Tab Flujo y Posicionamiento del dashboard).
 
-    Al leer siempre de la misma carpeta data/, el histórico es automáticamente
-    común a todos los dashboards y se enriquece cada día con el CSV nuevo.
+    Agrega tanto volumen_contratos como posicion_abierta por sesión,
+    permitiendo al dashboard mostrar ambas métricas con toggle Volumen/OI.
     """
-    print("\n── Construyendo histórico de volumen (Tab 3) ─────────────────")
+    print("\n── Construyendo histórico de volumen/OI (Tab Flujo) ──────────")
 
     archivos = sorted(glob.glob(f"{CARPETA}/meff_opciones_*.csv"))
     if not archivos:
@@ -704,15 +704,17 @@ def construir_historico():
     ]
 
     df_todo["_vol_num"] = vol_a_numero(df_todo["volumen_contratos"])
+    df_todo["_oi_num"]  = vol_a_numero(df_todo["posicion_abierta"].fillna(""))
+    df_todo["_oi_num"]  = df_todo["_oi_num"].fillna(0)
     df_todo = df_todo.dropna(subset=["_vol_num"])
 
     agrupado = (
         df_todo
         .groupby(["fecha_boletin", "accion", "tipo", "fecha_vencimiento"])
-        ["_vol_num"]
+        [["_vol_num", "_oi_num"]]
         .sum()
         .reset_index()
-        .rename(columns={"_vol_num": "volumen_contratos"})
+        .rename(columns={"_vol_num": "volumen_contratos", "_oi_num": "posicion_abierta"})
     )
 
     acciones = sorted(agrupado["accion"].unique().tolist())
@@ -731,6 +733,7 @@ def construir_historico():
             "tipo":              str(row["tipo"]),
             "fecha_vencimiento": str(row["fecha_vencimiento"]),
             "volumen_contratos": round(float(row["volumen_contratos"]), 0),
+            "posicion_abierta":  round(float(row["posicion_abierta"]),  0),
         }
         for _, row in agrupado.iterrows()
     ]
