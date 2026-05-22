@@ -11,11 +11,10 @@ Outputs:
     data/meff_mini_ibex_YYYYMMDD.txt         ← top 5 MINI IBEX (consola + archivo)
     ✉  Email con ambos informes (Gmail SMTP)
 
-    data/meff_gex_YYYYMMDD.json              ← GEX con fecha (respaldo)
-    data/meff_gex_latest.json                ← Tab γ  dashboard (GEX por strike)
-    data/meff_opciones_latest.json           ← backing data   (OI/IV para tabla GEX)
-    data/meff_volumen_historico.json         ← Tab ◎  dashboard (histórico últimos 20 días)
-    data/meff_informes_latest.json           ← Tab ◈  dashboard (top10 + top5 mini ibex)
+    data/meff_gex_YYYYMMDD.json              ← GEX + DEX con fecha (respaldo)
+    data/meff_gex_latest.json                ← Tab GEX + Tab DEX dashboard
+    data/meff_opciones_latest.json           ← Tab OPCIONES dashboard
+    data/meff_volumen_historico.json         ← Tab HISTÓRICO dashboard
 
 Dependencias:
     pip3 install requests beautifulsoup4 pandas numpy
@@ -33,7 +32,7 @@ import smtplib
 from bs4 import BeautifulSoup, Tag
 from datetime import datetime, date
 from email.message import EmailMessage
-from gex_calculator import calcular_kpis as _calcular_kpis
+from gex_calculator import calcular_kpis as _calcular_kpis, calcular_kpis_dex as _calcular_kpis_dex
 
 
 # ── Configuración ──────────────────────────────────────────────────────────────
@@ -57,7 +56,7 @@ URLS = {
 
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 
-# Multiplicadores para GEX por vencimiento (función calcular_gex_vcto)
+# Multiplicadores para GEX/DEX por vencimiento
 MULTIPLICADORES_GEX = {"MINI IBEX": 1}
 MULTIPLICADOR_GEX_DEFAULT = 100
 
@@ -106,7 +105,7 @@ def vcto_sort_key(v):
 
 
 def a_float(v) -> float:
-    """Convierte string numérico español/mixto a float. Usado en las funciones GEX."""
+    """Convierte string numérico español/mixto a float."""
     if isinstance(v, (int, float)):
         return float(v)
     v = str(v).strip()
@@ -394,7 +393,7 @@ def construir_informe(titulo: str, df_subset: pd.DataFrame, n: int) -> str:
     return "\n".join(lineas)
 
 
-# ── GEX: funciones auxiliares (para gex_por_strike_vcto) ──────────────────────
+# ── GEX/DEX: funciones auxiliares (para desglose por vencimiento) ─────────────
 
 def _norm_pdf(x: float) -> float:
     return float(np.exp(-0.5 * x * x) / np.sqrt(2.0 * np.pi))
@@ -443,7 +442,7 @@ def bs_gamma_escalar(S, K, T, iv, r) -> float:
 def calcular_gex_vcto(df_raw: pd.DataFrame, r: float = TASA_LIBRE_RIESGO) -> pd.DataFrame:
     """
     Calcula GEX fila a fila para generar el desglose por vencimiento.
-    Necesario para el selector de vencimiento del Tab 1 (dashboard GEX).
+    Necesario para el selector de vencimiento del Tab GEX (dashboard).
     """
     hoy = date.today()
     filas = []
@@ -518,15 +517,103 @@ def agregar_gex_df(df_gex: pd.DataFrame):
     return gex_por_strike_vcto, gex_por_strike
 
 
-# ── Generador JSON Tab 1: GEX ─────────────────────────────────────────────────
+def calcular_dex_vcto(df_raw: pd.DataFrame, r: float = TASA_LIBRE_RIESGO) -> pd.DataFrame:
+    """
+    Calcula DEX fila a fila para generar el desglose por vencimiento.
+    Análogo a calcular_gex_vcto() pero usando delta en lugar de gamma.
+    Necesario para el selector de vencimiento del Tab DEX (dashboard).
+    """
+    hoy = date.today()
+    filas = []
+    for _, row in df_raw.iterrows():
+        S      = a_float(row.get("spot", ""))
+        K      = a_float(row.get("strike", ""))
+        oi     = a_float(row.get("posicion_abierta", ""))
+        iv_pct = a_float(row.get("volatilidad_cierre", ""))
+        tipo   = str(row.get("tipo", "")).upper().strip()
+        accion = str(row.get("accion", "")).strip()
+        fv_str = str(row.get("fecha_vencimiento", "")).strip()
+
+        if any(np.isnan(x) for x in [S, K, oi, iv_pct]):
+            continue
+        if oi <= 0 or S <= 0 or K <= 0 or iv_pct <= 0:
+            continue
+        if tipo not in ("CALL", "PUT"):
+            continue
+
+        fv_date = parsear_vencimiento(fv_str)
+        if fv_date is None:
+            continue
+
+        dias = (fv_date - hoy).days
+        T    = max(dias, 1) / 365.0
+        iv   = iv_pct / 100.0
+
+        # Delta Black-Scholes escalar usando np.erf (sin dependencias externas)
+        try:
+            d1  = (np.log(S / K) + (r + 0.5 * iv**2) * T) / (iv * np.sqrt(T))
+            nd1 = float(0.5 * (1.0 + np.erf(d1 / np.sqrt(2.0))))
+        except Exception:
+            continue
+
+        delta = nd1 if tipo == "CALL" else nd1 - 1.0
+        mult  = get_mult_gex(accion)
+        dex   = delta * oi * mult * S
+
+        filas.append({
+            "accion":            accion,
+            "tipo":              tipo,
+            "fecha_vencimiento": fv_str,
+            "strike":            K,
+            "spot":              S,
+            "dex":               round(dex, 2),
+        })
+    return pd.DataFrame(filas)
+
+
+def agregar_dex_df(df_dex: pd.DataFrame):
+    """Agrega DEX por strike+vencimiento y por strike (todos los vencimientos sumados)."""
+    if df_dex.empty:
+        cols = ["accion", "fecha_vencimiento", "strike", "spot", "call_dex", "put_dex", "net_dex"]
+        return pd.DataFrame(columns=cols), pd.DataFrame(columns=cols)
+
+    def agg_grupo(g):
+        return pd.Series({
+            "spot":     g["spot"].iloc[0],
+            "call_dex": round(g.loc[g["tipo"] == "CALL", "dex"].sum(), 2),
+            "put_dex":  round(g.loc[g["tipo"] == "PUT",  "dex"].sum(), 2),
+            "net_dex":  round(g["dex"].sum(), 2),
+        })
+
+    dex_por_strike_vcto = (
+        df_dex
+        .groupby(["accion", "fecha_vencimiento", "strike"], sort=False)
+        .apply(agg_grupo, include_groups=False)
+        .reset_index()
+        .sort_values(["accion", "strike"])
+    )
+    dex_por_strike = (
+        df_dex
+        .groupby(["accion", "strike"], sort=False)
+        .apply(agg_grupo, include_groups=False)
+        .reset_index()
+        .sort_values(["accion", "strike"])
+    )
+    return dex_por_strike_vcto, dex_por_strike
+
+
+# ── Generador JSON Tab GEX + Tab DEX ─────────────────────────────────────────
 
 def generar_json_gex(df_raw: pd.DataFrame, csv_path: str, fecha_boletin: str, hoy: str):
     """
-    Genera meff_gex_latest.json (Tab 1 del dashboard unificado).
-    Usa gex_calculator.py (vectorizado) para los KPIs.
-    Usa calcular_gex_vcto() (escalar) para el desglose por vencimiento.
+    Genera meff_gex_latest.json (Tab GEX + Tab DEX del dashboard unificado).
+
+    Secciones GEX:
+      kpis_por_accion, gex_por_strike, gex_por_strike_vcto
+    Secciones DEX (añadidas):
+      kpis_dex_por_accion, dex_por_strike, dex_por_strike_vcto
     """
-    print("\n── Calculando GEX (Tab 1) ────────────────────────────────────")
+    print("\n── Calculando GEX (Tab GEX) ──────────────────────────────────")
 
     todos_kpis = _calcular_kpis(csv_path)
     if not todos_kpis:
@@ -541,7 +628,7 @@ def generar_json_gex(df_raw: pd.DataFrame, csv_path: str, fecha_boletin: str, ho
               f"put_wall={k['put_wall']:>8,.0f}  zero_gamma={zg}")
         print()
 
-    # gex_por_strike: todos los vencimientos sumados (del resultado de gex_calculator)
+    # gex_por_strike: todos los vencimientos sumados
     gps_frames = []
     for ac, k in todos_kpis.items():
         gs = k["gex_por_strike"].copy()
@@ -552,13 +639,63 @@ def generar_json_gex(df_raw: pd.DataFrame, csv_path: str, fecha_boletin: str, ho
         pd.concat(gps_frames, ignore_index=True) if gps_frames else pd.DataFrame()
     )
 
-    # gex_por_strike_vcto: desglose por vencimiento (para el selector del dashboard)
+    # gex_por_strike_vcto: desglose por vencimiento
     df_gex = calcular_gex_vcto(df_raw)
     if not df_gex.empty:
         gex_por_strike_vcto, _ = agregar_gex_df(df_gex)
     else:
         gex_por_strike_vcto = pd.DataFrame()
 
+    # ── DEX ───────────────────────────────────────────────────────────────────
+    print("\n── Calculando DEX (Tab DEX) ──────────────────────────────────")
+
+    todos_kpis_dex = _calcular_kpis_dex(csv_path)
+
+    if todos_kpis_dex:
+        for ac, k in sorted(todos_kpis_dex.items()):
+            zd = f"{k['zero_delta']:,.1f}" if k["zero_delta"] is not None else "n/a"
+            print(f"  {ac:<28}  spot={k['spot']:>10,.2f}  DEX={k['dex_total']:>+15,.0f}  "
+                  f"regime={k['regime']}")
+            print(f"  {'':28}  call_wall={k['call_wall']:>8,.0f}  "
+                  f"put_wall={k['put_wall']:>8,.0f}  zero_delta={zd}")
+            print()
+
+        # dex_por_strike: todos los vencimientos sumados
+        dps_frames = []
+        for ac, k in todos_kpis_dex.items():
+            gs = k["dex_por_strike"].copy()
+            gs["accion"] = ac
+            gs["spot"]   = k["spot"]
+            dps_frames.append(gs)
+        dex_por_strike = (
+            pd.concat(dps_frames, ignore_index=True) if dps_frames else pd.DataFrame()
+        )
+
+        # dex_por_strike_vcto: desglose por vencimiento
+        df_dex = calcular_dex_vcto(df_raw)
+        if not df_dex.empty:
+            dex_por_strike_vcto, _ = agregar_dex_df(df_dex)
+        else:
+            dex_por_strike_vcto = pd.DataFrame()
+
+        kpis_dex_json = {
+            ac: {
+                "spot":       k["spot"],
+                "call_wall":  k["call_wall"],
+                "put_wall":   k["put_wall"],
+                "zero_delta": k["zero_delta"],
+                "dex_total":  k["dex_total"],
+                "regime":     k["regime"],
+            }
+            for ac, k in todos_kpis_dex.items()
+        }
+    else:
+        dex_por_strike     = pd.DataFrame()
+        dex_por_strike_vcto = pd.DataFrame()
+        kpis_dex_json      = {}
+        print("  Sin datos suficientes para DEX.")
+
+    # ── Metadatos comunes ─────────────────────────────────────────────────────
     subyacentes = sorted(todos_kpis.keys())
     vencimientos = {
         ac: sorted(
@@ -593,32 +730,37 @@ def generar_json_gex(df_raw: pd.DataFrame, csv_path: str, fecha_boletin: str, ho
             "nota_tasa":         "Tipo BCE. Revisar periodicamente.",
             "fuente":            "MEFF",
         },
-        "subyacentes":         subyacentes,
-        "vencimientos":        vencimientos,
-        "kpis_por_accion":     kpis_json,
-        "gex_por_strike_vcto": to_records(gex_por_strike_vcto) if not gex_por_strike_vcto.empty else [],
-        "gex_por_strike":      to_records(gex_por_strike)      if not gex_por_strike.empty      else [],
+        "subyacentes":          subyacentes,
+        "vencimientos":         vencimientos,
+        # ── GEX ──────────────────────────────────────────────────────────────
+        "kpis_por_accion":      kpis_json,
+        "gex_por_strike_vcto":  to_records(gex_por_strike_vcto) if not gex_por_strike_vcto.empty else [],
+        "gex_por_strike":       to_records(gex_por_strike)      if not gex_por_strike.empty      else [],
+        # ── DEX ──────────────────────────────────────────────────────────────
+        "kpis_dex_por_accion":  kpis_dex_json,
+        "dex_por_strike_vcto":  to_records(dex_por_strike_vcto) if not dex_por_strike_vcto.empty else [],
+        "dex_por_strike":       to_records(dex_por_strike)      if not dex_por_strike.empty      else [],
     }
 
     nombre = f"{CARPETA}/meff_gex_{hoy}.json"
     with open(nombre, "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False, indent=2)
-    print(f"  GEX JSON guardado: {nombre}")
+    print(f"  JSON guardado: {nombre}")
 
     latest = f"{CARPETA}/meff_gex_latest.json"
     with open(latest, "w", encoding="utf-8") as f:
         json.dump(resultado, f, ensure_ascii=False, indent=2)
-    print(f"  GEX JSON latest:   {latest}")
+    print(f"  JSON latest:   {latest}")
 
 
-# ── Generador JSON Tab 2: Opciones por strike ─────────────────────────────────
+# ── Generador JSON Tab OPCIONES ───────────────────────────────────────────────
 
 def generar_json_opciones(df_raw: pd.DataFrame, fecha_boletin: str, hoy: str):
     """
-    Genera meff_opciones_latest.json (Tab 2 del dashboard unificado).
+    Genera meff_opciones_latest.json (Tab OPCIONES del dashboard unificado).
     Contiene volumen y OI por subyacente/vencimiento/strike, con valores numéricos.
     """
-    print("\n── Generando JSON Opciones (Tab 2) ───────────────────────────")
+    print("\n── Generando JSON Opciones (Tab OPCIONES) ────────────────────")
 
     subyacentes = sorted(df_raw["accion"].dropna().unique().tolist())
     vencimientos = {
@@ -667,17 +809,17 @@ def generar_json_opciones(df_raw: pd.DataFrame, fecha_boletin: str, hoy: str):
     print(f"  Opciones JSON guardado: {nombre}  ({len(datos)} filas)")
 
 
-# ── Generador JSON Tab 3: Histórico de volumen ────────────────────────────────
+# ── Generador JSON Tab HISTÓRICO ──────────────────────────────────────────────
 
 def construir_historico():
     """
     Lee todos los CSVs disponibles en data/ (hasta 20 días) y genera
-    meff_volumen_historico.json (Tab Flujo y Posicionamiento del dashboard).
+    meff_volumen_historico.json (Tab HISTÓRICO del dashboard unificado).
 
-    Agrega tanto volumen_contratos como posicion_abierta por sesión,
-    permitiendo al dashboard mostrar ambas métricas con toggle Volumen/OI.
+    Al leer siempre de la misma carpeta data/, el histórico es automáticamente
+    común a todos los dashboards y se enriquece cada día con el CSV nuevo.
     """
-    print("\n── Construyendo histórico de volumen/OI (Tab Flujo) ──────────")
+    print("\n── Construyendo histórico de volumen (Tab HISTÓRICO) ─────────")
 
     archivos = sorted(glob.glob(f"{CARPETA}/meff_opciones_*.csv"))
     if not archivos:
@@ -704,17 +846,15 @@ def construir_historico():
     ]
 
     df_todo["_vol_num"] = vol_a_numero(df_todo["volumen_contratos"])
-    df_todo["_oi_num"]  = vol_a_numero(df_todo["posicion_abierta"].fillna(""))
-    df_todo["_oi_num"]  = df_todo["_oi_num"].fillna(0)
     df_todo = df_todo.dropna(subset=["_vol_num"])
 
     agrupado = (
         df_todo
         .groupby(["fecha_boletin", "accion", "tipo", "fecha_vencimiento"])
-        [["_vol_num", "_oi_num"]]
+        ["_vol_num"]
         .sum()
         .reset_index()
-        .rename(columns={"_vol_num": "volumen_contratos", "_oi_num": "posicion_abierta"})
+        .rename(columns={"_vol_num": "volumen_contratos"})
     )
 
     acciones = sorted(agrupado["accion"].unique().tolist())
@@ -733,7 +873,6 @@ def construir_historico():
             "tipo":              str(row["tipo"]),
             "fecha_vencimiento": str(row["fecha_vencimiento"]),
             "volumen_contratos": round(float(row["volumen_contratos"]), 0),
-            "posicion_abierta":  round(float(row["posicion_abierta"]),  0),
         }
         for _, row in agrupado.iterrows()
     ]
@@ -756,63 +895,6 @@ def construir_historico():
         f"  Histórico guardado: {nombre_json}  "
         f"({len(datos)} registros · {num_dias} días · {len(archivos)} CSVs)"
     )
-
-
-# ── Generador JSON Tab Informes: Top 10 + Top 5 MINI IBEX ────────────────────
-
-def generar_json_informes(df: pd.DataFrame, txt_top10: str, txt_mini: str,
-                           fecha_boletin: str, hoy: str):
-    """
-    Genera meff_informes_latest.json (Tab ◈ INFORMES del dashboard).
-
-    Incluye el texto preformateado que ya se envía por email, guardado en JSON
-    para que el dashboard lo muestre directamente en el <pre> de la pestaña.
-    También incluye los datos estructurados para uso futuro.
-
-    Args:
-        df:             DataFrame scrapeado (strings, antes del CSV re-read).
-        txt_top10:      Texto preformateado del informe top 10 (ya construido).
-        txt_mini:       Texto preformateado del informe MINI IBEX (ya construido).
-        fecha_boletin:  Fecha del boletín en formato dd/mm/yy o dd/mm/yyyy.
-        hoy:            Fecha de hoy en formato YYYYMMDD.
-    """
-    print("\n── Generando JSON Informes (Tab ◈) ───────────────────────────")
-
-    cols_informe = ["fecha_boletin", "accion", "tipo", "fecha_vencimiento",
-                    "strike", "volumen_contratos", "posicion_abierta"]
-
-    def top_n_data(df_subset: pd.DataFrame, n: int) -> list:
-        """Devuelve los n registros con mayor volumen como lista de dicts."""
-        df_v = df_subset[df_subset["volumen_contratos"] != ""].copy()
-        df_v["_vol_num"] = vol_a_numero(df_v["volumen_contratos"])
-        top = df_v.sort_values("_vol_num", ascending=False).head(n)
-        resultado = []
-        for _, row in top.iterrows():
-            resultado.append({c: str(row.get(c, "")) for c in cols_informe if c in top.columns})
-        return resultado
-
-    top10_data = top_n_data(df, 10)
-
-    mask_mini = df["accion"].str.upper().str.contains("MINI IBEX", na=False)
-    df_mini   = df[mask_mini].copy()
-    mini_data = top_n_data(df_mini, 5) if not df_mini.empty else []
-
-    resultado = {
-        "meta": {
-            "fecha_boletin": fecha_boletin,
-            "generado":      datetime.now().strftime("%d/%m/%Y %H:%M"),
-        },
-        "top10_text":     txt_top10,
-        "mini_ibex_text": txt_mini,
-        "top10_data":     top10_data,
-        "mini_ibex_data": mini_data,
-    }
-
-    nombre = f"{CARPETA}/meff_informes_latest.json"
-    with open(nombre, "w", encoding="utf-8") as f:
-        json.dump(resultado, f, ensure_ascii=False, indent=2)
-    print(f"  Informes JSON guardado: {nombre}  "
-          f"({len(top10_data)} top10 · {len(mini_data)} mini ibex)")
 
 
 # ── Main ───────────────────────────────────────────────────────────────────────
@@ -838,7 +920,7 @@ def main():
         for _, r in spots_encontrados.iterrows():
             print(f"  {r['accion']}: {r['spot']}")
     else:
-        print("AVISO: no se encontró ningún spot → GEX no calculable.")
+        print("AVISO: no se encontró ningún spot → GEX/DEX no calculable.")
 
     vola_no_vacia = df["volatilidad_cierre"].replace("", pd.NA).dropna()
     if vola_no_vacia.empty:
@@ -891,22 +973,19 @@ def main():
         contenido_email += "\n\n" + txt_mini
     enviar_email(contenido_email)
 
-    # ── JSON Informes: Top 10 + Top 5 para el Tab Informes del dashboard ───────
-    generar_json_informes(df, txt_top10, txt_mini, fecha_boletin_val, hoy)
-
     # ── Lee el CSV recién guardado para pasarlo a los generadores JSON ─────────
     df_raw = pd.read_csv(nombre_csv, sep=";", encoding="utf-8-sig", dtype=str)
 
-    # ── JSON Tab 1: GEX por strike ─────────────────────────────────────────────
+    # ── JSON Tab GEX + Tab DEX ────────────────────────────────────────────────
     generar_json_gex(df_raw, nombre_csv, fecha_boletin_val, hoy)
 
-    # ── JSON Tab 2: Opciones por strike ────────────────────────────────────────
+    # ── JSON Tab OPCIONES ──────────────────────────────────────────────────────
     generar_json_opciones(df_raw, fecha_boletin_val, hoy)
 
-    # ── JSON Tab 3: Histórico de volumen (últimos 20 CSVs) ────────────────────
+    # ── JSON Tab HISTÓRICO (últimos 20 CSVs) ──────────────────────────────────
     construir_historico()
 
-    print("\n✓ Pipeline completo — CSV + TXT + email + 4 JSONs generados.")
+    print("\n✓ Pipeline completo — CSV + TXT + email + JSONs generados (GEX + DEX + Opciones + Histórico).")
 
 
 if __name__ == "__main__":
