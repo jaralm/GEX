@@ -703,10 +703,10 @@ def construir_historico():
         ~df_todo["fecha_vencimiento"].fillna("").str.contains(r"\bw\d+\b", regex=True)
     ]
 
-    df_todo["_vol_num"] = vol_a_numero(df_todo["volumen_contratos"])
-    # OI puede estar vacío en algunas filas → fillna(0) para no perder esas filas
+    df_todo["_vol_num"] = vol_a_numero(df_todo["volumen_contratos"]).fillna(0)
     df_todo["_oi_num"]  = vol_a_numero(df_todo["posicion_abierta"]).fillna(0)
-    df_todo = df_todo.dropna(subset=["_vol_num"])
+    # Conservar filas con volumen O con OI (un strike puede tener OI sin haber cruzado hoy)
+    df_todo = df_todo[(df_todo["_vol_num"] > 0) | (df_todo["_oi_num"] > 0)]
 
     agrupado = (
         df_todo
