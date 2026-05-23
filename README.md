@@ -1,176 +1,86 @@
-# MEFF GEX Dashboard
+# GammaIbex · γ
 
-> **No Queda Otra Opción** — Gamma Exposure sobre derivados españoles
+**Exposición gamma y delta del mercado de opciones español — en tiempo real.**
 
-Pipeline diario que descarga el boletín de opciones de [MEFF](https://www.meff.es), calcula el Gamma Exposure (GEX) de todos los subyacentes y sirve un dashboard interactivo con el perfil de gamma por strike.
-
----
-
-## ¿Qué es el GEX y para qué sirve?
-
-El **Gamma Exposure** mide la exposición agregada de los *market makers* (dealers) a la gamma de las opciones que tienen en su libro. Saber el signo y la distribución del GEX por strike permite anticipar comportamientos de precio:
-
-| Régimen | Qué ocurre |
-|---|---|
-| **GEX positivo** (dealers *long gamma*) | Los dealers venden al subir y compran al bajar → el precio revierte, la volatilidad se amortigua |
-| **GEX negativo** (dealers *short gamma*) | Los dealers compran al subir y venden al bajar → el precio se amplifica, la volatilidad aumenta |
-
-Los niveles clave calculados son:
-
-- **Call Wall** — strike con mayor GEX call (resistencia dinámica)
-- **Put Wall** — strike con mayor GEX put en valor absoluto (soporte dinámico)
-- **Zero Gamma** — nivel donde el GEX neto cruza cero (cambia el régimen)
-- **Net GEX por strike** — perfil completo call GEX − |put GEX|
+🔗 **[gammaibex.noquedaotraopcion.com](https://gammaibex.noquedaotraopcion.com)**
 
 ---
 
-## Arquitectura
+## Qué es esto
 
-```
-meff_opciones.py    →  scraping boletín MEFF → CSV diario + email
-gex_calculator.py   →  librería GEX (Black-Scholes vectorizado)
-meff_gex.py         →  orquestador → JSON para el dashboard
-dashboard.html      →  frontend interactivo (Chart.js, sin servidor)
-```
+GammaIbex aplica al mercado español de opciones la metodología de **Gamma Exposure (GEX)** y **Delta Exposure (DEX)** popularizada en EEUU por referencias como SpotGamma.
 
-```
-data/
-├── meff_opciones_YYYYMMDD.csv      # opciones CALL/PUT del día
-├── meff_top10_YYYYMMDD.txt         # top 10 por volumen
-├── meff_mini_ibex_YYYYMMDD.txt     # top 5 MINI IBEX-35
-├── meff_gex_YYYYMMDD.json          # GEX del día
-└── meff_gex_latest.json            # siempre el más reciente (lee el dashboard)
-```
+Hasta ahora, este tipo de análisis no existía para el IBEX-35 y sus subyacentes. Los datos provienen del boletín diario público de [MEFF](https://www.meff.es) (el mercado oficial de derivados financieros en España) y se actualizan automáticamente cada día hábil.
 
 ---
 
-## Instalación
+## Qué muestra el dashboard
 
-**Requisitos:** Python 3, pip3, Mac o Linux.
+### γ · GEX — Gamma Exposure por strike
+Posicionamiento gamma neto de los dealers por nivel de precio. Identifica los strikes donde el mercado actúa como imán o repulsor.
 
-```bash
-# 1. Clonar el repositorio
-git clone https://github.com/jaralm/gex.git
-cd meff-gex
+- **GEX positivo** → dealers *long gamma* → venden en subidas, compran en caídas → volatilidad amortiguada
+- **GEX negativo** → dealers *short gamma* → amplifican el movimiento → volatilidad elevada
+- KPIs: Call Wall, Put Wall, Zero Gamma, régimen de mercado
 
-# 2. Instalar dependencias
-pip3 install requests beautifulsoup4 pandas numpy
-```
+### Δ · DEX — Delta Exposure por strike
+Posicionamiento delta acumulado de los dealers. Mide el sesgo direccional del mercado de opciones.
 
-Para el envío de email (opcional), configurar estas variables de entorno:
+- **DEX positivo** → dealers *long delta* → venden rallies (resistencia dinámica)
+- **DEX negativo** → dealers *short delta* → compran caídas (soporte dinámico)
+- KPIs: Zero Delta, Call Wall delta, Put Wall delta
 
-```bash
-export EMAIL_ORIGEN="tucuenta@gmail.com"
-export EMAIL_DESTINO="destino@gmail.com"
-export PASSWORD_APP="xxxx xxxx xxxx xxxx"   # contraseña de app Gmail
-```
+### ◈ · Top Posiciones
+Ranking de strikes por volumen de contratos y posición abierta. Identifica dónde está concentrado el interés del mercado.
+
+### ◎ · Flujo y Posicionamiento
+Histórico de volumen y open interest por subyacente, vencimiento y tipo (CALL/PUT) — hasta 20 días de datos.
 
 ---
 
-## Uso diario
+## Subyacentes cubiertos
 
-```bash
-# Paso 1 — Scraping del boletín MEFF + CSV + email
-python3 meff_opciones.py
+Todos los subyacentes incluidos en el boletín diario de MEFF: **IBEX-35**, **MINI IBEX-35** y opciones sobre acciones individuales del índice.
 
-# Paso 2 — Cálculo GEX → JSON
-python3 meff_gex.py
+---
 
-# Paso 3 — Abrir el dashboard en el navegador
-python3 -m http.server 8080
-# → http://localhost:8080/dashboard.html
+## Metodología
+
+- **Modelo:** Black-Scholes para cálculo de gamma y delta implícitas
+- **Inputs:** precio de cierre (spot), volatilidad implícita de cierre, strike, vencimiento, open interest
+- **Multiplicador:** 100 acciones/contrato para acciones; 1 €/punto para IBEX y MINI IBEX
+- **Convención GEX:** `OI_call × Γ × S² × mult − OI_put × Γ × S² × mult` (estándar SpotGamma)
+- **Convención DEX:** `OI_call × Δ_call × S × mult + OI_put × Δ_put × S × mult`
+- **Filtro:** opciones semanales excluidas del análisis (distorsionan el perfil de strikes mensuales)
+- **Frecuencia:** actualización automática diaria (martes–sábado, tras publicación del boletín MEFF)
+
+---
+
+## Estructura del repositorio
+
 ```
-
-`meff_gex.py` acepta fecha opcional si quieres reprocesar un día concreto:
-
-```bash
-python3 meff_gex.py 20260515
+├── meff_opciones.py          ← pipeline principal (scraping + cálculo + JSON)
+├── gex_calculator.py         ← librería matemática GEX/DEX (Black-Scholes vectorizado)
+├── meff_gex.py               ← script standalone para recálculo manual por fecha
+├── index.html                ← dashboard (4 tabs, sin dependencias externas)
+├── .github/workflows/
+│   └── meff_daily.yml        ← automatización diaria (GitHub Actions)
+└── data/
+    ├── meff_opciones_YYYYMMDD.csv        ← datos brutos
+    ├── meff_gex_latest.json              ← GEX + DEX (dashboard tabs γ y Δ)
+    ├── meff_opciones_latest.json         ← top posiciones (dashboard tab ◈)
+    └── meff_volumen_historico.json       ← histórico (dashboard tab ◎)
 ```
 
 ---
 
-## Dashboard
+## Fuente de datos
 
-El dashboard se sirve en local con el servidor HTTP de Python y no requiere ningún framework ni conexión a internet (salvo los CDN de Chart.js y Google Fonts).
-
-**Pantalla 1 — GEX por strike (barras)**
-
-Muestra el GEX call (verde) y put (rojo) por strike para el subyacente y vencimiento seleccionados, con líneas verticales de Spot, Call Wall, Put Wall y Zero Gamma.
-
-**Pantalla 2 — Net GEX (línea)**
-
-Muestra el GEX neto (`call GEX − |put GEX|`) para todos los vencimientos con sombreado verde cuando el régimen es positivo y rojo cuando es negativo. Marca los cruces de cero (Gamma Flip) y anota outliers que superan ±40 M.
+Los datos provienen exclusivamente del **boletín diario público de MEFF** ([meff.es](https://www.meff.es)), de acceso libre. Este proyecto no redistribuye datos de pago ni accede a ninguna fuente privada.
 
 ---
 
-## Modelo GEX
+## Aviso
 
-**Fórmula** (convenio SpotGamma):
+Este dashboard es una herramienta de análisis de posicionamiento de mercado, no una recomendación de inversión. El GEX y el DEX son indicadores derivados de las posiciones públicas en opciones — no predicen movimientos de precio.
 
-```
-GEX(K) = OI_call × Γ(K) × S² × mult  −  OI_put × Γ(K) × S² × mult
-```
-
-**Gamma Black-Scholes:**
-
-```
-d1 = [ ln(S/K) + (r + 0.5·σ²)·T ] / (σ·√T)
-Γ  = exp(−0.5·d1²) / (√(2π) · S · σ · √T)
-```
-
-**Parámetros:**
-
-| Parámetro | Valor | Descripción |
-|---|---|---|
-| `r` | 0.025 | Tasa libre de riesgo BCE |
-| Multiplicador MINI IBEX-35 | 1 €/punto | |
-| Multiplicador resto | 100 acciones/contrato | |
-| Sweep Zero Gamma | ±15% del spot, 600 puntos | |
-
-El cálculo de gamma está vectorizado con NumPy — el barrido completo tarda < 1 segundo.
-
----
-
-## Subyacentes disponibles
-
-Todos los publicados en el boletín diario de MEFF: MINI IBEX-35, IBEX-35, y opciones sobre acciones (Acciona, ACS, Aena, Amadeus, BBVA, CaixaBank, Cellnex, Enagás, Endesa, Ferrovial, Grifols, IAG, Iberdrola, Inditex, Mapfre, Naturgy, PharmaMar, Repsol, Sabadell, Santander, Solaria, Telefónica, y otros según el boletín del día).
-
----
-
-## Integración con Google Sheets
-
-Para leer los CSVs directamente desde GitHub en una hoja de cálculo:
-
-```
-=IFERROR(
-  IMPORTDATA("https://raw.githubusercontent.com/jaralm/gex/main/data/"&A1&".csv";";");
-  "Archivo no encontrado"
-)
-```
-
-Donde `A1` contiene la fecha en formato `meff_opciones_YYYYMMDD`.
-
-> **Nota:** requiere que el repositorio sea **público**. La caché de `IMPORTDATA` es de aproximadamente 1 hora.
-
----
-
-## Estado del proyecto
-
-- ✅ Scraping funcional y validado en producción
-- ✅ GEX calculado para todos los subyacentes del boletín
-- ✅ Dashboard operativo en local
-- ✅ Email diario (Gmail SMTP)
-- ✅ Zero Gamma implementado (puede ser `null` — resultado correcto si el GEX no cruza cero en ±15%)
-- ✅ Pantalla Net GEX con perfil de línea y sombreado por régimen
-- 🔲 GitHub Pages: pendiente
-- 🔲 Automatización diaria (cron / GitHub Actions): pendiente
-
----
-
-## Licencia
-
-Uso personal. Los datos son propiedad de [MEFF — BME Derivatives](https://www.meff.es).
-
----
-
-*joseantonio@noquedaotraopcion.com*
