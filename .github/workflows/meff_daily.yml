@@ -2,7 +2,7 @@ name: MEFF Daily Pipeline
 
 on:
   schedule:
-    - cron: '0 6 * * 2-6'   # martes–sábado a las 08:00 CET (06:00 UTC)
+    - cron: '0 6 * * 2-6'   # martes-sabado a las 06:00 UTC
   workflow_dispatch:          # permite lanzarlo manualmente desde GitHub
 
 permissions:
@@ -30,7 +30,7 @@ jobs:
           EMAIL_ORIGEN:  ${{ secrets.EMAIL_ORIGEN }}
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
           PASSWORD_APP:  ${{ secrets.PASSWORD_APP }}
-        run: python3 meff_opciones.py
+        run: python3 run_meff_daily.py
 
       - name: Commit y push de datos nuevos
         run: |
