@@ -848,15 +848,18 @@ def construir_historico():
     ]
 
     df_todo["_vol_num"] = vol_a_numero(df_todo["volumen_contratos"])
+    # OI puede estar vacío en algunas filas → fillna(0) para no perder esas filas
+    df_todo["_oi_num"]  = vol_a_numero(df_todo["posicion_abierta"]).fillna(0)
     df_todo = df_todo.dropna(subset=["_vol_num"])
 
     agrupado = (
         df_todo
         .groupby(["fecha_boletin", "accion", "tipo", "fecha_vencimiento"])
-        ["_vol_num"]
-        .sum()
+        .agg(
+            volumen_contratos=("_vol_num", "sum"),
+            posicion_abierta =("_oi_num",  "sum"),
+        )
         .reset_index()
-        .rename(columns={"_vol_num": "volumen_contratos"})
     )
 
     acciones = sorted(agrupado["accion"].unique().tolist())
@@ -875,6 +878,7 @@ def construir_historico():
             "tipo":              str(row["tipo"]),
             "fecha_vencimiento": str(row["fecha_vencimiento"]),
             "volumen_contratos": round(float(row["volumen_contratos"]), 0),
+            "posicion_abierta":  round(float(row["posicion_abierta"]),  0),
         }
         for _, row in agrupado.iterrows()
     ]
