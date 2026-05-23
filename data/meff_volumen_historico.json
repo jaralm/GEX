@@ -1,6 +1,6 @@
 {
-  "ultima_actualizacion": "22/05/2026 21:04",
-  "num_dias": 3,
+  "ultima_actualizacion": "23/05/2026 08:16",
+  "num_dias": 4,
   "acciones": [
     "ACCIONA",
     "ACERINOX",
@@ -27,6 +27,8 @@
     "INDRA",
     "LABORAT. ROVI",
     "MAPFRE",
+    "MELIA HOTELS",
+    "MERLIN",
     "MINI IBEX-35",
     "NATURGY",
     "OBRASCON HUARTE",
@@ -45,6 +47,7 @@
     "ACCIONA": [
       "Jun-26",
       "Ago-26",
+      "Sep-26",
       "Dic-26",
       "Mar-27"
     ],
@@ -59,6 +62,7 @@
     "ACS": [
       "Jun-26",
       "Jul-26",
+      "Ago-26",
       "Sep-26",
       "Dic-26",
       "Mar-27"
@@ -85,6 +89,7 @@
     ],
     "B.SABADELL": [
       "Jun-26",
+      "Sep-26",
       "Dic-26",
       "Mar-27"
     ],
@@ -111,7 +116,8 @@
       "Ago-26",
       "Sep-26",
       "Dic-26",
-      "Mar-27"
+      "Mar-27",
+      "Dic-27"
     ],
     "CIE AUTOMOTIVE": [
       "Sep-26"
@@ -180,7 +186,8 @@
       "Ago-26",
       "Sep-26",
       "Dic-26",
-      "Mar-27"
+      "Mar-27",
+      "Jun-27"
     ],
     "INDRA": [
       "Jun-26",
@@ -190,12 +197,24 @@
       "Dic-26"
     ],
     "LABORAT. ROVI": [
+      "Jun-26",
+      "Jul-26",
+      "Ago-26",
       "Sep-26",
-      "Dic-26"
+      "Dic-26",
+      "Mar-27"
     ],
     "MAPFRE": [
       "Jun-26",
+      "Sep-26",
       "Dic-26",
+      "Mar-27",
+      "Jun-27"
+    ],
+    "MELIA HOTELS": [
+      "Sep-26"
+    ],
+    "MERLIN": [
       "Mar-27"
     ],
     "MINI IBEX-35": [
@@ -227,7 +246,10 @@
       "Jul-26",
       "Ago-26",
       "Sep-26",
-      "Dic-26"
+      "Dic-26",
+      "Mar-27",
+      "Jun-27",
+      "Sep-27"
     ],
     "REDEIA": [
       "Jun-26",
@@ -272,7 +294,8 @@
       "Jul-26",
       "Sep-26",
       "Dic-26",
-      "Dic-27"
+      "Dic-27",
+      "Mar-28"
     ],
     "VIDRALA": [
       "Jun-26"
@@ -2943,6 +2966,762 @@
       "tipo": "CALL",
       "fecha_vencimiento": "Ago-26",
       "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ACCIONA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ACERINOX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 13.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ACS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Ago-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ACS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ACS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 20.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ACS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ACS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "AMADEUS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "AMADEUS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 25.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "AMADEUS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 5.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "AMADEUS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ARCELORMITTAL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "B.SABADELL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 80.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "B.SABADELL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 280.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "B.SABADELL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 60.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "B.SABADELL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 25.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "BBVA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "BBVA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 4016.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "BBVA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 25.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "BBVA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 4016.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CAIXABANK",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 6010.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CAIXABANK",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CAIXABANK",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CAIXABANK",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 6000.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CELLNEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-27",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CELLNEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-27",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CELLNEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CELLNEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 11.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CELLNEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 6.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "CELLNEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 21.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ENAGAS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ENAGAS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 135.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "ENAGAS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 36.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "FERROVIAL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "GRIFOLS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 11.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "GRIFOLS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 3.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "GRIFOLS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "IAG",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 50.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "IAG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 3.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "IBERDROLA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "IBERDROLA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "IBERDROLA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 11.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Ago-26",
+      "volumen_contratos": 150.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 15.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 3.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDITEX",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "INDRA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 11.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 5.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Ago-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 30.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 3.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MAPFRE",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 8.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MAPFRE",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 8.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MELIA HOTELS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 150.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MERLIN",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 5.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Ago-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 29.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Ago-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 3.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 24.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "NATURGY",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "NATURGY",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 145.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "NATURGY",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 26.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "NATURGY",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 20.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "NATURGY",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 50.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 25.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 5.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 4.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Ago-26",
+      "volumen_contratos": 4.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 534.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 29.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 184.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 18.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REDEIA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 50.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REDEIA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REDEIA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 7.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REPSOL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 12.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REPSOL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Ago-26",
+      "volumen_contratos": 4.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REPSOL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 22.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REPSOL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 19.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "REPSOL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 1.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SANTANDER",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 12.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SANTANDER",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 20.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SANTANDER",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 52.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SANTANDER",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SANTANDER",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jul-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SANTANDER",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 52.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SANTANDER",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 600.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SOLARIA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "SOLARIA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 10.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "TELEFONICA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-27",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "TELEFONICA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-28",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "TELEFONICA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 6.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "TELEFONICA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-26",
+      "volumen_contratos": 2.0
+    },
+    {
+      "fecha_boletin": "22/05/26",
+      "accion": "TELEFONICA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-26",
+      "volumen_contratos": 84.0
     }
   ]
 }
