@@ -312,6 +312,79 @@
     }
     .informe-empty { font-size: 12px; color: var(--muted); font-style: normal; }
 
+    /* ── Glosario tab ── */
+    .glosario-wrap {
+      flex: 1; padding: 24px 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+      gap: 14px;
+      overflow-y: auto;
+      align-content: start;
+    }
+    .glosario-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color .15s;
+    }
+    .glosario-card:hover { border-color: var(--border2); }
+    .glosario-term {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .glosario-icon {
+      font-size: 15px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .glosario-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .09em;
+      color: var(--accent);
+    }
+    .glosario-subtitle {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .06em;
+    }
+    .glosario-body {
+      font-size: 11px;
+      color: var(--text);
+      line-height: 1.75;
+      opacity: .85;
+    }
+    .glosario-body strong { color: var(--text); opacity: 1; font-weight: 600; }
+    .glosario-body .hl-call   { color: var(--call); font-weight: 600; }
+    .glosario-body .hl-put    { color: var(--put);  font-weight: 600; }
+    .glosario-body .hl-spot   { color: var(--spot); font-weight: 600; }
+    .glosario-body .hl-violet { color: var(--violet); font-weight: 600; }
+    .glosario-body .hl-cyan   { color: var(--cyan); font-weight: 600; }
+    .glosario-divider {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 4px 0;
+    }
+    .glosario-divider-label {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .1em;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+    .glosario-divider-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
     /* ── Error overlay ── */
     .err-overlay {
       display: none; position: fixed; inset: 0;
@@ -379,6 +452,9 @@
   </button>
   <button class="tab-btn" onclick="switchTab('historico')" id="tbtn-historico">
     <span class="tab-icon">◎</span>FLUJO Y POSICIONAMIENTO
+  </button>
+  <button class="tab-btn" onclick="switchTab('glosario')" id="tbtn-glosario">
+    <span class="tab-icon">≡</span>GLOSARIO
   </button>
 </div>
 
@@ -678,6 +754,180 @@
 
   <div class="chart-wrap">
     <canvas id="chart-historico"></canvas>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TAB GLOSARIO
+════════════════════════════════════════════════════════════════ -->
+<div id="tab-glosario" class="tab-content">
+  <div class="glosario-wrap">
+
+    <!-- BLOQUE GEX -->
+    <div class="glosario-divider">
+      <span class="glosario-divider-label">γ · GAMMA EXPOSURE</span>
+      <div class="glosario-divider-line"></div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">γ</span>
+        <div>
+          <div class="glosario-title">GEX — GAMMA EXPOSURE</div>
+          <div class="glosario-subtitle">Presión de cobertura de los market makers sobre el precio</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        Los market makers (MM) que venden opciones quedan expuestos a <strong>gamma</strong>: cuando el mercado se mueve, su delta cambia y tienen que rebalancear su cobertura comprando o vendiendo el subyacente. El GEX agrega esa presión en cada nivel de precio.<br><br>
+        Un GEX alto en un strike significa que si el precio llega ahí, los MM generan mucha actividad de cobertura — lo que actúa como <strong>freno o acelerador</strong> del movimiento. No predice dirección, predice <em>resistencia al movimiento</em> o <em>amplificación de él</em>.
+      </div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">⊕</span>
+        <div>
+          <div class="glosario-title">¿POR QUÉ CALL Y PUT POR SEPARADO?</div>
+          <div class="glosario-subtitle">Dos mecanismos de cobertura distintos</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        El gamma de una CALL y el de una PUT es positivo desde el punto de vista matemático, pero para el mercado importa cómo queda expuesto el dealer y qué lado domina en el posicionamiento agregado.<br><br>
+        Separar <span class="hl-call">CALL GEX</span> y <span class="hl-put">PUT GEX</span> permite ver dónde se concentra la sensibilidad de cobertura asociada a calls y puts. No significa que toda call sea resistencia ni toda put sea soporte por sí sola: el efecto depende del balance neto y de si el mercado está en régimen de gamma positiva o negativa.<br><br>
+        Cuando el <strong>Net GEX</strong> es positivo, la cobertura tiende a ser estabilizadora: los dealers compran caídas y venden subidas. Cuando el <strong>Net GEX</strong> es negativo, la cobertura puede amplificar el movimiento: compran subidas y venden caídas.<br><br>
+        Por eso conviene mirar ambas cosas: cada lado muestra dónde está la presión potencial; el neto indica si esa presión probablemente amortigua o acelera el precio.
+      </div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">▲</span>
+        <div>
+          <div class="glosario-title">CALL WALL</div>
+          <div class="glosario-subtitle">Resistencia dinámica superior</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        El strike con mayor concentración de gamma de <span class="hl-call">CALLs</span>. Es un <strong>techo de resistencia</strong>: si el precio sube hacia ese nivel, los MM cubren vendiendo el subyacente, lo que frena el avance.<br><br>
+        Es un nivel dinámico — cambia con el open interest — no es soporte/resistencia técnica clásica. Tiene un <em>mecanismo detrás</em>.
+      </div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">▼</span>
+        <div>
+          <div class="glosario-title">PUT WALL</div>
+          <div class="glosario-subtitle">Soporte dinámico inferior</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        El strike con mayor concentración de gamma de <span class="hl-put">PUTs</span>. Es un <strong>suelo de soporte</strong>: si el precio cae hacia ese nivel, los MM cubren comprando el subyacente, lo que frena la caída.<br><br>
+        Al igual que el Call Wall, es dinámico y estructural — no es una línea técnica dibujada en el gráfico, es una posición real de mercado con cobertura activa.
+      </div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">◈</span>
+        <div>
+          <div class="glosario-title">ZERO GAMMA</div>
+          <div class="glosario-subtitle">El nivel que cambia el régimen del mercado</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        El nivel de precio donde el GEX neto cambia de signo: de <span class="hl-call">positivo</span> (gamma largo, mercado absorbente) a <span class="hl-put">negativo</span> (gamma corto, mercado amplificador).<br><br>
+        <span class="hl-call">Por encima</span>: el mercado tiende a moverse con calma y reversiones → dealers amortizan.<br>
+        <span class="hl-put">Por debajo</span>: los movimientos se pueden acelerar → dealers amplifican.<br><br>
+        Es uno de los niveles más vigilados por traders institucionales que operan con opciones. Muchos abren posición según esté el precio respecto a este nivel al inicio de la sesión.
+      </div>
+    </div>
+
+    <!-- BLOQUE DEX -->
+    <div class="glosario-divider">
+      <span class="glosario-divider-label">Δ · DELTA EXPOSURE</span>
+      <div class="glosario-divider-line"></div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">Δ</span>
+        <div>
+          <div class="glosario-title">DEX — DELTA EXPOSURE</div>
+          <div class="glosario-subtitle">Posicionamiento estructural de los market makers</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        Mientras el GEX mide la presión de rebalanceo por <em>movimiento</em> del subyacente, el DEX mide la <strong>exposición delta agregada</strong>: cuánto subyacente tienen que comprar o vender los MM en total para estar cubiertos ahora mismo.<br><br>
+        Un DEX muy <span class="hl-call">positivo</span>: los MM son compradores netos de subyacente para cubrir → demanda latente de cobertura que sostiene el precio.<br>
+        Un DEX muy <span class="hl-put">negativo</span>: lo contrario.<br><br>
+        Es una <em>foto del posicionamiento estructural</em>, no del flujo inmediato.
+      </div>
+    </div>
+
+    <!-- BLOQUE VENCIMIENTOS -->
+    <div class="glosario-divider">
+      <span class="glosario-divider-label">◎ · VENCIMIENTOS</span>
+      <div class="glosario-divider-line"></div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">◎</span>
+        <div>
+          <div class="glosario-title">¿POR QUÉ SEPARAR VENCIMIENTOS?</div>
+          <div class="glosario-subtitle">No toda la presión actúa al mismo tiempo</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        Las opciones de distintos vencimientos no pesan igual.<br><br>
+        Las de <strong>vencimiento próximo</strong> tienen gamma muy alta → mueven el mercado a corto plazo. Son las que más importan esta semana.<br>
+        Las de <strong>vencimientos lejanos</strong> tienen más vega y menos gamma → son posicionamiento estructural, no presión inmediata.<br><br>
+        Ver solo el agregado puede ocultar que el nivel más importante esta semana está dominado por el vencimiento del viernes, mientras que el agregado lo suaviza con posiciones a 3 meses.<br><br>
+        Separar por vencimiento te dice <em>cuándo expira esa presión</em> y si el mapa cambia después del vencimiento.
+      </div>
+    </div>
+
+    <!-- BLOQUE POSICIONES Y FLUJO -->
+    <div class="glosario-divider">
+      <span class="glosario-divider-label">◈ · POSICIONES Y FLUJO</span>
+      <div class="glosario-divider-line"></div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">◈</span>
+        <div>
+          <div class="glosario-title">TOP POSICIONES DEL DÍA</div>
+          <div class="glosario-subtitle">Dónde está concentrado el dinero</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        Las posiciones con mayor open interest en strikes concretos son donde <strong>más dinero está apostado o cubierto</strong>. No te dicen la dirección de quien las tiene — pueden ser compras o ventas — pero sí te dicen qué niveles de precio "importan" al mercado: donde hay más incentivo a defender o atacar.<br><br>
+        Combinado con el GEX te dice si esas posiciones están generando <em>presión de cobertura activa</em> o son posiciones pasivas a vencimiento lejano.
+      </div>
+    </div>
+
+    <div class="glosario-card">
+      <div class="glosario-term">
+        <span class="glosario-icon">≋</span>
+        <div>
+          <div class="glosario-title">FLUJO DE OI Y VOLUMEN</div>
+          <div class="glosario-subtitle">Cómo leer el posicionamiento en el tiempo</div>
+        </div>
+      </div>
+      <div class="glosario-body">
+        El <strong>open interest (OI)</strong> es el número de contratos abiertos — cambia cuando se abren o cierran posiciones, no por trading intradía.<br>
+        El <strong>volumen</strong> es cuántos contratos se han negociado hoy.<br><br>
+        Leerlos juntos es clave:<br>
+        <span class="hl-call">Volumen alto + OI creciente</span> → se abren posiciones nuevas. Alguien toma riesgo.<br>
+        <span class="hl-put">Volumen alto + OI decreciente</span> → se cierran posiciones. Alguien sale.<br>
+        <span class="hl-spot">Volumen alto + OI estable</span> → las posiciones rotan entre manos.<br><br>
+        El flujo de OI a lo largo del tiempo muestra si el interés estructural en un strike está <em>creciendo o reduciéndose</em>.
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1474,7 +1724,7 @@ async function loadAll() {
 
   // Deep linking: activar tab desde hash de la URL
   const hashTab = window.location.hash.slice(1);
-  if (['gex','dex','informes','historico'].includes(hashTab)) switchTab(hashTab);
+  if (['gex','dex','informes','historico','glosario'].includes(hashTab)) switchTab(hashTab);
 }
 
 loadAll();
