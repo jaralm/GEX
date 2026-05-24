@@ -440,6 +440,172 @@
     ::-webkit-scrollbar       { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+
+    /* ── Hamburger button (oculto en desktop) ── */
+    .ham-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 6px;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
+    .ham-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: background .15s;
+    }
+    .ham-btn:hover span { background: var(--accent); }
+
+    /* ── Drawer overlay ── */
+    .ham-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(5,5,8,.65);
+      z-index: 300;
+      backdrop-filter: blur(2px);
+    }
+    .ham-overlay.open { display: block; }
+    .ham-drawer {
+      position: absolute;
+      top: 0; right: 0;
+      width: 230px;
+      height: 100%;
+      background: var(--bg2);
+      border-left: 1px solid var(--border2);
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 20px;
+      box-shadow: -8px 0 32px rgba(0,0,0,.5);
+    }
+    .ham-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ham-drawer-title {
+      font-size: 9px;
+      color: var(--muted);
+      letter-spacing: .1em;
+      font-weight: 600;
+    }
+    .ham-close {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      transition: background .15s, color .15s;
+    }
+    .ham-close:hover { background: var(--bg3); color: var(--text); }
+    .ham-nav-btn {
+      background: none;
+      border: none;
+      border-left: 3px solid transparent;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 15px 18px;
+      text-align: left;
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .ham-nav-btn:hover { background: var(--bg3); color: var(--text); }
+    .ham-nav-btn.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(99,102,241,.08);
+    }
+    .ham-nav-icon { font-size: 14px; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 700px) {
+
+      /* Layout: de altura-fija-100vh a flujo normal scrollable */
+      body {
+        overflow: auto;
+        height: auto;
+        min-height: 100vh;
+      }
+
+      /* Mostrar hamburguesa, ocultar pestañas */
+      .ham-btn  { display: flex; }
+      .tab-nav  { display: none; }
+
+      /* Header compacto */
+      .header { padding: 10px 14px; }
+      .brand  { font-size: 12px; }
+      .subbrand { font-size: 12px; }
+      .dot    { font-size: 11px; }
+      .title  { display: none; }
+      .meta-update { display: none; }
+
+      /* Controls */
+      .controls { padding: 10px 14px; gap: 10px; }
+      select { min-width: 130px; font-size: 11px; }
+
+      /* KPI strip: scroll horizontal, sin wrap */
+      .kpi-strip {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 10px 14px;
+        gap: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .kpi-strip::-webkit-scrollbar { display: none; }
+      .kpi-card { min-width: 90px; flex: 0 0 auto; }
+      .kpi-card .val { font-size: 14px; }
+
+      /* Tab content: fluye (no ocupa viewport fijo) */
+      .tab-content          { overflow: visible; height: auto; flex: none; }
+      .tab-content.active   { display: block; }
+
+      /* Gráfico: altura fija en móvil */
+      .chart-wrap {
+        height: 340px;
+        min-height: 340px;
+        flex: none;
+        padding: 10px 14px 16px;
+      }
+
+      /* Tabla */
+      .table-wrap { padding: 0 10px 16px; }
+
+      /* Informes */
+      .informes-wrap { padding: 14px 14px; }
+
+      /* Glosario */
+      .glosario-wrap { padding: 14px 14px; }
+
+      /* Footer */
+      .footer { padding: 8px 14px; }
+      .footer-line { font-size: 8px; }
+    }
   </style>
 </head>
 <body>
@@ -460,6 +626,34 @@
       <span class="dot-pulse"></span>
     </span>
     <span class="meta-update">Actualización: diaria · próximo boletín al cierre del siguiente día hábil</span>
+  </div>
+  <button class="ham-btn" onclick="hamOpen()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- ── Hamburger menu drawer (mobile) ── -->
+<div class="ham-overlay" id="ham-overlay" onclick="hamClose()">
+  <div class="ham-drawer" onclick="event.stopPropagation()">
+    <div class="ham-drawer-header">
+      <span class="ham-drawer-title">NAVEGACIÓN</span>
+      <button class="ham-close" onclick="hamClose()" aria-label="Cerrar">✕</button>
+    </div>
+    <button class="ham-nav-btn active" id="hbtn-gex"      onclick="hamSwitch('gex')">
+      <span class="ham-nav-icon">γ</span> GEX
+    </button>
+    <button class="ham-nav-btn"        id="hbtn-dex"      onclick="hamSwitch('dex')">
+      <span class="ham-nav-icon">Δ</span> DEX
+    </button>
+    <button class="ham-nav-btn"        id="hbtn-informes" onclick="hamSwitch('informes')">
+      <span class="ham-nav-icon">◈</span> TOP POSICIONES
+    </button>
+    <button class="ham-nav-btn"        id="hbtn-historico" onclick="hamSwitch('historico')">
+      <span class="ham-nav-icon">◎</span> FLUJO Y POSICIONAMIENTO
+    </button>
+    <button class="ham-nav-btn"        id="hbtn-glosario" onclick="hamSwitch('glosario')">
+      <span class="ham-nav-icon">≡</span> GLOSARIO
+    </button>
   </div>
 </div>
 
@@ -1040,6 +1234,28 @@ function switchTab(tab) {
   const chartMap = { gex: state.gex.chart, dex: state.dex.chart, historico: state.historico.chart };
   const ch = chartMap[tab];
   if (ch) setTimeout(() => ch.resize(), 10);
+}
+
+// ── Hamburger menu (mobile) ──────────────────────────────────────────────────
+
+function hamOpen() {
+  el('ham-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden'; // evitar scroll de fondo mientras el drawer está abierto
+}
+function hamClose() {
+  el('ham-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function hamSwitch(tab) {
+  // Actualizar estado activo en el drawer
+  document.querySelectorAll('.ham-nav-btn').forEach(b => b.classList.remove('active'));
+  const hbtn = el('hbtn-' + tab);
+  if (hbtn) hbtn.classList.add('active');
+  // Cambiar pestaña y cerrar drawer
+  switchTab(tab);
+  // En móvil, desplazar al inicio de la página
+  if (window.innerWidth <= 700) window.scrollTo({ top: 0, behavior: 'smooth' });
+  hamClose();
 }
 
 
@@ -1748,7 +1964,12 @@ async function loadAll() {
 
   // Deep linking: activar tab desde hash de la URL
   const hashTab = window.location.hash.slice(1);
-  if (['gex','dex','informes','historico','glosario'].includes(hashTab)) switchTab(hashTab);
+  if (['gex','dex','informes','historico','glosario'].includes(hashTab)) {
+    switchTab(hashTab);
+    document.querySelectorAll('.ham-nav-btn').forEach(b => b.classList.remove('active'));
+    const hbtn = el('hbtn-' + hashTab);
+    if (hbtn) hbtn.classList.add('active');
+  }
 }
 
 loadAll();
