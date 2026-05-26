@@ -3,7 +3,7 @@ name: MEFF Daily Pipeline
 on:
   schedule:
     - cron: '0 6 * * 2-6'   # martes-sabado a las 06:00 UTC
-  workflow_dispatch:          # permite lanzarlo manualmente desde GitHub
+  workflow_dispatch:          # permite lanzarlo manual cuando se quiera desde GitHub
 
 permissions:
   contents: write             # necesario para el commit y push de datos
