@@ -409,42 +409,6 @@
       background: var(--border);
     }
 
-    /* ── SEO static section ── */
-    .seo-section {
-      flex-shrink: 0;
-      border-top: 1px solid var(--border);
-      background: var(--bg2);
-      padding: 20px 28px;
-    }
-    .seo-section h2 {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: .09em;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-    }
-    .seo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
-      gap: 16px;
-    }
-    .seo-block h3 {
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: .07em;
-      margin-bottom: 6px;
-    }
-    .seo-block p {
-      font-size: 10px;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-    @media (max-width: 700px) {
-      .seo-section { padding: 16px 14px; }
-    }
-
     /* ── Error overlay ── */
     .err-overlay {
       display: none; position: fixed; inset: 0;
@@ -2011,54 +1975,19 @@ async function loadAll() {
 loadAll();
 </script>
 
-<!-- ── SEO: texto estático indexable ── -->
-<section class="seo-section" aria-label="Qué es este dashboard">
+<!-- ── SEO: texto indexable por Google (colapsado por defecto) ── -->
+<details style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;pointer-events:none;" aria-hidden="true">
+  <summary>Qué es este dashboard · GEX y DEX sobre opciones IBEX-35 (MEFF)</summary>
   <h2>Qué es este dashboard · GEX y DEX sobre opciones IBEX-35 (MEFF)</h2>
-  <div class="seo-grid">
-    <div class="seo-block">
-      <h3>Gamma Exposure (GEX) — qué mide y para qué sirve</h3>
-      <p>
-        El Gamma Exposure agrega la presión de cobertura que ejercen los market makers sobre el precio del subyacente.
-        Cuando un dealer vende opciones, queda expuesto a gamma: cada movimiento del mercado le obliga a rebalancear su
-        cobertura comprando o vendiendo el índice. El GEX muestra dónde se concentra esa presión en cada strike.
-        Un GEX neto positivo indica que los dealers actúan como amortiguadores — venden en subidas, compran en bajadas —
-        lo que tiende a comprimir la volatilidad. Un GEX neto negativo invierte el efecto y puede amplificar los movimientos.
-        El nivel donde el GEX cambia de signo se llama Zero Gamma y es uno de los niveles de referencia más vigilados
-        por traders institucionales de opciones.
-      </p>
-    </div>
-    <div class="seo-block">
-      <h3>Delta Exposure (DEX) — posicionamiento estructural de los dealers</h3>
-      <p>
-        El Delta Exposure mide la exposición delta neta agregada de los market makers: cuánto subyacente necesitan
-        comprar o vender para mantener su cartera delta-neutral. Un DEX muy positivo implica que los dealers son
-        compradores netos de cobertura, lo que genera demanda latente que sostiene el precio. Un DEX muy negativo
-        indica lo contrario. A diferencia del GEX — que mide el flujo de rebalanceo ante movimientos —
-        el DEX es una foto del posicionamiento estructural actual.
-      </p>
-    </div>
-    <div class="seo-block">
-      <h3>Fuente de datos: boletín diario MEFF</h3>
-      <p>
-        Todos los datos provienen del boletín oficial de MEFF (Mercado Español de Futuros Financieros),
-        que publica posición abierta, volumen negociado y precios de liquidación de opciones sobre el IBEX-35,
-        Mini IBEX-35 y acciones del índice. La actualización es diaria, al cierre de cada día hábil.
-        Los cálculos de GEX y DEX se realizan con la fórmula estándar:
-        GEX = Gamma × Open Interest × Multiplicador × Spot².
-      </p>
-    </div>
-    <div class="seo-block">
-      <h3>Cómo leer el dashboard</h3>
-      <p>
-        La pestaña GEX muestra el perfil de gamma por strike: el Call Wall es el nivel con mayor concentración
-        de gamma de calls (resistencia dinámica) y el Put Wall el de puts (soporte dinámico). La pestaña DEX
-        replica el análisis para delta. Top Posiciones muestra los diez strikes con mayor open interest del
-        boletín más reciente. Flujo y Posicionamiento permite ver la evolución histórica de volumen y OI
-        por activo y vencimiento. El Glosario explica cada concepto con detalle.
-      </p>
-    </div>
-  </div>
-</section>
+  <h3>Gamma Exposure (GEX) — qué mide y para qué sirve</h3>
+  <p>El Gamma Exposure agrega la presión de cobertura que ejercen los market makers sobre el precio del subyacente. Cuando un dealer vende opciones, queda expuesto a gamma: cada movimiento del mercado le obliga a rebalancear su cobertura comprando o vendiendo el índice. El GEX muestra dónde se concentra esa presión en cada strike. Un GEX neto positivo indica que los dealers actúan como amortiguadores — venden en subidas, compran en bajadas — lo que tiende a comprimir la volatilidad. Un GEX neto negativo invierte el efecto y puede amplificar los movimientos. El nivel donde el GEX cambia de signo se llama Zero Gamma y es uno de los niveles de referencia más vigilados por traders institucionales de opciones.</p>
+  <h3>Delta Exposure (DEX) — posicionamiento estructural de los dealers</h3>
+  <p>El Delta Exposure mide la exposición delta neta agregada de los market makers: cuánto subyacente necesitan comprar o vender para mantener su cartera delta-neutral. Un DEX muy positivo implica que los dealers son compradores netos de cobertura, lo que genera demanda latente que sostiene el precio. Un DEX muy negativo indica lo contrario. A diferencia del GEX — que mide el flujo de rebalanceo ante movimientos — el DEX es una foto del posicionamiento estructural actual.</p>
+  <h3>Fuente de datos: boletín diario MEFF</h3>
+  <p>Todos los datos provienen del boletín oficial de MEFF (Mercado Español de Futuros Financieros), que publica posición abierta, volumen negociado y precios de liquidación de opciones sobre el IBEX-35, Mini IBEX-35 y acciones del índice. La actualización es diaria, al cierre de cada día hábil. Los cálculos de GEX y DEX se realizan con la fórmula estándar: GEX = Gamma × Open Interest × Multiplicador × Spot².</p>
+  <h3>Cómo leer el dashboard</h3>
+  <p>La pestaña GEX muestra el perfil de gamma por strike: el Call Wall es el nivel con mayor concentración de gamma de calls (resistencia dinámica) y el Put Wall el de puts (soporte dinámico). La pestaña DEX replica el análisis para delta. Top Posiciones muestra los diez strikes con mayor open interest del boletín más reciente. Flujo y Posicionamiento permite ver la evolución histórica de volumen y OI por activo y vencimiento. El Glosario explica cada concepto con detalle.</p>
+</details>
 
 <!-- ── Footer ── -->
 <div class="footer">
