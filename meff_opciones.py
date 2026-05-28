@@ -378,20 +378,67 @@ def scrapear(url):
 
 # ── Informes TXT ───────────────────────────────────────────────────────────────
 
-def construir_informe(titulo: str, df_subset: pd.DataFrame, n: int) -> str:
+def _fmt_spot(v) -> str:
+    """Formatea un valor de spot para mostrar en informe TXT.
+
+    Entero sin decimales si es >= 100 (IBEX / MINI IBEX),
+    dos decimales si es < 100 (acciones individuales).
+    Devuelve cadena vacía si el valor no es numérico.
+    """
+    try:
+        f = float(str(v))
+        if np.isnan(f):
+            return ""
+        return f"{f:,.0f}" if f >= 100 else f"{f:.2f}"
+    except (ValueError, TypeError):
+        return ""
+
+
+def construir_informe(titulo: str, df_subset: pd.DataFrame, n: int,
+                      incluir_spot_col: bool = False,
+                      spot_footer: float = None) -> str:
+    """Construye el texto preformateado del informe (top n por volumen).
+
+    Args:
+        titulo:           Cabecera del informe.
+        df_subset:        DataFrame de opciones scrapeado (strings).
+        n:                Número de filas a mostrar.
+        incluir_spot_col: Si True, inserta la columna 'spot' justo después de 'strike'.
+                          Útil para el top 10 general donde cada subyacente tiene su propio spot.
+        spot_footer:      Si se pasa un float, añade una línea al pie con el spot del subyacente.
+                          Pensado para el top 5 MINI IBEX-35, donde un único valor de spot aplica
+                          a todas las filas y no tiene sentido repetirlo en cada línea.
+    """
     df_v = df_subset[df_subset["volumen_contratos"] != ""].copy()
     df_v["_vol_num"] = vol_a_numero(df_v["volumen_contratos"])
     top = df_v.sort_values("_vol_num", ascending=False).head(n)
-    top = top[[c for c in COLS_INFORME if c in top.columns]]
+
+    # Columnas a mostrar — opcionalmente con spot tras strike
+    cols_mostrar = list(COLS_INFORME)
+    if incluir_spot_col and "spot" in top.columns:
+        # Formateamos el spot en una columna auxiliar para evitar "12345.0"
+        top = top.copy()
+        top["spot"] = top["spot"].apply(_fmt_spot)
+        idx_strike = cols_mostrar.index("strike")
+        cols_mostrar.insert(idx_strike + 1, "spot")
+
+    top = top[[c for c in cols_mostrar if c in top.columns]]
     if top.empty:
         return f"{titulo}\n(sin datos)\n"
+
     anchos = {c: max(len(c), top[c].astype(str).str.len().max()) for c in top.columns}
     sep = "  ".join("-" * anchos[c] for c in top.columns)
     cab = "  ".join(c.upper().ljust(anchos[c]) for c in top.columns)
     lineas = ["=" * len(sep), f"  {titulo}", "=" * len(sep), "", cab, sep]
     for _, row in top.iterrows():
         lineas.append("  ".join(str(row[c]).ljust(anchos[c]) for c in top.columns))
-    lineas += [sep, ""]
+    lineas.append(sep)
+
+    # Pie con spot del subyacente (solo para informes de un único activo, ej. MINI IBEX-35)
+    if spot_footer is not None:
+        lineas.append(f"  Spot {df_subset['accion'].iloc[0]}: {_fmt_spot(spot_footer)}")
+
+    lineas.append("")
     return "\n".join(lineas)
 
 
@@ -1005,7 +1052,7 @@ def main():
 
     # ── Informe 1: Top 10 general ──────────────────────────────────────────────
     titulo_top10 = f"MEFF - TOP 10 VOLUMEN CONTRATOS  |  Boletin: {fecha_boletin_val}"
-    txt_top10 = construir_informe(titulo_top10, df, n=10)
+    txt_top10 = construir_informe(titulo_top10, df, n=10, incluir_spot_col=True)
     txt_top10 += f"Generado: {datetime.today().strftime('%d/%m/%Y %H:%M')}\n"
     nombre_top10 = f"{CARPETA}/meff_top10_{hoy}.txt"
     with open(nombre_top10, "w", encoding="utf-8") as f:
@@ -1024,7 +1071,14 @@ def main():
         titulo_mini = (
             f"MEFF - TOP 5 {nombre_mini_act.upper()} (CALL+PUT)  |  Boletin: {fecha_boletin_val}"
         )
-        txt_mini = construir_informe(titulo_mini, df_mini, n=5)
+        # Extraer spot del MINI IBEX-35 para el pie del informe
+        spot_mini_raw = df_mini["spot"].replace("", pd.NA).dropna()
+        spot_mini_val = None
+        if not spot_mini_raw.empty:
+            v = a_float(str(spot_mini_raw.iloc[0]))
+            if not np.isnan(v):
+                spot_mini_val = v
+        txt_mini = construir_informe(titulo_mini, df_mini, n=5, spot_footer=spot_mini_val)
         txt_mini += f"Generado: {datetime.today().strftime('%d/%m/%Y %H:%M')}\n"
         nombre_txt_mini = f"{CARPETA}/meff_mini_ibex_{hoy}.txt"
         with open(nombre_txt_mini, "w", encoding="utf-8") as f:
