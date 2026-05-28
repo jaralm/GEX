@@ -10,4 +10,5 @@ FECHA_BOLETIN  ACCION        TIPO  FECHA_VENCIMIENTO  STRIKE  VOLUMEN_CONTRATOS 
 27/05/26       MINI IBEX-35  CALL  Jul-26             18.600  5                  6               
 27/05/26       MINI IBEX-35  CALL  Jun-26             18.600  4                  15              
 -------------  ------------  ----  -----------------  ------  -----------------  ----------------
-Generado: 28/05/2026 06:52
+  Spot MINI IBEX-35: 18,381
+Generado: 28/05/2026 18:27
