@@ -1,147 +1,147 @@
 {
   "meta": {
-    "fecha_boletin": "31/07/26",
-    "generado": "03/08/2026 06:17"
+    "fecha_boletin": "03/08/26",
+    "generado": "04/08/2026 05:43"
   },
-  "top10_text": "==========================================================================================================\n  MEFF - TOP 10 VOLUMEN CONTRATOS  |  Boletin: 31/07/26\n==========================================================================================================\n\nFECHA_BOLETIN  ACCION         TIPO  FECHA_VENCIMIENTO  STRIKE  SPOT    VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  -------------  ----  -----------------  ------  ------  -----------------  ----------------\n31/07/26       MINI IBEX-35   PUT   Sep-26             19.000  19,783  5.557              5.330           \n31/07/26       SANTANDER      CALL  Dic-26             13,00   12.32   5.000              5.000           \n31/07/26       BBVA           PUT   Ago-26             22,00   24.20   4.004              12.015          \n31/07/26       REPSOL         CALL  Mar-28             33,00   26.38   800                800             \n31/07/26       BBVA           CALL  Sep-26             23,00   24.20   150                174             \n31/07/26       GRIFOLS        PUT   Ago-26             9,00    9.96    100                148             \n31/07/26       INDITEX        CALL  Oct-26             63,85   56.44   100                100             \n31/07/26       ARCELORMITTAL  PUT   Dic-26             50,00   60.64   80                 25              \n31/07/26       GRIFOLS        CALL  Dic-26             11,00   9.96    78                 99              \n31/07/26       TELEFONICA     PUT   Ago-26             3,70    3.58    55                 184             \n-------------  -------------  ----  -----------------  ------  ------  -----------------  ----------------\nGenerado: 03/08/2026 06:17\n",
-  "mini_ibex_text": "=================================================================================================\n  MEFF - TOP 5 MINI IBEX-35 (CALL+PUT)  |  Boletin: 31/07/26\n=================================================================================================\n\nFECHA_BOLETIN  ACCION        TIPO  FECHA_VENCIMIENTO  STRIKE  VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n31/07/26       MINI IBEX-35  PUT   Sep-26             19.000  5.557              5.330           \n31/07/26       MINI IBEX-35  PUT   Dic-26             19.200  10                 36              \n31/07/26       MINI IBEX-35  CALL  Ago-26             19.800  7                  149             \n31/07/26       MINI IBEX-35  PUT   Ago-26             19.200  6                  12              \n31/07/26       MINI IBEX-35  PUT   Ago-26             19.600  6                  72              \n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n  Spot MINI IBEX-35: 19,783\nGenerado: 03/08/2026 06:17\n",
+  "top10_text": "=====================================================================================================\n  MEFF - TOP 10 VOLUMEN CONTRATOS  |  Boletin: 03/08/26\n=====================================================================================================\n\nFECHA_BOLETIN  ACCION     TIPO  FECHA_VENCIMIENTO  STRIKE  SPOT   VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  ---------  ----  -----------------  ------  -----  -----------------  ----------------\n03/08/26       SANTANDER  CALL  Sep-26             13,50   12.57  9.000              9.000           \n03/08/26       SANTANDER  CALL  Sep-26             13,00   12.57  4.500              4.510           \n03/08/26       BBVA       CALL  Sep-26             26,00   24.68  3.420              3.420           \n03/08/26       INDITEX    PUT   Mar-27             50,00   57.76  3.000              3.000           \n03/08/26       IBERDROLA  CALL  Sep-26             22,00   20.65  2.043              2.043           \n03/08/26       INDITEX    CALL  Sep-26             63,28   57.76  1.888              1.888           \n03/08/26       BBVA       CALL  Sep-26             25,00   24.68  1.710              1.710           \n03/08/26       INDITEX    CALL  Sep-26             61,30   57.76  944                944             \n03/08/26       FERROVIAL  CALL  Sep-26             62,00   57.28  452                452             \n03/08/26       BBVA       CALL  Sep-26             25,00   24.68  365                395             \n-------------  ---------  ----  -----------------  ------  -----  -----------------  ----------------\nGenerado: 04/08/2026 05:43\n",
+  "mini_ibex_text": "=================================================================================================\n  MEFF - TOP 5 MINI IBEX-35 (CALL+PUT)  |  Boletin: 03/08/26\n=================================================================================================\n\nFECHA_BOLETIN  ACCION        TIPO  FECHA_VENCIMIENTO  STRIKE  VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n03/08/26       MINI IBEX-35  PUT   Sep-26             19.650  75                 76              \n03/08/26       MINI IBEX-35  CALL  Sep-26             20.250  10                 11              \n03/08/26       MINI IBEX-35  CALL  Sep-26             19.900  10                 105             \n03/08/26       MINI IBEX-35  CALL  Ago-26             19.800  7                  146             \n03/08/26       MINI IBEX-35  CALL  Ago-26             20.100  5                  6               \n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n  Spot MINI IBEX-35: 19,983\nGenerado: 04/08/2026 05:43\n",
   "top10_data": [
     {
-      "fecha_boletin": "31/07/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "strike": "19.000",
-      "volumen_contratos": "5.557",
-      "posicion_abierta": "5.330"
-    },
-    {
-      "fecha_boletin": "31/07/26",
+      "fecha_boletin": "03/08/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
-      "fecha_vencimiento": "Dic-26",
-      "strike": "13,00",
-      "volumen_contratos": "5.000",
-      "posicion_abierta": "5.000"
+      "fecha_vencimiento": "Sep-26",
+      "strike": "13,50",
+      "volumen_contratos": "9.000",
+      "posicion_abierta": "9.000"
     },
     {
-      "fecha_boletin": "31/07/26",
-      "accion": "BBVA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Ago-26",
-      "strike": "22,00",
-      "volumen_contratos": "4.004",
-      "posicion_abierta": "12.015"
-    },
-    {
-      "fecha_boletin": "31/07/26",
-      "accion": "REPSOL",
+      "fecha_boletin": "03/08/26",
+      "accion": "SANTANDER",
       "tipo": "CALL",
-      "fecha_vencimiento": "Mar-28",
-      "strike": "33,00",
-      "volumen_contratos": "800",
-      "posicion_abierta": "800"
+      "fecha_vencimiento": "Sep-26",
+      "strike": "13,00",
+      "volumen_contratos": "4.500",
+      "posicion_abierta": "4.510"
     },
     {
-      "fecha_boletin": "31/07/26",
+      "fecha_boletin": "03/08/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-26",
-      "strike": "23,00",
-      "volumen_contratos": "150",
-      "posicion_abierta": "174"
+      "strike": "26,00",
+      "volumen_contratos": "3.420",
+      "posicion_abierta": "3.420"
     },
     {
-      "fecha_boletin": "31/07/26",
-      "accion": "GRIFOLS",
+      "fecha_boletin": "03/08/26",
+      "accion": "INDITEX",
       "tipo": "PUT",
-      "fecha_vencimiento": "Ago-26",
-      "strike": "9,00",
-      "volumen_contratos": "100",
-      "posicion_abierta": "148"
+      "fecha_vencimiento": "Mar-27",
+      "strike": "50,00",
+      "volumen_contratos": "3.000",
+      "posicion_abierta": "3.000"
     },
     {
-      "fecha_boletin": "31/07/26",
+      "fecha_boletin": "03/08/26",
+      "accion": "IBERDROLA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "strike": "22,00",
+      "volumen_contratos": "2.043",
+      "posicion_abierta": "2.043"
+    },
+    {
+      "fecha_boletin": "03/08/26",
       "accion": "INDITEX",
       "tipo": "CALL",
-      "fecha_vencimiento": "Oct-26",
-      "strike": "63,85",
-      "volumen_contratos": "100",
-      "posicion_abierta": "100"
+      "fecha_vencimiento": "Sep-26",
+      "strike": "63,28",
+      "volumen_contratos": "1.888",
+      "posicion_abierta": "1.888"
     },
     {
-      "fecha_boletin": "31/07/26",
-      "accion": "ARCELORMITTAL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Dic-26",
-      "strike": "50,00",
-      "volumen_contratos": "80",
-      "posicion_abierta": "25"
-    },
-    {
-      "fecha_boletin": "31/07/26",
-      "accion": "GRIFOLS",
+      "fecha_boletin": "03/08/26",
+      "accion": "BBVA",
       "tipo": "CALL",
-      "fecha_vencimiento": "Dic-26",
-      "strike": "11,00",
-      "volumen_contratos": "78",
-      "posicion_abierta": "99"
+      "fecha_vencimiento": "Sep-26",
+      "strike": "25,00",
+      "volumen_contratos": "1.710",
+      "posicion_abierta": "1.710"
     },
     {
-      "fecha_boletin": "31/07/26",
-      "accion": "TELEFONICA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Ago-26",
-      "strike": "3,70",
-      "volumen_contratos": "55",
-      "posicion_abierta": "184"
+      "fecha_boletin": "03/08/26",
+      "accion": "INDITEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "strike": "61,30",
+      "volumen_contratos": "944",
+      "posicion_abierta": "944"
+    },
+    {
+      "fecha_boletin": "03/08/26",
+      "accion": "FERROVIAL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "strike": "62,00",
+      "volumen_contratos": "452",
+      "posicion_abierta": "452"
+    },
+    {
+      "fecha_boletin": "03/08/26",
+      "accion": "BBVA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "strike": "25,00",
+      "volumen_contratos": "365",
+      "posicion_abierta": "395"
     }
   ],
   "mini_ibex_data": [
     {
-      "fecha_boletin": "31/07/26",
+      "fecha_boletin": "03/08/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-26",
-      "strike": "19.000",
-      "volumen_contratos": "5.557",
-      "posicion_abierta": "5.330"
+      "strike": "19.650",
+      "volumen_contratos": "75",
+      "posicion_abierta": "76"
     },
     {
-      "fecha_boletin": "31/07/26",
+      "fecha_boletin": "03/08/26",
       "accion": "MINI IBEX-35",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Dic-26",
-      "strike": "19.200",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "strike": "20.250",
       "volumen_contratos": "10",
-      "posicion_abierta": "36"
+      "posicion_abierta": "11"
     },
     {
-      "fecha_boletin": "31/07/26",
+      "fecha_boletin": "03/08/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-26",
+      "strike": "19.900",
+      "volumen_contratos": "10",
+      "posicion_abierta": "105"
+    },
+    {
+      "fecha_boletin": "03/08/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Ago-26",
       "strike": "19.800",
       "volumen_contratos": "7",
-      "posicion_abierta": "149"
+      "posicion_abierta": "146"
     },
     {
-      "fecha_boletin": "31/07/26",
+      "fecha_boletin": "03/08/26",
       "accion": "MINI IBEX-35",
-      "tipo": "PUT",
+      "tipo": "CALL",
       "fecha_vencimiento": "Ago-26",
-      "strike": "19.200",
-      "volumen_contratos": "6",
-      "posicion_abierta": "12"
-    },
-    {
-      "fecha_boletin": "31/07/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Ago-26",
-      "strike": "19.600",
-      "volumen_contratos": "6",
-      "posicion_abierta": "72"
+      "strike": "20.100",
+      "volumen_contratos": "5",
+      "posicion_abierta": "6"
     }
   ]
 }
