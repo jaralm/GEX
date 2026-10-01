@@ -416,6 +416,23 @@
       background: var(--bg2);
       padding: 20px 28px;
     }
+    /* FIX: en escritorio este bloque es solo para indexación (Google), nunca
+       debe verse ni robar espacio al contenido real de la pestaña activa.
+       Antes, al no tener límite de tamaño, su altura natural (~500px) competía
+       por espacio con .tab-content dentro del body de altura fija (100vh),
+       y en ventanas de poca altura dejaba el gráfico/tabla de cada pestaña
+       reducido a una franja mínima, con este bloque "asomando" justo debajo.
+       Se colapsa a 0 (no display:none, para no penalizar SEO) solo en
+       escritorio; en móvil se mantiene visible igual que antes. */
+    @media (min-width: 701px) {
+      .seo-section {
+        flex: 0 0 0;
+        min-height: 0;
+        overflow: hidden;
+        padding: 0;
+        border-top: none;
+      }
+    }
     .seo-section h2 {
       font-size: 11px;
       font-weight: 700;
