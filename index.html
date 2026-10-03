@@ -6,8 +6,8 @@
   <title>GEX MEFF · Herramienta gratuita Gamma Exposure opciones IBEX-35 | No Queda Otra Opción</title>
 
   <!-- ── SEO básico ── -->
-  <meta name="description" content="Análisis diario de Gamma Exposure (GEX) y DEX sobre opciones del mercado español MEFF. Datos de IBEX-35 y acciones: volumen, posición abierta, call/put ratio. Actualización automática con cada boletín MEFF." />
-  <meta name="keywords" content="GEX, gamma exposure, MEFF, opciones IBEX-35, derivados España, call put ratio, análisis opciones, boletín MEFF" />
+  <meta name="description" content="Análisis diario de Gamma Exposure (GEX) y DEX sobre opciones del mercado español MEFF. Datos de IBEX-35 y acciones: volumen, posición abierta, ratio put/call. Actualización automática con cada boletín MEFF." />
+  <meta name="keywords" content="GEX, gamma exposure, MEFF, opciones IBEX-35, derivados España, put call ratio, análisis opciones, boletín MEFF" />
   <meta name="author" content="No Queda Otra Opción" />
   <meta name="robots" content="index, follow" />
 
@@ -160,6 +160,10 @@
     }
     select:focus { outline: none; border-color: var(--accent); }
 
+    /* ── Control deshabilitado (p. ej. TIPO en modo Ratio de la Tabla OI) ── */
+    .control-group.disabled { opacity: .4; }
+    .control-group.disabled select { cursor: not-allowed; }
+
     /* ── Toggle buttons ── */
     .toggle-group { display: flex; }
     .toggle-btn {
@@ -262,7 +266,7 @@
     .kpi-tooltip-row { display: flex; gap: 6px; margin-bottom: 3px; }
     .kpi-tooltip-badge { flex-shrink: 0; font-weight: 700; font-size: 8px; }
 
-    /* Colores ratio C/P */
+    /* Colores ratio P/C (verde = calls dominan · rojo = puts dominan) */
     .ratio-call    { color: var(--call) !important; }
     .ratio-neutral { color: var(--spot) !important; }
     .ratio-put     { color: var(--put)  !important; }
@@ -1006,23 +1010,23 @@
     </div>
     <div class="kpi-card">
       <div class="lbl lbl-with-info">
-        RATIO C/P
+        RATIO P/C
         <span class="kpi-info-btn">?
           <div class="kpi-tooltip">
-            <div class="kpi-tooltip-title">RATIO CALL/PUT</div>
-            <span>Compara el volumen (u OI) de calls frente a puts del período seleccionado.</span>
+            <div class="kpi-tooltip-title">RATIO PUT/CALL</div>
+            <span>Compara el volumen (u OI) de puts frente a calls del período seleccionado.</span>
             <hr class="kpi-tooltip-sep"/>
             <div class="kpi-tooltip-row">
-              <span class="kpi-tooltip-badge ratio-call">▲ &gt;1.4</span>
-              <span>Calls dominan. Sesgo alcista en el posicionamiento.</span>
+              <span class="kpi-tooltip-badge ratio-put">▲ &gt;1.4</span>
+              <span>Puts dominan. Mayor cobertura bajista o protección.</span>
             </div>
             <div class="kpi-tooltip-row">
               <span class="kpi-tooltip-badge ratio-neutral">● 0.7-1.4</span>
               <span>Equilibrado / neutral. Sin sesgo claro.</span>
             </div>
             <div class="kpi-tooltip-row">
-              <span class="kpi-tooltip-badge ratio-put">▼ &lt;0.7</span>
-              <span>Puts dominan. Mayor cobertura bajista o protección.</span>
+              <span class="kpi-tooltip-badge ratio-call">▼ &lt;0.7</span>
+              <span>Calls dominan. Sesgo alcista en el posicionamiento.</span>
             </div>
             <hr class="kpi-tooltip-sep"/>
             <div style="font-size:8.5px;color:var(--muted)">Referencia para equity. El contexto histórico del activo concreto es determinante. Puede actuar como indicador contrario en extremos.</div>
@@ -1030,7 +1034,7 @@
         </span>
       </div>
       <div class="val" id="his-kpi-ratio">—</div>
-      <div class="sub">call / put (período)</div>
+      <div class="sub">put / call (período)</div>
     </div>
     <div class="kpi-card">
       <div class="lbl">DÍAS</div>
@@ -1046,7 +1050,8 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════════
-     TAB TABLA OI (nueva — rows: subyacente, cols: últimos 20 días, valor: OI)
+     TAB TABLA OI (rows: subyacente, cols: últimos 20 días,
+     valor: OI · variación de OI · ratio put/call)
 ════════════════════════════════════════════════════════════════ -->
 <div id="tab-oihist" class="tab-content">
 
@@ -1055,7 +1060,7 @@
       <label>VENCIMIENTO</label>
       <select id="oih-sel-vcto" onchange="oihRender()"></select>
     </div>
-    <div class="control-group">
+    <div class="control-group" id="oih-grp-tipo">
       <label>TIPO</label>
       <select id="oih-sel-tipo" onchange="oihRender()">
         <option value="ambos">Ambos (CALL+PUT)</option>
@@ -1068,6 +1073,7 @@
       <div class="toggle-group">
         <button class="toggle-btn active" id="oih-btn-valor" onclick="oihSetMetric('valor')">Valor</button>
         <button class="toggle-btn"        id="oih-btn-variacion" onclick="oihSetMetric('variacion')">Variación</button>
+        <button class="toggle-btn"        id="oih-btn-ratio" onclick="oihSetMetric('ratio')">Ratio P/C</button>
       </div>
     </div>
   </div>
@@ -1325,19 +1331,19 @@ function fmtPrice(v, dec = 2) {
 
 function el(id) { return document.getElementById(id); }
 
-// Colores ratio C/P
+// Colores ratio P/C (put/call): >1.4 puts dominan (rojo) · <0.7 calls dominan (verde)
 function ratioClass(r) {
   if (r === '—') return 'c-muted';
   const v = parseFloat(r);
-  if (v > 1.4) return 'ratio-call';
-  if (v < 0.7) return 'ratio-put';
+  if (v > 1.4) return 'ratio-put';
+  if (v < 0.7) return 'ratio-call';
   return 'ratio-neutral';
 }
 function ratioLabel(r) {
   if (r === '—') return '';
   const v = parseFloat(r);
-  if (v > 1.4) return ' CALL DOM.';
-  if (v < 0.7) return ' PUT DOM.';
+  if (v > 1.4) return ' PUT DOM.';
+  if (v < 0.7) return ' CALL DOM.';
   return ' NEUTRAL';
 }
 
@@ -1477,8 +1483,8 @@ function gexUpdateKPIs(rows, kpis) {
   const totPut   = rows.reduce((s, r) => s + (r.put_gex  || 0), 0);
   const totNet   = rows.reduce((s, r) => s + (r.net_gex  || 0), 0);
   const totGross = Math.abs(totCall) + Math.abs(totPut);
-  const absPut   = Math.abs(totPut);
-  const ratio    = absPut > 0 ? (Math.abs(totCall) / absPut).toFixed(2) : '—';
+  const absCall  = Math.abs(totCall);
+  const ratio    = absCall > 0 ? (Math.abs(totPut) / absCall).toFixed(2) : '—';   // put/call
 
   let callOi = null, putOi = null;
   if (state.opciones.data) {
@@ -1497,7 +1503,7 @@ function gexUpdateKPIs(rows, kpis) {
   netEl.style.color = totNet >= 0 ? 'var(--call)' : 'var(--put)';
 
   const ratioEl = el('gex-kpi-ratio');
-  ratioEl.textContent = 'Ratio: ' + ratio + ratioLabel(ratio);
+  ratioEl.textContent = 'Ratio P/C: ' + ratio + ratioLabel(ratio);
   ratioEl.className   = 'sub ' + ratioClass(ratio);
 
   el('gex-kpi-call').textContent    = fmtGex(totCall);
@@ -1774,7 +1780,7 @@ function dexUpdateKPIs(rows, kpis) {
   const totPut  = rows.reduce((s, r) => s + (r.put_dex  || 0), 0);
   const totNet  = rows.reduce((s, r) => s + (r.net_dex  || 0), 0);
   const totGross = Math.abs(totCall) + Math.abs(totPut);
-  const ratio = Math.abs(totPut) > 0 ? (Math.abs(totCall) / Math.abs(totPut)).toFixed(2) : '—';
+  const ratio = Math.abs(totCall) > 0 ? (Math.abs(totPut) / Math.abs(totCall)).toFixed(2) : '—';   // put/call
 
   let callOi = null, putOi = null;
   if (state.opciones.data) {
@@ -1793,7 +1799,7 @@ function dexUpdateKPIs(rows, kpis) {
   netEl.style.color = totNet >= 0 ? 'var(--call)' : 'var(--put)';
 
   const ratioEl = el('dex-kpi-ratio');
-  ratioEl.textContent = 'Ratio: ' + ratio + ratioLabel(ratio);
+  ratioEl.textContent = 'Ratio P/C: ' + ratio + ratioLabel(ratio);
   ratioEl.className   = 'sub ' + ratioClass(ratio);
 
   el('dex-kpi-call').textContent    = fmtGex(totCall);
@@ -2084,7 +2090,7 @@ function hisRender() {
   const totCall  = callData.reduce((s, v) => s + v, 0);
   const totPut   = putData.reduce((s, v)  => s + v, 0);
   const totAll   = totCall + totPut;
-  const ratio    = totPut > 0 ? (totCall / totPut).toFixed(2) : '—';
+  const ratio    = totCall > 0 ? (totPut / totCall).toFixed(2) : '—';   // put/call
 
   el('his-kpi-call').textContent     = fmtNum(totCall);
   el('his-kpi-put').textContent      = fmtNum(totPut);
@@ -2137,10 +2143,11 @@ function hisRender() {
 
 
 // ═════════════════════════════════════════════════════════════════════════════
-// TAB TABLA OI (nueva)
+// TAB TABLA OI
 // Reutiliza state.historico.data (meff_volumen_historico.json) — no añade
 // ninguna petición de red nueva ni toca el estado de las pestañas existentes.
-// Filas: subyacente · Columnas: últimos 20 boletines (fecha_boletin) · Valor: OI
+// Filas: subyacente · Columnas: últimos 20 boletines (fecha_boletin)
+// Métricas: Valor (OI) · Variación (Δ OI vs boletín anterior) · Ratio P/C
 // ═════════════════════════════════════════════════════════════════════════════
 
 function oihFechaKey(f) {
@@ -2186,6 +2193,7 @@ function initOihist() {
   const metric = state.oihist.metric || 'valor';
   el('oih-btn-valor').classList.toggle('active', metric === 'valor');
   el('oih-btn-variacion').classList.toggle('active', metric === 'variacion');
+  el('oih-btn-ratio').classList.toggle('active', metric === 'ratio');
 
   oihRender();
 }
@@ -2201,6 +2209,7 @@ function oihSetMetric(metric) {
   state.oihist.metric = metric;
   el('oih-btn-valor').classList.toggle('active', metric === 'valor');
   el('oih-btn-variacion').classList.toggle('active', metric === 'variacion');
+  el('oih-btn-ratio').classList.toggle('active', metric === 'ratio');
   oihRender();
 }
 
@@ -2214,6 +2223,13 @@ function oihRender() {
   state.oihist.vcto = vcto;
   state.oihist.tipo = tipo;
 
+  // En modo Ratio el selector TIPO no aplica (el ratio siempre usa CALL y PUT):
+  // se atenúa y se deshabilita, conservando el valor para cuando se vuelva a
+  // Valor o Variación.
+  const esRatio = metric === 'ratio';
+  el('oih-sel-tipo').disabled = esRatio;
+  el('oih-grp-tipo').classList.toggle('disabled', esRatio);
+
   const datosAll = d.datos || [];
 
   // Últimos 20 días cronológicos presentes en el histórico completo (no solo
@@ -2225,6 +2241,9 @@ function oihRender() {
 
   let rows = datosAll.filter(r => fechasSet.has(r.fecha_boletin));
   if (vcto !== 'todos') rows = rows.filter(r => r.fecha_vencimiento === vcto);
+
+  // Base para el ratio: filtrada por fecha y vencimiento, pero NUNCA por tipo.
+  const rowsBase = rows;
   if (tipo !== 'ambos') rows = rows.filter(r => r.tipo === tipo);
 
   const oiMap = {};
@@ -2233,14 +2252,36 @@ function oihRender() {
     oiMap[k] = (oiMap[k] || 0) + (r.posicion_abierta || 0);
   });
 
+  // Sumas de OI de calls y de puts por subyacente y boletín (solo para Ratio).
+  // Una clave ausente significa "sin filas de ese tipo en ese boletín".
+  const callMap = {}, putMap = {};
+  if (esRatio) {
+    rowsBase.forEach(r => {
+      const k = r.accion + '|' + r.fecha_boletin;
+      if (r.tipo === 'CALL') callMap[k] = (callMap[k] || 0) + (r.posicion_abierta || 0);
+      if (r.tipo === 'PUT')  putMap[k]  = (putMap[k]  || 0) + (r.posicion_abierta || 0);
+    });
+  }
+
   const acciones = d.acciones || [];
 
-  const primeraLabel = metric === 'variacion' ? 'SUBYACENTE (Δ OI)' : 'SUBYACENTE';
+  const primeraLabel =
+    metric === 'variacion' ? 'SUBYACENTE (Δ OI)' :
+    metric === 'ratio'     ? 'SUBYACENTE (P/C)'  : 'SUBYACENTE';
   el('oih-table-head').innerHTML =
     '<tr><th>' + primeraLabel + '</th>' + fechas.map(f => `<th>${oihFechaCorta(f)}</th>`).join('') + '</tr>';
 
   el('oih-table-body').innerHTML = acciones.map(ac => {
     const cells = fechas.map((f, i) => {
+      if (metric === 'ratio') {
+        // Ratio put/call = OI puts / OI calls. Sin color (decisión explícita).
+        // Sin calls (divisor cero o ausente) → "—". Con calls y sin puts → 0,00.
+        const k = ac + '|' + f;
+        const c = callMap[k];
+        if (c == null || c === 0) return '<td class="c-muted">—</td>';
+        const p = putMap[k] || 0;
+        return `<td>${fmtPrice(p / c, 2)}</td>`;
+      }
       if (metric === 'variacion') {
         if (i === 0) return '<td class="c-muted">—</td>';
         const curr = oiMap[ac + '|' + f];
