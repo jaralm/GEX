@@ -88,11 +88,47 @@ COLS_INFORME = [
 
 # ── Helpers generales ─────────────────────────────────────────────────────────
 
+def parse_fecha_boletin(txt):
+    """Convierte 'dd/mm/yy' o 'dd/mm/yyyy' en date. Devuelve None si no se puede."""
+    txt = str(txt or "").strip()
+    for fmt in ("%d/%m/%y", "%d/%m/%Y"):
+        try:
+            return datetime.strptime(txt, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+
+def fecha_de_csv(ruta):
+    """Fecha de boletín (date) contenida en un CSV, o None si no es legible."""
+    try:
+        d = pd.read_csv(ruta, sep=";", encoding="utf-8-sig", dtype=str,
+                        usecols=["fecha_boletin"], nrows=1)
+        return parse_fecha_boletin(d["fecha_boletin"].iloc[0])
+    except Exception:
+        return None
+
+
+def fechas_conocidas():
+    """Conjunto de fechas de boletín (date) ya almacenadas en data/*.csv."""
+    return {f for f in (fecha_de_csv(r) for r in glob.glob(f"{CARPETA}/meff_opciones_*.csv")) if f}
+
+
 def mantener_ultimos_20():
-    archivos = sorted(glob.glob(f"{CARPETA}/meff_opciones_*.csv"))
-    if len(archivos) > 20:
-        for f in archivos[:-20]:
-            os.remove(f)
+    """Conserva los CSVs de los 20 boletines (fechas distintas) más recientes.
+
+    Se poda por fecha de boletín y no por número de ficheros: si varios CSVs
+    contienen el mismo boletín, todos se conservan o se eliminan a la vez.
+    Los CSVs cuya fecha no se puede leer no se tocan.
+    """
+    por_fecha = {}
+    for r in glob.glob(f"{CARPETA}/meff_opciones_*.csv"):
+        f = fecha_de_csv(r)
+        if f:
+            por_fecha.setdefault(f, []).append(r)
+    for f in sorted(por_fecha)[:-20]:
+        for r in por_fecha[f]:
+            os.remove(r)
 
 
 def vcto_sort_key(v):
@@ -340,16 +376,22 @@ def extraer_tabla(tabla: Tag, accion: str, tipo: str = None, spot=None):
     return filas
 
 
-def scrapear(url):
-    soup = fetch_page(url)
-
-    fecha_boletin = ""
+def leer_fecha_boletin(soup):
+    """Fecha del boletín tal como aparece en la página ('' si no se encuentra)."""
     for t in soup.stripped_strings:
         if "BOLET" in t.upper():
             m = re.search(r"(\d{2}/\d{2}/\d{2,4})", t)
             if m:
-                fecha_boletin = m.group(1)
-                break
+                return m.group(1)
+    return ""
+
+
+def scrapear(url):
+    return scrapear_soup(fetch_page(url))
+
+
+def scrapear_soup(soup):
+    fecha_boletin = leer_fecha_boletin(soup)
 
     spots = extraer_spots(soup)
     todos = []
@@ -875,13 +917,26 @@ def construir_historico():
         print("  Sin CSVs disponibles para el histórico.")
         return
 
-    frames = []
+    # Un mismo boletín (fecha_boletin) puede estar en varios CSVs (la página de
+    # MEFF de un día sigue publicada varios días). Sumarlos duplicaría OI y
+    # volumen, así que se usa UN solo CSV por fecha de boletín: el más reciente
+    # (orden de nombre = orden de ejecución).
+    por_fecha = {}    # fecha_boletin -> (ruta, DataFrame); gana el CSV más reciente
+    n_repetidos = 0
     for f in archivos:
         try:
             df_f = pd.read_csv(f, sep=";", encoding="utf-8-sig", dtype=str)
-            frames.append(df_f)
         except Exception as e:
             print(f"  Error leyendo {f}: {e}")
+            continue
+        fechas = df_f["fecha_boletin"].dropna().unique().tolist()
+        clave = fechas[0] if len(fechas) == 1 else f"__{f}"
+        if clave in por_fecha:
+            n_repetidos += 1
+        por_fecha[clave] = (f, df_f)
+    frames = [v[1] for v in por_fecha.values()]
+    if n_repetidos:
+        print(f"  Boletines repetidos ignorados (CSV duplicado): {n_repetidos}")
 
     if not frames:
         print("  Sin datos leídos.")
@@ -946,7 +1001,7 @@ def construir_historico():
 
     print(
         f"  Histórico guardado: {nombre_json}  "
-        f"({len(datos)} registros · {num_dias} días · {len(archivos)} CSVs)"
+        f"({len(datos)} registros · {num_dias} días · {len(frames)} CSVs usados de {len(archivos)})"
     )
 
 
@@ -1011,20 +1066,21 @@ def generar_json_informes(df: pd.DataFrame, txt_top10: str, txt_mini: str,
 
 # ── Main ───────────────────────────────────────────────────────────────────────
 
-def main():
-    dia_semana = datetime.today().weekday()
-    MAPA = {0: "viernes", 1: "lunes",  2: "martes",   3: "miercoles",
-            4: "jueves",  5: "viernes", 6: "viernes"}
-    dia = MAPA[dia_semana]
-    url = URLS[dia]
+def nombre_csv_libre(hoy, fecha_bol):
+    """Nombre de CSV que nunca pisa uno existente.
 
-    print(f"Scrapeando: {url}")
-    df = scrapear(url)
+    Normal: meff_opciones_{hoy}.csv. Si ya existe (otro boletín el mismo día de
+    ejecución): meff_opciones_{hoy}_b{YYYYMMDD del boletín}.csv.
+    """
+    base = f"{CARPETA}/meff_opciones_{hoy}.csv"
+    if not os.path.exists(base):
+        return base
+    suf = fecha_bol.strftime("%Y%m%d") if fecha_bol else "sinfecha"
+    return f"{CARPETA}/meff_opciones_{hoy}_b{suf}.csv"
 
-    if df.empty:
-        print("Sin datos.")
-        return
 
+def procesar_principal(df, hoy, nombre_csv):
+    """Pipeline completo (CSV + TXT + email + JSONs) para el boletín más reciente."""
     # ── Diagnóstico rápido ─────────────────────────────────────────────────────
     spots_encontrados = df[df["spot"] != ""][["accion", "spot"]].drop_duplicates()
     if not spots_encontrados.empty:
@@ -1041,8 +1097,6 @@ def main():
         print(f"Volatilidad cierre: {len(vola_no_vacia)} filas con dato.")
 
     # ── CSV ────────────────────────────────────────────────────────────────────
-    hoy = datetime.today().strftime("%Y%m%d")
-    nombre_csv = f"{CARPETA}/meff_opciones_{hoy}.csv"
     cols_presentes = [c for c in COLS_CSV if c in df.columns]
     df[cols_presentes].to_csv(nombre_csv, index=False, sep=";", encoding="utf-8-sig")
     mantener_ultimos_20()
@@ -1109,6 +1163,84 @@ def main():
     construir_historico()
 
     print("\n✓ Pipeline completo — CSV + TXT + email + JSONs generados (GEX + DEX + Opciones + Histórico + Informes).")
+
+
+def main():
+    """Lee las 5 páginas de boletín de MEFF y procesa SOLO los boletines nuevos.
+
+    Cada página (lunes..viernes) contiene el último boletín de ese día de la
+    semana y se sobrescribe cada semana. Antes se leía una sola página según el
+    día de ejecución: si MEFF aún no la había actualizado, se guardaba un
+    boletín viejo por duplicado (o se perdía el nuevo). Ahora se leen todas,
+    se compara la fecha de cada boletín con las ya guardadas y solo se
+    almacenan las nuevas. Si no hay nada nuevo, no se toca nada.
+    """
+    hoy = datetime.today().strftime("%Y%m%d")
+    conocidas = fechas_conocidas()
+
+    candidatos = {}   # fecha (date) -> soup
+    fallos = 0
+    for dia, url in URLS.items():
+        try:
+            soup = fetch_page(url)
+        except Exception as exc:
+            fallos += 1
+            print(f"AVISO: no se pudo leer {url} ({exc})")
+            continue
+        txt = leer_fecha_boletin(soup)
+        f = parse_fecha_boletin(txt)
+        print(f"  {dia:<10} boletín: {txt or '(sin fecha)'}")
+        if f is None:
+            print(f"AVISO: {url} sin fecha de boletín válida; se ignora.")
+            continue
+        candidatos.setdefault(f, soup)
+
+    if not candidatos:
+        print("ERROR: ninguna página con boletín legible.")
+        raise SystemExit(1)
+
+    nuevas = sorted(f for f in candidatos if f not in conocidas)
+    if not nuevas:
+        print(f"Sin boletines nuevos (último guardado: "
+              f"{max(conocidas).strftime('%d/%m/%Y') if conocidas else '—'}). No se modifica nada.")
+        return
+
+    print("Boletines nuevos: " + ", ".join(f.strftime("%d/%m/%Y") for f in nuevas))
+    ultimo_guardado = max(conocidas) if conocidas else None
+    procesados = 0
+    principal = None   # (df, nombre_csv) del boletín más reciente si supera al último guardado
+
+    for f in nuevas:
+        try:
+            df = scrapear_soup(candidatos[f])
+        except Exception as exc:
+            print(f"AVISO: error procesando boletín {f}: {exc}")
+            continue
+        if df.empty:
+            print(f"AVISO: boletín {f} sin datos; se ignora.")
+            continue
+        nombre_csv = nombre_csv_libre(hoy, f)
+        cols_presentes = [c for c in COLS_CSV if c in df.columns]
+        es_principal = (f == nuevas[-1]) and (ultimo_guardado is None or f > ultimo_guardado)
+        if es_principal:
+            principal = (df, nombre_csv)
+        else:
+            # Boletín recuperado anterior al último guardado (o no es el más
+            # reciente): solo se guarda el CSV; no altera los JSON "latest".
+            df[cols_presentes].to_csv(nombre_csv, index=False, sep=";", encoding="utf-8-sig")
+            print(f"CSV guardado (boletín {f}, solo histórico): {nombre_csv}")
+        procesados += 1
+
+    if procesados == 0:
+        print("ERROR: había boletines nuevos pero ninguno procesable.")
+        raise SystemExit(1)
+
+    if principal is not None:
+        procesar_principal(principal[0], hoy, principal[1])
+    else:
+        mantener_ultimos_20()
+        construir_historico()
+        print("\n✓ Histórico reconstruido con boletines recuperados (JSON latest sin cambios).")
 
 
 if __name__ == "__main__":
