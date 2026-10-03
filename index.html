@@ -310,6 +310,11 @@
       border-top: 2px solid var(--border2);
       background: var(--bg2);
     }
+    .data-table tr.row-sub td {
+      font-weight: 600;
+      background: var(--bg2);
+    }
+    .data-table tr.row-sub td:first-child { color: var(--muted); font-size: 10px; letter-spacing: .04em; }
     .oih-note {
       font-size: 9px; color: var(--muted); line-height: 1.7;
       padding: 10px 16px 0; max-width: 900px;
@@ -2176,6 +2181,7 @@ function hisRender() {
 //   · Vencimiento → una fila por vencimiento del SUBYACENTE elegido (filtro
 //                   TIPO) + fila TOTAL. Solo aparecen los vencimientos con
 //                   datos en alguno de los boletines visibles.
+//   En Variación + Vencimiento, bajo TOTAL hay dos filas: Δ % TOTAL y Δ % COMUNES.
 // Métricas: Valor (OI) · Variación (Δ OI vs boletín anterior) · Ratio P/C
 // ═════════════════════════════════════════════════════════════════════════════
 
@@ -2395,9 +2401,47 @@ function oihRender() {
     `<tr><td>${etq}</td>${fechas.map((f, i) => celda(etq, f, i)).join('')}</tr>`
   ).join('');
 
+  // Celda de porcentaje con signo y color (verde sube · rojo baja · gris 0,00%).
+  // num/den son valores reales (sin redondear); den = 0 o dato ausente → "—".
+  function celdaPct(num, den) {
+    if (num == null || den == null || den === 0) return '<td class="c-muted">—</td>';
+    const p = num / den * 100;
+    const s = fmtPrice(Math.abs(p), 2);
+    if (s === '0,00') return '<td class="c-muted">0,00%</td>';
+    return `<td><span class="${p > 0 ? 'c-call' : 'c-put'}">${p > 0 ? '+' : '−'}${s}%</span></td>`;
+  }
+
+  // Δ % TOTAL: variación del TOTAL sobre el TOTAL del boletín anterior.
+  function celdaPctTotal(i, f) {
+    if (i === 0) return '<td class="c-muted">—</td>';
+    const cu = oiMap[TOTAL + '|' + f];
+    const pr = oiMap[TOTAL + '|' + fechas[i - 1]];
+    if (cu == null || pr == null) return '<td class="c-muted">—</td>';
+    return celdaPct(cu - pr, pr);
+  }
+
+  // Δ % COMUNES: solo vencimientos con dato en los DOS boletines
+  // (Σ variación de esos vencimientos / Σ su OI del boletín anterior).
+  // Excluye el OI que sale por expiración y el de vencimientos que aparecen.
+  function celdaPctComunes(i, f) {
+    if (i === 0) return '<td class="c-muted">—</td>';
+    let num = 0, den = 0, n = 0;
+    etiquetas.forEach(etq => {
+      const cu = oiMap[etq + '|' + f];
+      const pr = oiMap[etq + '|' + fechas[i - 1]];
+      if (cu == null || pr == null) return;
+      num += cu - pr; den += pr; n++;
+    });
+    return n === 0 ? '<td class="c-muted">—</td>' : celdaPct(num, den);
+  }
+
   if (porVcto) {
     if (etiquetas.length) {
       html += `<tr class="row-total"><td>TOTAL</td>${fechas.map((f, i) => celda(TOTAL, f, i)).join('')}</tr>`;
+      if (metric === 'variacion') {
+        html += `<tr class="row-sub"><td title="Variación del TOTAL sobre el TOTAL del boletín anterior">Δ % TOTAL</td>${fechas.map((f, i) => celdaPctTotal(i, f)).join('')}</tr>`;
+        html += `<tr class="row-sub"><td title="Variación solo de los vencimientos con dato en los dos boletines, sobre su OI del boletín anterior">Δ % COMUNES</td>${fechas.map((f, i) => celdaPctComunes(i, f)).join('')}</tr>`;
+      }
     } else {
       html = `<tr><td colspan="${fechas.length + 1}" class="c-muted">Sin datos para este subyacente en los boletines mostrados</td></tr>`;
     }
@@ -2408,7 +2452,12 @@ function oihRender() {
     ? 'Solo aparecen los vencimientos con datos en alguno de los boletines mostrados; un vencimiento que ya expiró o que aún no tenía posición abierta se muestra como "—". ' +
       'TOTAL = suma de todos los vencimientos de ' + activo + ' (en Ratio P/C: Σ puts / Σ calls). ' +
       'En Variación, el TOTAL es el total del boletín menos el total del boletín anterior, por lo que incluye el OI que desaparece al expirar un vencimiento ' +
-      'y no tiene por qué coincidir con la suma de las celdas de arriba.'
+      'y no tiene por qué coincidir con la suma de las celdas de arriba.' +
+      (metric === 'variacion'
+        ? ' Δ % TOTAL = variación del TOTAL sobre el total del boletín anterior. ' +
+          'Δ % COMUNES = variación solo de los vencimientos con dato en los dos boletines, sobre su OI del boletín anterior: ' +
+          'excluye el OI que sale por expiración y el de los vencimientos que aparecen, por lo que se acerca más al cambio de posicionamiento.'
+        : '')
     : '';
 
   el('oih-kpi-dias').textContent = fechas.length || '—';
