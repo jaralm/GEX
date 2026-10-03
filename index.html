@@ -320,6 +320,20 @@
       padding: 10px 16px 0; max-width: 900px;
     }
 
+    /* ── Fila TOTALES de la pestaña GEX (vista Table) ──
+       Va en <tfoot> y se queda pegada al borde inferior del área de la tabla,
+       de modo que siempre es visible aunque haya muchos strikes. */
+    .data-table tfoot td {
+      position: sticky;
+      bottom: 0;
+      z-index: 9;
+      font-weight: 700;
+      background: var(--bg2);
+      border-top: 2px solid var(--border2);
+      border-bottom: none;
+    }
+    .data-table tfoot td:first-child { color: var(--muted); font-size: 10px; letter-spacing: .06em; }
+
     /* ── Strike cell ── */
     .strike-cell { display: flex; flex-direction: column; gap: 1px; }
     .strike-main { display: flex; align-items: center; gap: 5px; font-weight: 500; font-size: 11px; }
@@ -886,6 +900,7 @@
         </tr>
       </thead>
       <tbody id="gex-table-body"></tbody>
+      <tfoot id="gex-table-foot"></tfoot>
     </table>
   </div>
 </div>
@@ -1739,6 +1754,26 @@ function gexRenderTable(rows, kpis) {
       <td class="c-call">${fmtGex(r.call_gex)}</td><td class="c-put">${fmtGex(r.put_gex)}</td>
       <td>${fmtNum(r.call_oi)}</td><td>${fmtNum(r.put_oi)}</td><td>${fmtNum(r.total_oi)}</td></tr>`;
   }).join('');
+
+  // ── Fila de TOTALES (pie de tabla) ──
+  // Suma de las 6 columnas numéricas de los strikes mostrados (mismo conjunto que
+  // el cuerpo de la tabla, así que respeta el filtro de SUBYACENTE y VENCIMIENTO).
+  // IV CALL e IV PUT no se suman: una volatilidad no es aditiva.
+  // Nota: los OI de esta fila suman solo los strikes que tienen GEX calculado, por
+  // lo que pueden diferir ligeramente de los OI de las tarjetas KPI superiores.
+  const foot = el('gex-table-foot');
+  if (td.length) {
+    const sum = k => td.reduce((s, r) => s + (r[k] || 0), 0);
+    const tNet = sum('net_gex'), tCall = sum('call_gex'), tPut = sum('put_gex');
+    const tCOi = sum('call_oi'),  tPOi = sum('put_oi'),   tTOi = sum('total_oi');
+    foot.innerHTML = `<tr class="row-total">
+      <td>TOTAL</td><td></td><td></td>
+      <td style="color:${tNet >= 0 ? 'var(--call)' : 'var(--put)'}">${fmtGex(tNet)}</td>
+      <td class="c-call">${fmtGex(tCall)}</td><td class="c-put">${fmtGex(tPut)}</td>
+      <td>${fmtNum(tCOi)}</td><td>${fmtNum(tPOi)}</td><td>${fmtNum(tTOi)}</td></tr>`;
+  } else {
+    foot.innerHTML = '';
+  }
 
   ['strike','call_iv','put_iv','net_gex','call_gex','put_gex','call_oi','put_oi','total_oi'].forEach(c => {
     const sp = el('sort-' + c); if (sp) sp.textContent = c === col ? (dir === 'desc' ? '↓' : '↑') : '↕';
