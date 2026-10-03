@@ -304,6 +304,17 @@
     .row-cw   td { background: rgba(34,197,94,.06);  }
     .row-pw   td { background: rgba(239,68,68,.06);  }
 
+    /* ── Fila TOTAL (Tabla OI en modo "filas = vencimiento") ── */
+    .data-table tr.row-total td {
+      font-weight: 700;
+      border-top: 2px solid var(--border2);
+      background: var(--bg2);
+    }
+    .oih-note {
+      font-size: 9px; color: var(--muted); line-height: 1.7;
+      padding: 10px 16px 0; max-width: 900px;
+    }
+
     /* ── Strike cell ── */
     .strike-cell { display: flex; flex-direction: column; gap: 1px; }
     .strike-main { display: flex; align-items: center; gap: 5px; font-weight: 500; font-size: 11px; }
@@ -1050,13 +1061,25 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════════
-     TAB TABLA OI (rows: subyacente, cols: últimos 20 días,
+     TAB TABLA OI (columnas: últimos 20 boletines · filas: subyacente
+     o vencimiento según el conmutador FILAS ·
      valor: OI · variación de OI · ratio put/call)
 ════════════════════════════════════════════════════════════════ -->
 <div id="tab-oihist" class="tab-content">
 
   <div class="controls">
     <div class="control-group">
+      <label>FILAS</label>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="oih-btn-fila-ac" onclick="oihSetFilas('subyacente')">Subyacente</button>
+        <button class="toggle-btn"        id="oih-btn-fila-vc" onclick="oihSetFilas('vencimiento')">Vencimiento</button>
+      </div>
+    </div>
+    <div class="control-group" id="oih-grp-activo" style="display:none">
+      <label>SUBYACENTE</label>
+      <select id="oih-sel-activo" onchange="oihRender()"></select>
+    </div>
+    <div class="control-group" id="oih-grp-vcto">
       <label>VENCIMIENTO</label>
       <select id="oih-sel-vcto" onchange="oihRender()"></select>
     </div>
@@ -1096,6 +1119,7 @@
       <thead id="oih-table-head"></thead>
       <tbody id="oih-table-body"></tbody>
     </table>
+    <div class="oih-note" id="oih-note"></div>
   </div>
 </div>
 
@@ -1301,7 +1325,7 @@ const state = {
   dex:      { data: null, chart: null, activo: null, vcto: null, mode: 'callput' },
   opciones: { data: null },
   historico:{ data: null, chart: null, activo: null, vcto: null, metric: 'volumen' },
-  oihist:   { vcto: 'todos', tipo: 'ambos', metric: 'valor' },
+  oihist:   { vcto: 'todos', tipo: 'ambos', metric: 'valor', filas: 'subyacente', activo: null },
   informes: { data: null, fechas: [], cache: {} },
   tab: 'gex',
 };
@@ -2146,7 +2170,12 @@ function hisRender() {
 // TAB TABLA OI
 // Reutiliza state.historico.data (meff_volumen_historico.json) — no añade
 // ninguna petición de red nueva ni toca el estado de las pestañas existentes.
-// Filas: subyacente · Columnas: últimos 20 boletines (fecha_boletin)
+// Columnas: últimos 20 boletines (fecha_boletin)
+// Filas (conmutador FILAS):
+//   · Subyacente  → una fila por subyacente (filtro VENCIMIENTO + TIPO)
+//   · Vencimiento → una fila por vencimiento del SUBYACENTE elegido (filtro
+//                   TIPO) + fila TOTAL. Solo aparecen los vencimientos con
+//                   datos en alguno de los boletines visibles.
 // Métricas: Valor (OI) · Variación (Δ OI vs boletín anterior) · Ratio P/C
 // ═════════════════════════════════════════════════════════════════════════════
 
@@ -2160,6 +2189,19 @@ function oihFechaKey(f) {
 function oihFechaCorta(f) {
   const p = String(f).split('/');
   return p.length >= 2 ? p[0] + '/' + p[1] : f;
+}
+
+function oihVctoKey(v) {
+  // "Dic-26" → 202612 (año*100 + mes). Formatos no reconocidos, al final.
+  // Mismos meses que vcto_sort_key() de meff_opciones.py.
+  const MESES = { ene: 1, jan: 1, feb: 2, mar: 3, abr: 4, apr: 4, may: 5, jun: 6,
+                  jul: 7, ago: 8, aug: 8, sep: 9, oct: 10, nov: 11, dic: 12, dec: 12 };
+  const m = String(v).match(/^([A-Za-z]+)-(\d+)$/);
+  if (!m) return 999999;
+  const mes = MESES[m[1].slice(0, 3).toLowerCase()] || 0;
+  let yr = parseInt(m[2], 10);
+  if (yr < 100) yr += 2000;
+  return yr * 100 + mes;
 }
 
 function oihUnionVencimientos(d) {
@@ -2187,6 +2229,19 @@ function initOihist() {
   });
   selV.value = state.oihist.vcto || 'todos';
 
+  // Selector de subyacente (solo visible con FILAS = Vencimiento)
+  const selA = el('oih-sel-activo');
+  selA.innerHTML = '';
+  (d.acciones || []).forEach(ac => {
+    const o = document.createElement('option'); o.value = ac; o.textContent = ac; selA.appendChild(o);
+  });
+  const defaultActivo = state.oihist.activo ||
+    (d.acciones || []).find(s => s === 'MINI IBEX-35') ||
+    (d.acciones || []).find(s => s.includes('IBEX')) ||
+    (d.acciones || [])[0] || '';
+  selA.value = defaultActivo;
+  state.oihist.activo = selA.value;
+
   const selT = el('oih-sel-tipo');
   selT.value = state.oihist.tipo || 'ambos';
 
@@ -2195,6 +2250,22 @@ function initOihist() {
   el('oih-btn-variacion').classList.toggle('active', metric === 'variacion');
   el('oih-btn-ratio').classList.toggle('active', metric === 'ratio');
 
+  oihApplyFilas();
+  oihRender();
+}
+
+function oihApplyFilas() {
+  // Botones del conmutador y visibilidad de los selectores VENCIMIENTO / SUBYACENTE
+  const porVcto = (state.oihist.filas || 'subyacente') === 'vencimiento';
+  el('oih-btn-fila-ac').classList.toggle('active', !porVcto);
+  el('oih-btn-fila-vc').classList.toggle('active',  porVcto);
+  el('oih-grp-vcto').style.display   = porVcto ? 'none' : '';
+  el('oih-grp-activo').style.display = porVcto ? '' : 'none';
+}
+
+function oihSetFilas(modo) {
+  state.oihist.filas = modo;
+  oihApplyFilas();
   oihRender();
 }
 
@@ -2217,11 +2288,14 @@ function oihRender() {
   const d = state.historico.data;
   if (!d) return;
 
-  const vcto = el('oih-sel-vcto').value;
-  const tipo = el('oih-sel-tipo').value;
+  const porVcto = (state.oihist.filas || 'subyacente') === 'vencimiento';
+  const vcto   = el('oih-sel-vcto').value;
+  const activo = el('oih-sel-activo').value;
+  const tipo   = el('oih-sel-tipo').value;
   const metric = state.oihist.metric || 'valor';
-  state.oihist.vcto = vcto;
-  state.oihist.tipo = tipo;
+  state.oihist.vcto   = vcto;
+  state.oihist.activo = activo;
+  state.oihist.tipo   = tipo;
 
   // En modo Ratio el selector TIPO no aplica (el ratio siempre usa CALL y PUT):
   // se atenúa y se deshabilita, conservando el valor para cuando se vuelva a
@@ -2240,60 +2314,102 @@ function oihRender() {
   const fechasSet = new Set(fechas);
 
   let rows = datosAll.filter(r => fechasSet.has(r.fecha_boletin));
-  if (vcto !== 'todos') rows = rows.filter(r => r.fecha_vencimiento === vcto);
+  if (porVcto) rows = rows.filter(r => r.accion === activo);
+  else if (vcto !== 'todos') rows = rows.filter(r => r.fecha_vencimiento === vcto);
 
-  // Base para el ratio: filtrada por fecha y vencimiento, pero NUNCA por tipo.
+  // Base para el ratio y para la lista de filas: filtrada por fecha y por
+  // vencimiento/subyacente, pero NUNCA por tipo.
   const rowsBase = rows;
   if (tipo !== 'ambos') rows = rows.filter(r => r.tipo === tipo);
 
+  // Campo que define las filas de la tabla y clave de la fila TOTAL (solo en
+  // modo Vencimiento: sumar subyacentes distintos no tiene sentido, los
+  // multiplicadores son distintos).
+  const campoFila = porVcto ? 'fecha_vencimiento' : 'accion';
+  const TOTAL = '__TOTAL__';
+
   const oiMap = {};
   rows.forEach(r => {
-    const k = r.accion + '|' + r.fecha_boletin;
-    oiMap[k] = (oiMap[k] || 0) + (r.posicion_abierta || 0);
+    const oi = r.posicion_abierta || 0;
+    const k = r[campoFila] + '|' + r.fecha_boletin;
+    oiMap[k] = (oiMap[k] || 0) + oi;
+    if (porVcto) {
+      const kt = TOTAL + '|' + r.fecha_boletin;
+      oiMap[kt] = (oiMap[kt] || 0) + oi;
+    }
   });
 
-  // Sumas de OI de calls y de puts por subyacente y boletín (solo para Ratio).
+  // Sumas de OI de calls y de puts por fila y boletín (solo para Ratio).
   // Una clave ausente significa "sin filas de ese tipo en ese boletín".
   const callMap = {}, putMap = {};
   if (esRatio) {
     rowsBase.forEach(r => {
-      const k = r.accion + '|' + r.fecha_boletin;
-      if (r.tipo === 'CALL') callMap[k] = (callMap[k] || 0) + (r.posicion_abierta || 0);
-      if (r.tipo === 'PUT')  putMap[k]  = (putMap[k]  || 0) + (r.posicion_abierta || 0);
+      const oi = r.posicion_abierta || 0;
+      const mapa = r.tipo === 'CALL' ? callMap : (r.tipo === 'PUT' ? putMap : null);
+      if (!mapa) return;
+      const k = r[campoFila] + '|' + r.fecha_boletin;
+      mapa[k] = (mapa[k] || 0) + oi;
+      if (porVcto) {
+        const kt = TOTAL + '|' + r.fecha_boletin;
+        mapa[kt] = (mapa[kt] || 0) + oi;
+      }
     });
   }
 
-  const acciones = d.acciones || [];
+  // Etiquetas de fila: subyacentes, o vencimientos que aparecen en alguno de
+  // los boletines visibles (ordenados cronológicamente).
+  const etiquetas = porVcto
+    ? [...new Set(rowsBase.map(r => r.fecha_vencimiento))]
+        .sort((a, b) => (oihVctoKey(a) - oihVctoKey(b)) || String(a).localeCompare(String(b)))
+    : (d.acciones || []);
 
+  const base = porVcto ? 'VENCIMIENTO' : 'SUBYACENTE';
   const primeraLabel =
-    metric === 'variacion' ? 'SUBYACENTE (Δ OI)' :
-    metric === 'ratio'     ? 'SUBYACENTE (P/C)'  : 'SUBYACENTE';
+    metric === 'variacion' ? base + ' (Δ OI)' :
+    metric === 'ratio'     ? base + ' (P/C)'  : base;
   el('oih-table-head').innerHTML =
     '<tr><th>' + primeraLabel + '</th>' + fechas.map(f => `<th>${oihFechaCorta(f)}</th>`).join('') + '</tr>';
 
-  el('oih-table-body').innerHTML = acciones.map(ac => {
-    const cells = fechas.map((f, i) => {
-      if (metric === 'ratio') {
-        // Ratio put/call = OI puts / OI calls. Sin color (decisión explícita).
-        // Sin calls (divisor cero o ausente) → "—". Con calls y sin puts → 0,00.
-        const k = ac + '|' + f;
-        const c = callMap[k];
-        if (c == null || c === 0) return '<td class="c-muted">—</td>';
-        const p = putMap[k] || 0;
-        return `<td>${fmtPrice(p / c, 2)}</td>`;
-      }
-      if (metric === 'variacion') {
-        if (i === 0) return '<td class="c-muted">—</td>';
-        const curr = oiMap[ac + '|' + f];
-        const prev = oiMap[ac + '|' + fechas[i - 1]];
-        if (curr == null || prev == null) return '<td class="c-muted">—</td>';
-        return `<td>${oihFmtDiff(curr - prev)}</td>`;
-      }
-      const v = oiMap[ac + '|' + f];
-      return `<td>${v != null ? fmtNum(v) : '—'}</td>`;
-    }).join('');
-    return `<tr><td>${ac}</td>${cells}</tr>`;
-  }).join('');
+  function celda(etq, f, i) {
+    if (metric === 'ratio') {
+      // Ratio put/call = OI puts / OI calls. Sin color (decisión explícita).
+      // Sin calls (divisor cero o ausente) → "—". Con calls y sin puts → 0,00.
+      const k = etq + '|' + f;
+      const c = callMap[k];
+      if (c == null || c === 0) return '<td class="c-muted">—</td>';
+      const p = putMap[k] || 0;
+      return `<td>${fmtPrice(p / c, 2)}</td>`;
+    }
+    if (metric === 'variacion') {
+      if (i === 0) return '<td class="c-muted">—</td>';
+      const curr = oiMap[etq + '|' + f];
+      const prev = oiMap[etq + '|' + fechas[i - 1]];
+      if (curr == null || prev == null) return '<td class="c-muted">—</td>';
+      return `<td>${oihFmtDiff(curr - prev)}</td>`;
+    }
+    const v = oiMap[etq + '|' + f];
+    return `<td>${v != null ? fmtNum(v) : '—'}</td>`;
+  }
+
+  let html = etiquetas.map(etq =>
+    `<tr><td>${etq}</td>${fechas.map((f, i) => celda(etq, f, i)).join('')}</tr>`
+  ).join('');
+
+  if (porVcto) {
+    if (etiquetas.length) {
+      html += `<tr class="row-total"><td>TOTAL</td>${fechas.map((f, i) => celda(TOTAL, f, i)).join('')}</tr>`;
+    } else {
+      html = `<tr><td colspan="${fechas.length + 1}" class="c-muted">Sin datos para este subyacente en los boletines mostrados</td></tr>`;
+    }
+  }
+  el('oih-table-body').innerHTML = html;
+
+  el('oih-note').textContent = porVcto
+    ? 'Solo aparecen los vencimientos con datos en alguno de los boletines mostrados; un vencimiento que ya expiró o que aún no tenía posición abierta se muestra como "—". ' +
+      'TOTAL = suma de todos los vencimientos de ' + activo + ' (en Ratio P/C: Σ puts / Σ calls). ' +
+      'En Variación, el TOTAL es el total del boletín menos el total del boletín anterior, por lo que incluye el OI que desaparece al expirar un vencimiento ' +
+      'y no tiene por qué coincidir con la suma de las celdas de arriba.'
+    : '';
 
   el('oih-kpi-dias').textContent = fechas.length || '—';
   el('oih-kpi-upd').textContent  = d.ultima_actualizacion || '—';
