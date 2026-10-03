@@ -947,6 +947,16 @@
      TAB INFORMES
 ════════════════════════════════════════════════════════════════ -->
 <div id="tab-informes" class="tab-content">
+
+  <div class="controls">
+    <div class="control-group">
+      <label>FECHA</label>
+      <select id="inf-sel-fecha" onchange="infOnFechaChange()">
+        <option value="latest">Cargando…</option>
+      </select>
+    </div>
+  </div>
+
   <div class="informes-wrap">
     <div class="informe-block">
       <div class="informe-header" id="inf-title-top10">TOP 10 · VOLUMEN CONTRATOS</div>
@@ -1286,7 +1296,7 @@ const state = {
   opciones: { data: null },
   historico:{ data: null, chart: null, activo: null, vcto: null, metric: 'volumen' },
   oihist:   { vcto: 'todos', tipo: 'ambos', metric: 'valor' },
-  informes: { data: null },
+  informes: { data: null, fechas: [], cache: {} },
   tab: 'gex',
 };
 
@@ -1920,6 +1930,94 @@ function initInformes() {
   el('inf-text-mini').textContent  = d.mini_ibex_text || '(sin datos)';
 }
 
+// ── Selector de fecha (últimos días con informe TXT guardado en data/) ────────
+// No requiere ningún cambio en el pipeline Python: meff_top10_YYYYMMDD.txt y
+// meff_mini_ibex_YYYYMMDD.txt ya se generan y se conservan cada día (nunca se
+// borran). Lo único que faltaba es que el dashboard supiera qué fechas existen,
+// así que se descubren por tanteo (peticiones HEAD, mismo origen, sin CORS)
+// probando hacia atrás desde hoy. El día de "hoy" sigue usando siempre
+// meff_informes_latest.json (ya cargado) — cero cambios en ese camino.
+
+function infFechaLabel(f) {
+  // 'YYYYMMDD' → 'dd/mm/yyyy'
+  return f.slice(6, 8) + '/' + f.slice(4, 6) + '/' + f.slice(0, 4);
+}
+
+function infFechaHoy() {
+  const d = new Date();
+  return '' + d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+}
+
+function infFechaMenosDias(fechaYYYYMMDD, dias) {
+  const y = +fechaYYYYMMDD.slice(0, 4), m = +fechaYYYYMMDD.slice(4, 6), d = +fechaYYYYMMDD.slice(6, 8);
+  const dt = new Date(y, m - 1, d);
+  dt.setDate(dt.getDate() - dias);
+  return '' + dt.getFullYear() + String(dt.getMonth() + 1).padStart(2, '0') + String(dt.getDate()).padStart(2, '0');
+}
+
+async function infDescubrirHistorial() {
+  const hoy = infFechaHoy();
+  const candidatas = [];
+  for (let i = 1; i <= 45; i++) candidatas.push(infFechaMenosDias(hoy, i));
+
+  const resultados = await Promise.allSettled(
+    candidatas.map(f =>
+      fetch(`data/meff_top10_${f}.txt`, { method: 'HEAD' }).then(r => ({ f, ok: r.ok }))
+    )
+  );
+
+  const validas = resultados
+    .filter(r => r.status === 'fulfilled' && r.value.ok)
+    .map(r => r.value.f)
+    .sort((a, b) => b.localeCompare(a))   // más reciente primero
+    .slice(0, 19);
+
+  state.informes.fechas = validas;
+
+  const sel = el('inf-sel-fecha');
+  if (!sel) return;
+  const actual = sel.value;
+  sel.innerHTML =
+    `<option value="latest">Hoy · ${infFechaLabel(hoy)}</option>` +
+    validas.map(f => `<option value="${f}">${infFechaLabel(f)}</option>`).join('');
+  sel.value = (actual === 'latest' || validas.includes(actual)) ? actual : 'latest';
+}
+
+async function infCargarFecha(fecha) {
+  if (state.informes.cache[fecha]) return state.informes.cache[fecha];
+  const [top10Res, miniRes] = await Promise.allSettled([
+    fetch(`data/meff_top10_${fecha}.txt`).then(r => r.ok ? r.text() : null),
+    fetch(`data/meff_mini_ibex_${fecha}.txt`).then(r => r.ok ? r.text() : null),
+  ]);
+  const resultado = {
+    top10_text:     top10Res.status === 'fulfilled' ? top10Res.value : null,
+    mini_ibex_text: miniRes.status  === 'fulfilled' ? miniRes.value  : null,
+  };
+  state.informes.cache[fecha] = resultado;
+  return resultado;
+}
+
+async function infOnFechaChange() {
+  const fecha = el('inf-sel-fecha').value;
+
+  if (fecha === 'latest') {
+    initInformes();
+    return;
+  }
+
+  el('inf-text-top10').innerHTML = '<span class="informe-empty">Cargando…</span>';
+  el('inf-text-mini').innerHTML  = '<span class="informe-empty">Cargando…</span>';
+
+  const d = await infCargarFecha(fecha);
+  const label = infFechaLabel(fecha);
+
+  el('inf-title-top10').textContent = 'TOP 10 · VOLUMEN CONTRATOS  ·  ' + label;
+  el('inf-title-mini').textContent  = 'TOP 5 · MINI IBEX-35 (CALL+PUT)  ·  ' + label;
+
+  el('inf-text-top10').textContent = d.top10_text     || '(sin datos para este día)';
+  el('inf-text-mini').textContent  = d.mini_ibex_text || '(sin datos de MINI IBEX ese día)';
+}
+
 
 // ═════════════════════════════════════════════════════════════════════════════
 // TAB HISTÓRICO
@@ -2190,6 +2288,7 @@ async function loadAll() {
   if (state.historico.data) initHistorico();
   if (state.historico.data) initOihist();
   if (state.informes.data)  initInformes();
+  infDescubrirHistorial();
   if (state.gex.data)       initGex();
   if (state.dex.data)       initDex();
 
