@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "10/10/2026 09:21",
+  "ultima_actualizacion": "13/10/2026 10:04",
   "num_dias": 20,
   "acciones": [
     "ACCIONA",
@@ -63,6 +63,7 @@
     "ACCIONA ENERGIA": [
       "Sep-26",
       "Oct-26",
+      "Nov-26",
       "Dic-26",
       "Jun-27",
       "Sep-27"
@@ -38115,15 +38116,15 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 19.0
+      "posicion_abierta": 20.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -38131,47 +38132,39 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 11.0
+      "posicion_abierta": 16.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "posicion_abierta": 26.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ACCIONA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 6.0,
-      "posicion_abierta": 64.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 164.0
+      "posicion_abierta": 170.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -38179,31 +38172,23 @@
       "posicion_abierta": 87.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 65.0
+      "posicion_abierta": 69.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 22.0
+      "posicion_abierta": 55.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ACCIONA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 3.0,
-      "posicion_abierta": 112.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA ENERGIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
@@ -38211,23 +38196,23 @@
       "posicion_abierta": 7.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA ENERGIA",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 5.0,
+      "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA ENERGIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 21.0
+      "posicion_abierta": 24.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA ENERGIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -38235,31 +38220,31 @@
       "posicion_abierta": 13.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA ENERGIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20.0
+      "posicion_abierta": 25.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACCIONA ENERGIA",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 47.0
+      "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 292.0
+      "posicion_abierta": 307.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -38267,15 +38252,15 @@
       "posicion_abierta": 21.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "posicion_abierta": 6.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -38283,39 +38268,31 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 797.0
+      "posicion_abierta": 798.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "posicion_abierta": 55.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 51.0
+      "posicion_abierta": 79.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ACERINOX",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 257.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
@@ -38323,15 +38300,15 @@
       "posicion_abierta": 157.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 622.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 642.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -38339,15 +38316,15 @@
       "posicion_abierta": 150.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 364.0
+      "posicion_abierta": 369.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -38355,7 +38332,7 @@
       "posicion_abierta": 724.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -38363,31 +38340,23 @@
       "posicion_abierta": 208.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "posicion_abierta": 39.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 10.0,
-      "posicion_abierta": 58.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "ACERINOX",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 411.0
+      "posicion_abierta": 77.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
@@ -38395,7 +38364,7 @@
       "posicion_abierta": 807.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACERINOX",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-28",
@@ -38403,39 +38372,39 @@
       "posicion_abierta": 138.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 1179.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1223.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 355.0
+      "posicion_abierta": 357.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 76.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 77.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 493.0
+      "volumen_contratos": 7.0,
+      "posicion_abierta": 517.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -38443,63 +38412,55 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 20.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 39.0
+      "volumen_contratos": 5.0,
+      "posicion_abierta": 1172.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ACS",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 259.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 50.0
+      "posicion_abierta": 55.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1379.0
+      "posicion_abierta": 1369.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 120.0
+      "posicion_abierta": 290.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 451.0
+      "posicion_abierta": 462.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -38507,55 +38468,55 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 266.0
+      "volumen_contratos": 3.0,
+      "posicion_abierta": 263.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "ACS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 12.0
+      "posicion_abierta": 30.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 17.0
+      "volumen_contratos": 6.0,
+      "posicion_abierta": 330.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ACS",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 528.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ACS",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 55.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 69.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 81.0
+      "posicion_abierta": 94.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -38563,15 +38524,15 @@
       "posicion_abierta": 66.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 252.0
+      "posicion_abierta": 254.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -38579,95 +38540,87 @@
       "posicion_abierta": 39.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "AENA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 2.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 21.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 576.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 906.0
+      "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 269.0
+      "posicion_abierta": 1508.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 87.0
+      "posicion_abierta": 88.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 527.0
+      "posicion_abierta": 571.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 11.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 308.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 321.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "AENA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 325.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AENA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ALMIRALL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
+      "posicion_abierta": 7.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ALMIRALL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 13.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ALMIRALL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
@@ -38675,23 +38628,15 @@
       "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ALMIRALL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1318.0
+      "posicion_abierta": 2140.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -38699,15 +38644,15 @@
       "posicion_abierta": 56.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 293.0
+      "posicion_abierta": 306.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -38715,31 +38660,23 @@
       "posicion_abierta": 963.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 963.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 978.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2304.0
+      "posicion_abierta": 2351.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "AMADEUS",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 2689.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
@@ -38747,15 +38684,15 @@
       "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4253.0
+      "posicion_abierta": 4300.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -38763,15 +38700,15 @@
       "posicion_abierta": 137.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 294.0
+      "posicion_abierta": 1546.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -38779,15 +38716,15 @@
       "posicion_abierta": 17.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 806.0
+      "posicion_abierta": 900.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -38795,39 +38732,31 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 6.0
+      "volumen_contratos": 4.0,
+      "posicion_abierta": 40.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 577.0
+      "volumen_contratos": 32.0,
+      "posicion_abierta": 624.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "AMADEUS",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 5269.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 14.0
+      "posicion_abierta": 19.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "AMADEUS",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-28",
@@ -38835,15 +38764,15 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 322.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 377.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
@@ -38851,7 +38780,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -38859,39 +38788,39 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "ARCELORMITTAL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 75.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 23.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 19.0,
-      "posicion_abierta": 91.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 154.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ARCELORMITTAL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 7.0,
-      "posicion_abierta": 612.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 272.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 276.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -38899,7 +38828,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-30",
@@ -38907,79 +38836,79 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "ARCELORMITTAL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 21.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 56.0
+      "posicion_abierta": 92.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 58.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ARCELORMITTAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 35.0
+      "volumen_contratos": 4.0,
+      "posicion_abierta": 128.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ARCELORMITTAL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 224.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ATRESMEDIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 30.0
+      "posicion_abierta": 29.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ATRESMEDIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 34.0
+      "posicion_abierta": 95.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ATRESMEDIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 24.0
+      "posicion_abierta": 26.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ATRESMEDIA",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ATRESMEDIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 66.0
+      "posicion_abierta": 95.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ATRESMEDIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -38987,95 +38916,95 @@
       "posicion_abierta": 9.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ATRESMEDIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "posicion_abierta": 30.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ATRESMEDIA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 8.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 889.0
+      "posicion_abierta": 617.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 121.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 198.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 312.0
+      "posicion_abierta": 324.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "CALL",
-      "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "B.SABADELL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 599.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "B.SABADELL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 736.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "B.SABADELL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 4564.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "B.SABADELL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Jun-27",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "B.SABADELL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Oct-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 2.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "B.SABADELL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 376.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "B.SABADELL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 743.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "B.SABADELL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 4569.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "B.SABADELL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 50.0,
+      "posicion_abierta": 60.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 783.0
+      "volumen_contratos": 20.0,
+      "posicion_abierta": 1033.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -39083,39 +39012,31 @@
       "posicion_abierta": 3099.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "posicion_abierta": 9.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "B.SABADELL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 5453.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "B.SABADELL",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 173.0
+      "volumen_contratos": 70.0,
+      "posicion_abierta": 143.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -39123,7 +39044,7 @@
       "posicion_abierta": 29.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -39131,7 +39052,7 @@
       "posicion_abierta": 28.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -39139,31 +39060,31 @@
       "posicion_abierta": 221.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "BANKINTER",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 10.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20.0
+      "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "BANKINTER",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 25.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4571.0
+      "posicion_abierta": 4585.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -39171,7 +39092,7 @@
       "posicion_abierta": 1075.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -39179,7 +39100,7 @@
       "posicion_abierta": 1225.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -39187,7 +39108,7 @@
       "posicion_abierta": 1083.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -39195,39 +39116,55 @@
       "posicion_abierta": 369.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "BANKINTER",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 12.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 35.0
+      "posicion_abierta": 66.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BANKINTER",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 112.0
+      "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 18430.0
+      "volumen_contratos": 11680.0,
+      "posicion_abierta": 4686.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 10904.0
+      "volumen_contratos": 150.0,
+      "posicion_abierta": 10754.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "BBVA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 14.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
@@ -39235,15 +39172,15 @@
       "posicion_abierta": 50.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 3000.0,
-      "posicion_abierta": 16928.0
+      "volumen_contratos": 176.0,
+      "posicion_abierta": 16776.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -39251,15 +39188,15 @@
       "posicion_abierta": 8629.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 26503.0
+      "volumen_contratos": 50.0,
+      "posicion_abierta": 26482.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -39267,55 +39204,55 @@
       "posicion_abierta": 1550.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 45.0
+      "volumen_contratos": 3561.0,
+      "posicion_abierta": 5541.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 12394.0
+      "volumen_contratos": 25.0,
+      "posicion_abierta": 9631.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "BBVA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 66.0,
-      "posicion_abierta": 30455.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 304.0
+      "posicion_abierta": 340.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "BBVA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 212923.0
+      "posicion_abierta": 211194.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 73896.0
+      "posicion_abierta": 73894.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -39323,15 +39260,15 @@
       "posicion_abierta": 5121.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3158.0
+      "posicion_abierta": 5158.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-30",
@@ -39339,23 +39276,23 @@
       "posicion_abierta": 1500.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 25556.0
+      "posicion_abierta": 35727.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 13601.0
+      "posicion_abierta": 15601.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-29",
@@ -39363,15 +39300,15 @@
       "posicion_abierta": 1250.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 91173.0
+      "posicion_abierta": 91453.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -39379,39 +39316,31 @@
       "posicion_abierta": 926.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 10.0,
-      "posicion_abierta": 170.0
+      "volumen_contratos": 12.0,
+      "posicion_abierta": 1045.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 531.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 1161.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "BBVA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 30.0,
-      "posicion_abierta": 80832.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1084.0
+      "posicion_abierta": 11084.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-28",
@@ -39419,15 +39348,15 @@
       "posicion_abierta": 100.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 15128.0
+      "posicion_abierta": 15138.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -39435,79 +39364,71 @@
       "posicion_abierta": 22.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 627.0
+      "posicion_abierta": 628.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1850.0
+      "posicion_abierta": 1900.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 439.0
+      "posicion_abierta": 459.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
+      "posicion_abierta": 66.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 95.0
+      "posicion_abierta": 197.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "CAIXABANK",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 155.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 7.0
+      "posicion_abierta": 17.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 7606.0
+      "posicion_abierta": 7741.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1738.0
+      "posicion_abierta": 2338.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -39515,7 +39436,7 @@
       "posicion_abierta": 15450.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
@@ -39523,7 +39444,7 @@
       "posicion_abierta": 16000.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -39531,55 +39452,63 @@
       "posicion_abierta": 12676.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1050.0
+      "posicion_abierta": 1130.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 38021.0
+      "posicion_abierta": 27532.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "CAIXABANK",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1079.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20.0
+      "posicion_abierta": 59.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CAIXABANK",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 72547.0
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 17001.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 3650.0
+      "volumen_contratos": 8.0,
+      "posicion_abierta": 3699.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3593.0
+      "posicion_abierta": 3595.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
@@ -39587,7 +39516,7 @@
       "posicion_abierta": 1260.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-30",
@@ -39595,15 +39524,15 @@
       "posicion_abierta": 120.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2230.0
+      "posicion_abierta": 2259.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -39611,47 +39540,55 @@
       "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 803.0
+      "posicion_abierta": 804.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 11.0
+      "posicion_abierta": 14.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 594.0
+      "posicion_abierta": 23.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "CELLNEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Oct-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 54.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 320.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 324.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 8004.0
+      "volumen_contratos": 20.0,
+      "posicion_abierta": 7880.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -39659,15 +39596,15 @@
       "posicion_abierta": 205.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2559.0
+      "posicion_abierta": 2668.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -39675,15 +39612,15 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 465.0
+      "posicion_abierta": 505.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -39691,39 +39628,31 @@
       "posicion_abierta": 227.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 51.0
+      "volumen_contratos": 4.0,
+      "posicion_abierta": 79.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 50.0
+      "posicion_abierta": 67.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "CELLNEX",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 653.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CELLNEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 55.0
+      "posicion_abierta": 71.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
@@ -39731,7 +39660,7 @@
       "posicion_abierta": 14.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -39739,7 +39668,7 @@
       "posicion_abierta": 43.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -39747,15 +39676,31 @@
       "posicion_abierta": 9.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
       "posicion_abierta": 26.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "CIE AUTOMOTIVE",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Oct-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 5.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "CIE AUTOMOTIVE",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 2.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
@@ -39763,7 +39708,7 @@
       "posicion_abierta": 11.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -39771,7 +39716,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -39779,31 +39724,23 @@
       "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 1.0,
+      "volumen_contratos": 0.0,
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "CIE AUTOMOTIVE",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 16.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "CIE AUTOMOTIVE",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 14.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
@@ -39811,7 +39748,7 @@
       "posicion_abierta": 76.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -39819,7 +39756,7 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -39827,71 +39764,63 @@
       "posicion_abierta": 71.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
+      "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "COLONIAL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 65.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 3227.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 3029.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 399.0
+      "posicion_abierta": 404.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 652.0
+      "posicion_abierta": 791.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
+      "posicion_abierta": 12.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "COLONIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 14.0
+      "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "COLONIAL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_boletin": "12/10/26",
+      "accion": "EBRO FOODS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 231.0
+      "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "EBRO FOODS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -39899,7 +39828,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "EBRO FOODS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -39907,15 +39836,23 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "EBRO FOODS",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 6.0
+      "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "EBRO FOODS",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Oct-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "EBRO FOODS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
@@ -39923,7 +39860,7 @@
       "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "EBRO FOODS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -39931,7 +39868,15 @@
       "posicion_abierta": 8.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "EBRO FOODS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "EBRO FOODS",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
@@ -39939,23 +39884,15 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "EBRO FOODS",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1154.0
+      "posicion_abierta": 1225.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -39963,7 +39900,7 @@
       "posicion_abierta": 41.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
@@ -39971,15 +39908,15 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 43.0
+      "posicion_abierta": 98.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -39987,39 +39924,31 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 735.0
+      "volumen_contratos": 5.0,
+      "posicion_abierta": 1068.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 7.0
+      "posicion_abierta": 62.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
+      "posicion_abierta": 43.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ENAGAS",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 450.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
@@ -40027,15 +39956,15 @@
       "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1568.0
+      "posicion_abierta": 1645.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -40043,15 +39972,15 @@
       "posicion_abierta": 4101.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 86.0
+      "posicion_abierta": 96.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -40059,15 +39988,15 @@
       "posicion_abierta": 201.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1012.0
+      "posicion_abierta": 1024.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -40075,31 +40004,23 @@
       "posicion_abierta": 348.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 10.0,
-      "posicion_abierta": 34.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 52.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 21.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "ENAGAS",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
       "volumen_contratos": 1.0,
-      "posicion_abierta": 503.0
+      "posicion_abierta": 91.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENAGAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
@@ -40107,7 +40028,7 @@
       "posicion_abierta": 596.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENCE",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -40115,7 +40036,7 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENCE",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -40123,7 +40044,7 @@
       "posicion_abierta": 17.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENCE",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -40131,7 +40052,15 @@
       "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "ENCE",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 5.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "ENCE",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -40139,7 +40068,7 @@
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENCE",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
@@ -40147,39 +40076,31 @@
       "posicion_abierta": 8.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ENCE",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 10.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 141.0
+      "posicion_abierta": 172.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 32.0
+      "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1254.0
+      "posicion_abierta": 1256.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -40187,63 +40108,71 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 227.0
+      "posicion_abierta": 226.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2603.0
+      "posicion_abierta": 2598.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "ENDESA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-29",
+      "volumen_contratos": 25.0,
+      "posicion_abierta": 240.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 41.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 9.0
+      "posicion_abierta": 19.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "ENDESA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 100.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 233.0
+      "posicion_abierta": 232.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "ENDESA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 188.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 353.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -40251,7 +40180,7 @@
       "posicion_abierta": 62.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -40259,15 +40188,15 @@
       "posicion_abierta": 16.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 22.0
+      "posicion_abierta": 28.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -40275,7 +40204,7 @@
       "posicion_abierta": 1305.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -40283,7 +40212,7 @@
       "posicion_abierta": 20.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -40291,23 +40220,23 @@
       "posicion_abierta": 750.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "ENDESA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 3.0,
+      "posicion_abierta": 33.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "ENDESA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 10.0,
-      "posicion_abierta": 20.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "ENDESA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1352.0
+      "posicion_abierta": 32.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -40315,7 +40244,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -40323,7 +40252,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -40331,31 +40260,31 @@
       "posicion_abierta": 200.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20.0
+      "posicion_abierta": 23.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 429.0
+      "posicion_abierta": 430.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -40363,15 +40292,15 @@
       "posicion_abierta": 1213.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FCC",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
@@ -40379,15 +40308,15 @@
       "posicion_abierta": 226.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 7486.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 7496.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -40395,7 +40324,7 @@
       "posicion_abierta": 75.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
@@ -40403,7 +40332,15 @@
       "posicion_abierta": 3000.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "FERROVIAL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -40411,47 +40348,39 @@
       "posicion_abierta": 125.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 246.0
+      "posicion_abierta": 248.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 125.0
+      "posicion_abierta": 126.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 51.0
+      "volumen_contratos": 464.0,
+      "posicion_abierta": 751.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 704.0
+      "volumen_contratos": 25.0,
+      "posicion_abierta": 2729.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "FERROVIAL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 3.0,
-      "posicion_abierta": 3334.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
@@ -40459,15 +40388,15 @@
       "posicion_abierta": 100.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
+      "volumen_contratos": 1.0,
       "posicion_abierta": 351.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -40475,15 +40404,23 @@
       "posicion_abierta": 601.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "FERROVIAL",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 2625.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 83.0
+      "posicion_abierta": 599.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -40491,15 +40428,15 @@
       "posicion_abierta": 327.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 977.0
+      "posicion_abierta": 976.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -40507,63 +40444,63 @@
       "posicion_abierta": 55.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 9.0
+      "posicion_abierta": 61.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 32.0
+      "volumen_contratos": 3.0,
+      "posicion_abierta": 124.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "FERROVIAL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 5109.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FERROVIAL",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 177.0
+      "posicion_abierta": 178.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FLUIDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FLUIDRA",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 203.0
+      "posicion_abierta": 13.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "FLUIDRA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Oct-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 3.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "FLUIDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1169.0
+      "posicion_abierta": 1182.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FLUIDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -40571,55 +40508,55 @@
       "posicion_abierta": 22.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "FLUIDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 14.0
+      "posicion_abierta": 36.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "FLUIDRA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "FLUIDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "posicion_abierta": 13.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "FLUIDRA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4209.0
+      "posicion_abierta": 4303.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 307.0
+      "posicion_abierta": 316.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 26.0
+      "posicion_abierta": 36.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
@@ -40627,15 +40564,15 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 50.0,
-      "posicion_abierta": 1979.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 2690.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -40643,15 +40580,15 @@
       "posicion_abierta": 60.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1774.0
+      "posicion_abierta": 1898.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -40659,31 +40596,23 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 10.0,
-      "posicion_abierta": 115.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 155.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 24.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 28.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "GRIFOLS",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 10.0,
-      "posicion_abierta": 922.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
@@ -40691,15 +40620,15 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 12.0,
-      "posicion_abierta": 4557.0
+      "volumen_contratos": 10.0,
+      "posicion_abierta": 4808.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -40707,7 +40636,7 @@
       "posicion_abierta": 509.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -40715,7 +40644,7 @@
       "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
@@ -40723,7 +40652,7 @@
       "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-30",
@@ -40731,15 +40660,15 @@
       "posicion_abierta": 15.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2027.0
+      "posicion_abierta": 2328.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -40747,7 +40676,7 @@
       "posicion_abierta": 28.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-29",
@@ -40755,15 +40684,15 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 2919.0
+      "volumen_contratos": 5.0,
+      "posicion_abierta": 3023.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -40771,39 +40700,31 @@
       "posicion_abierta": 528.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 145.0
+      "volumen_contratos": 5.0,
+      "posicion_abierta": 191.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 78.0
+      "volumen_contratos": 10.0,
+      "posicion_abierta": 99.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "GRIFOLS",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 8.0,
-      "posicion_abierta": 974.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "GRIFOLS",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "posicion_abierta": 8.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "HBX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
@@ -40811,7 +40732,7 @@
       "posicion_abierta": 20.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "HBX",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -40819,7 +40740,7 @@
       "posicion_abierta": 30.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "HBX",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -40827,7 +40748,7 @@
       "posicion_abierta": 30.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "HBX",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
@@ -40835,7 +40756,7 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "HBX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
@@ -40843,7 +40764,7 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "HBX",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -40851,23 +40772,23 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3253.0
+      "posicion_abierta": 3329.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 4160.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 4161.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
@@ -40875,7 +40796,7 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -40883,7 +40804,7 @@
       "posicion_abierta": 121.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -40891,15 +40812,15 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 891.0
+      "posicion_abierta": 2283.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -40907,63 +40828,55 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "posicion_abierta": 235.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 33.0
+      "volumen_contratos": 50.0,
+      "posicion_abierta": 241.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "IAG",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 5389.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 56.0
+      "posicion_abierta": 57.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 1670.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1742.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 19074.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 19084.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 76.0
+      "posicion_abierta": 78.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -40971,7 +40884,7 @@
       "posicion_abierta": 50.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -40979,63 +40892,63 @@
       "posicion_abierta": 407.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 25.0
+      "posicion_abierta": 26.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IAG",
       "tipo": "PUT",
-      "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 200.0,
-      "posicion_abierta": 560.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "IAG",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1067.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "IAG",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-27",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
       "posicion_abierta": 11.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "IAG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Oct-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1069.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "IAG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 13.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 48834.0
+      "posicion_abierta": 54217.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 50745.0
+      "posicion_abierta": 52234.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5553.0
+      "posicion_abierta": 5580.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
@@ -41043,7 +40956,7 @@
       "posicion_abierta": 6031.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-30",
@@ -41051,23 +40964,23 @@
       "posicion_abierta": 245.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 7091.0
+      "posicion_abierta": 11475.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 28.0
+      "posicion_abierta": 26.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-30",
@@ -41075,15 +40988,15 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 964.0
+      "posicion_abierta": 1156.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -41091,55 +41004,55 @@
       "posicion_abierta": 110.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
+      "posicion_abierta": 6453.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 21134.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 26158.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "IBERDROLA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 40451.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 10460.0
+      "posicion_abierta": 10468.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "IBERDROLA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 100.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 10.0,
-      "posicion_abierta": 341060.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 354132.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 143988.0
+      "posicion_abierta": 146997.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -41147,7 +41060,7 @@
       "posicion_abierta": 9001.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
@@ -41155,7 +41068,7 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-30",
@@ -41163,15 +41076,15 @@
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 18156.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 31684.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -41179,15 +41092,15 @@
       "posicion_abierta": 300.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 398.0
+      "volumen_contratos": 5.0,
+      "posicion_abierta": 5438.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -41195,47 +41108,39 @@
       "posicion_abierta": 200.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 12.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 26567.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 5019.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 5081.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "IBERDROLA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 74563.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "IBERDROLA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 40979.0
+      "posicion_abierta": 43987.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 3400.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 3392.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -41243,7 +41148,7 @@
       "posicion_abierta": 891.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
@@ -41251,7 +41156,7 @@
       "posicion_abierta": 492.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
@@ -41259,7 +41164,7 @@
       "posicion_abierta": 220.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -41267,7 +41172,7 @@
       "posicion_abierta": 814.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -41275,63 +41180,63 @@
       "posicion_abierta": 250.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 933.0
+      "posicion_abierta": 1087.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
-      "volumen_contratos": 1.0,
+      "volumen_contratos": 0.0,
       "posicion_abierta": 402.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 106.0
+      "posicion_abierta": 3561.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 6049.0
+      "posicion_abierta": 6306.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "INDITEX",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 7.0,
-      "posicion_abierta": 6351.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 76.0
+      "posicion_abierta": 79.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "INDITEX",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 4764.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 5278.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -41339,7 +41244,7 @@
       "posicion_abierta": 3675.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -41347,7 +41252,7 @@
       "posicion_abierta": 25.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
@@ -41355,15 +41260,15 @@
       "posicion_abierta": 220.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 6.0,
-      "posicion_abierta": 1856.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1862.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -41371,15 +41276,15 @@
       "posicion_abierta": 100.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 70.0,
-      "posicion_abierta": 3803.0
+      "volumen_contratos": 150.0,
+      "posicion_abierta": 4092.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -41387,55 +41292,47 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 9.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 9.0,
-      "posicion_abierta": 39.0
+      "volumen_contratos": 150.0,
+      "posicion_abierta": 347.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "INDITEX",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 6339.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 111.0
+      "posicion_abierta": 112.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 865.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 873.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 1.0,
+      "volumen_contratos": 0.0,
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
@@ -41443,7 +41340,7 @@
       "posicion_abierta": 25.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -41451,39 +41348,31 @@
       "posicion_abierta": 22.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 39.0
+      "posicion_abierta": 69.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 6.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 471.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 26.0
+      "volumen_contratos": 15.0,
+      "posicion_abierta": 219.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "INDRA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 441.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
@@ -41491,7 +41380,7 @@
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-28",
@@ -41499,71 +41388,63 @@
       "posicion_abierta": 25.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 435.0
+      "volumen_contratos": 6.0,
+      "posicion_abierta": 478.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 1.0,
+      "volumen_contratos": 0.0,
       "posicion_abierta": 526.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 18.0
+      "posicion_abierta": 22.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 32.0
+      "volumen_contratos": 7.0,
+      "posicion_abierta": 40.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 8.0
+      "posicion_abierta": 65.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 66.0
+      "volumen_contratos": 10.0,
+      "posicion_abierta": 137.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "INDRA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1810.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20.0
+      "posicion_abierta": 48.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "INDRA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-28",
@@ -41571,15 +41452,15 @@
       "posicion_abierta": 25.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 882.0
+      "posicion_abierta": 883.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -41587,7 +41468,7 @@
       "posicion_abierta": 35.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -41595,39 +41476,39 @@
       "posicion_abierta": 12.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "LABORAT. ROVI",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 7.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 1.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "LABORAT. ROVI",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 786.0
+      "posicion_abierta": 18.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1657.0
+      "posicion_abierta": 1656.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 42.0
+      "posicion_abierta": 52.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -41635,95 +41516,79 @@
       "posicion_abierta": 33.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 14.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "LABORAT. ROVI",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20.0
+      "posicion_abierta": 25.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "LABORAT. ROVI",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1537.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 63.0
+      "posicion_abierta": 78.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "volumen_contratos": 740.0,
+      "posicion_abierta": 745.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 16.0
+      "posicion_abierta": 19.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 16.0
+      "posicion_abierta": 43.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 24.0
+      "posicion_abierta": 86.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 11.0
+      "posicion_abierta": 16.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "MAPFRE",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 860.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 224.0
+      "posicion_abierta": 246.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -41731,47 +41596,55 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "MAPFRE",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 3.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3010.0
+      "posicion_abierta": 3011.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "volumen_contratos": 10.0,
+      "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 10.0
+      "posicion_abierta": 18.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MAPFRE",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 88.0
+      "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 73.0
+      "posicion_abierta": 77.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -41779,7 +41652,7 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -41787,23 +41660,15 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 463.0
+      "posicion_abierta": 2363.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "MELIA HOTELS",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1936.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
@@ -41811,7 +41676,7 @@
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
@@ -41819,7 +41684,7 @@
       "posicion_abierta": 50.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -41827,15 +41692,23 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 278.0
+      "posicion_abierta": 298.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "MELIA HOTELS",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "MELIA HOTELS",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
@@ -41843,23 +41716,15 @@
       "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "MELIA HOTELS",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 105.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 14693.0
+      "posicion_abierta": 14694.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -41867,7 +41732,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -41875,15 +41740,15 @@
       "posicion_abierta": 8.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 15.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 21.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
@@ -41891,23 +41756,15 @@
       "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "MERLIN",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 19396.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 352.0
+      "posicion_abierta": 455.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -41915,15 +41772,15 @@
       "posicion_abierta": 5000.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 13.0
+      "posicion_abierta": 67.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -41931,39 +41788,31 @@
       "posicion_abierta": 19.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 40.0
+      "posicion_abierta": 39.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MERLIN",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 256.0
+      "posicion_abierta": 244.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "MERLIN",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 43.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 38021.0
+      "volumen_contratos": 3.0,
+      "posicion_abierta": 42826.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -41971,7 +41820,7 @@
       "posicion_abierta": 7013.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
@@ -41979,23 +41828,31 @@
       "posicion_abierta": 1800.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-29",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 15.0
+      "posicion_abierta": 27.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 791.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 10807.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -42003,55 +41860,47 @@
       "posicion_abierta": 96.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 17.0,
-      "posicion_abierta": 41.0
+      "volumen_contratos": 6.0,
+      "posicion_abierta": 1091.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 9.0,
-      "posicion_abierta": 413.0
+      "volumen_contratos": 33.0,
+      "posicion_abierta": 1332.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 76.0,
-      "posicion_abierta": 12192.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 6.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 22754.0
+      "volumen_contratos": 28.0,
+      "posicion_abierta": 27554.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 7103.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 7104.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -42059,15 +41908,15 @@
       "posicion_abierta": 1800.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 43.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 60.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -42075,7 +41924,7 @@
       "posicion_abierta": 192.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-29",
@@ -42083,7 +41932,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-31",
@@ -42091,47 +41940,47 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 878.0
+      "posicion_abierta": 10886.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 31.0
+      "volumen_contratos": 17.0,
+      "posicion_abierta": 944.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 63.0,
-      "posicion_abierta": 521.0
+      "volumen_contratos": 43.0,
+      "posicion_abierta": 2033.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 102.0,
-      "posicion_abierta": 23906.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 160.0
+      "posicion_abierta": 166.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "MINI IBEX-35",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-28",
@@ -42139,63 +41988,71 @@
       "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 947.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 948.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 67.0,
-      "posicion_abierta": 927.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 931.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 608.0
+      "posicion_abierta": 640.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "NATURGY",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 236.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
+      "posicion_abierta": 43.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "NATURGY",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "NATURGY",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 401.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 2538.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 2547.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -42203,7 +42060,7 @@
       "posicion_abierta": 97.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -42211,7 +42068,7 @@
       "posicion_abierta": 22.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -42219,7 +42076,7 @@
       "posicion_abierta": 95.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -42227,31 +42084,23 @@
       "posicion_abierta": 696.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 39.0
+      "posicion_abierta": 85.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "NATURGY",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 679.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "NATURGY",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
@@ -42259,7 +42108,7 @@
       "posicion_abierta": 95.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "OBRASCON HUARTE",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
@@ -42267,7 +42116,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "OBRASCON HUARTE",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -42275,7 +42124,7 @@
       "posicion_abierta": 1000.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "OBRASCON HUARTE",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -42283,7 +42132,7 @@
       "posicion_abierta": 900.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "OBRASCON HUARTE",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -42291,7 +42140,7 @@
       "posicion_abierta": 300.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "OBRASCON HUARTE",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -42299,23 +42148,23 @@
       "posicion_abierta": 60.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "OBRASCON HUARTE",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 320.0
+      "posicion_abierta": 105.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PHARMA MAR",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PHARMA MAR",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -42323,127 +42172,135 @@
       "posicion_abierta": 6.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PHARMA MAR",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 6.0
+      "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "PHARMA MAR",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 23.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PHARMA MAR",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 38.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 36.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PHARMA MAR",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 13.0
+      "posicion_abierta": 15.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PHARMA MAR",
       "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 18.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "PHARMA MAR",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 3.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "PUIG",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 173.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "PUIG",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 23.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "PUIG",
+      "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
       "posicion_abierta": 17.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "PHARMA MAR",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 78.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "PUIG",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 90.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "PUIG",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 13.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "posicion_abierta": 54.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 16.0
+      "posicion_abierta": 63.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 17567.0
+      "posicion_abierta": 2.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 3146.0
+      "posicion_abierta": 3141.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 473.0
+      "posicion_abierta": 476.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 443.0
+      "posicion_abierta": 444.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "PUIG",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Jun-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 3.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 399.0
+      "posicion_abierta": 383.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -42451,71 +42308,63 @@
       "posicion_abierta": 143.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 35.0
+      "posicion_abierta": 43.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 19.0
+      "posicion_abierta": 43.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "PUIG",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 8891.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "PUIG",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 19.0
+      "posicion_abierta": 22.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 442.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 478.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 284.0
+      "posicion_abierta": 289.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 29.0
+      "posicion_abierta": 35.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 535.0
+      "posicion_abierta": 408.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
@@ -42523,31 +42372,23 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "REDEIA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 76.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 2.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 4.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 560.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 684.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -42555,7 +42396,7 @@
       "posicion_abierta": 37.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -42563,87 +42404,79 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 96.0
+      "posicion_abierta": 130.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 330.0
+      "posicion_abierta": 364.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 32.0
+      "posicion_abierta": 64.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 84.0
+      "posicion_abierta": 153.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "REDEIA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 191.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REDEIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 5.0
+      "posicion_abierta": 18.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 6.0,
-      "posicion_abierta": 19219.0
+      "volumen_contratos": 57.0,
+      "posicion_abierta": 26957.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 43150.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 43168.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4290.0
+      "posicion_abierta": 4301.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 230.0
+      "posicion_abierta": 3231.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-30",
@@ -42651,111 +42484,111 @@
       "posicion_abierta": 4500.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1375.0
+      "posicion_abierta": 1426.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 6033.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 6583.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-29",
+      "volumen_contratos": 10.0,
+      "posicion_abierta": 20.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "REPSOL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "volumen_contratos": 7.0,
+      "posicion_abierta": 7103.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "REPSOL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-28",
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 11816.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "REPSOL",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-29",
       "volumen_contratos": 0.0,
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "REPSOL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 24.0,
-      "posicion_abierta": 7022.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "REPSOL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Mar-28",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 11813.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 185.0
+      "volumen_contratos": 106.0,
+      "posicion_abierta": 1125.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 25.0,
-      "posicion_abierta": 9455.0
+      "volumen_contratos": 150.0,
+      "posicion_abierta": 13597.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "REPSOL",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 32.0,
-      "posicion_abierta": 14103.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 8030.0
+      "posicion_abierta": 8020.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 3036.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 764.0,
-      "posicion_abierta": 158387.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 159219.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 144442.0
+      "posicion_abierta": 146486.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 85036.0
+      "posicion_abierta": 89066.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
@@ -42763,7 +42596,7 @@
       "posicion_abierta": 84825.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-30",
@@ -42771,15 +42604,15 @@
       "posicion_abierta": 6000.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 20.0,
-      "posicion_abierta": 31114.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 31144.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -42787,7 +42620,7 @@
       "posicion_abierta": 13728.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-29",
@@ -42795,71 +42628,63 @@
       "posicion_abierta": 140.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 3621.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 3967.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2410.0
+      "posicion_abierta": 3910.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 584.0
+      "volumen_contratos": 4.0,
+      "posicion_abierta": 986.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 11.0,
-      "posicion_abierta": 362.0
+      "volumen_contratos": 25.0,
+      "posicion_abierta": 9934.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "REPSOL",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 32.0,
-      "posicion_abierta": 23002.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2023.0
+      "posicion_abierta": 2033.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "REPSOL",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 300.0
+      "posicion_abierta": 561.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 163.0
+      "posicion_abierta": 142.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
@@ -42867,7 +42692,7 @@
       "posicion_abierta": 25.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
@@ -42875,15 +42700,15 @@
       "posicion_abierta": 65.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20020.0
+      "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
@@ -42891,23 +42716,31 @@
       "posicion_abierta": 80.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "SACYR",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 40.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1160.0
+      "posicion_abierta": 1165.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1043.0
+      "posicion_abierta": 1143.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -42915,7 +42748,7 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
@@ -42923,47 +42756,47 @@
       "posicion_abierta": 100.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SACYR",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 125.0
+      "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 124503.0
+      "volumen_contratos": 12.0,
+      "posicion_abierta": 123265.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 95457.0
+      "posicion_abierta": 95462.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 8063.0
+      "posicion_abierta": 8014.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 19176.0
+      "posicion_abierta": 31743.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
@@ -42971,55 +42804,47 @@
       "posicion_abierta": 3666.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 73036.0
+      "posicion_abierta": 98653.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 11480.0
+      "posicion_abierta": 11481.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 25.0,
-      "posicion_abierta": 100.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 14423.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 30.0,
-      "posicion_abierta": 54218.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 62279.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "SANTANDER",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 3.0,
-      "posicion_abierta": 48842.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 158.0
+      "posicion_abierta": 1715.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-28",
@@ -43027,31 +42852,31 @@
       "posicion_abierta": 18.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 395406.0
+      "posicion_abierta": 395452.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 268741.0
+      "posicion_abierta": 268753.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 58000.0
+      "posicion_abierta": 58001.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
@@ -43059,7 +42884,7 @@
       "posicion_abierta": 39410.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-30",
@@ -43067,31 +42892,31 @@
       "posicion_abierta": 10243.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 1.0,
-      "posicion_abierta": 98219.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 122901.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 24933.0
+      "posicion_abierta": 29934.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 106674.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 137825.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
@@ -43099,55 +42924,47 @@
       "posicion_abierta": 24168.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "volumen_contratos": 7.0,
-      "posicion_abierta": 306.0
+      "volumen_contratos": 720.0,
+      "posicion_abierta": 3205.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 28.0,
-      "posicion_abierta": 1560.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 12003.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "SANTANDER",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 27.0,
-      "posicion_abierta": 140128.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SANTANDER",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 614.0
+      "posicion_abierta": 5641.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "SANTANDER",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Sep-28",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 1.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "SOLARIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 9.0
+      "posicion_abierta": 13.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "SOLARIA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SOLARIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
@@ -43155,79 +42972,79 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SOLARIA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 8.0
+      "posicion_abierta": 11.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "SOLARIA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 25.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SOLARIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 73.0
+      "posicion_abierta": 11.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "SOLARIA",
       "tipo": "PUT",
-      "fecha_vencimiento": "Nov-26",
+      "fecha_vencimiento": "Jun-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 65.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
+      "accion": "SOLARIA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "SOLARIA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 13.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "SOLARIA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4000.0
+      "posicion_abierta": 1411.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "SOLARIA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 1378.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 15.0
+      "volumen_contratos": 3.0,
+      "posicion_abierta": 21.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 12.0
+      "posicion_abierta": 16.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 2.0
+      "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
@@ -43235,39 +43052,31 @@
       "posicion_abierta": 45.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 13.0
+      "posicion_abierta": 39.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 5.0,
-      "posicion_abierta": 18.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "TECNICAS REUNIDAS",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 178.0
+      "posicion_abierta": 57.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 38.0
+      "posicion_abierta": 43.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
@@ -43275,7 +43084,7 @@
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -43283,7 +43092,7 @@
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -43291,63 +43100,63 @@
       "posicion_abierta": 6.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 4.0
+      "posicion_abierta": 11.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 6.0
+      "posicion_abierta": 21.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TECNICAS REUNIDAS",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 35.0
+      "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 322496.0
+      "volumen_contratos": 3.0,
+      "posicion_abierta": 344092.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 67204.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 67305.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 256.0
+      "posicion_abierta": 696.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-29",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 591.0
+      "posicion_abierta": 606.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-30",
@@ -43355,23 +43164,23 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 35990.0
+      "posicion_abierta": 36318.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-28",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 431.0
+      "volumen_contratos": 30.0,
+      "posicion_abierta": 490.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-29",
@@ -43379,15 +43188,15 @@
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-30",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 250.0
+      "posicion_abierta": 400.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-31",
@@ -43395,55 +43204,47 @@
       "posicion_abierta": 50.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 25806.0
+      "volumen_contratos": 10.0,
+      "posicion_abierta": 26247.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 944.0
+      "posicion_abierta": 951.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 18.0
+      "posicion_abierta": 7188.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 15000.0,
-      "posicion_abierta": 15132.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
-      "accion": "TELEFONICA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 13796.0
+      "posicion_abierta": 25244.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 219.0
+      "posicion_abierta": 283.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "CALL",
       "fecha_vencimiento": "Sep-28",
@@ -43451,31 +43252,31 @@
       "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 345341.0
+      "volumen_contratos": 7.0,
+      "posicion_abierta": 345391.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 102814.0
+      "posicion_abierta": 102846.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 20055.0
+      "posicion_abierta": 20058.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-29",
@@ -43483,15 +43284,15 @@
       "posicion_abierta": 150.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 30846.0
+      "posicion_abierta": 30996.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-28",
@@ -43499,55 +43300,47 @@
       "posicion_abierta": 28.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 31215.0
+      "volumen_contratos": 40.0,
+      "posicion_abierta": 26521.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-28",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 103.0
+      "posicion_abierta": 113.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 95.0
+      "posicion_abierta": 353.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 450.0
+      "posicion_abierta": 10708.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "TELEFONICA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 12354.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-27",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 92.0
+      "volumen_contratos": 10.0,
+      "posicion_abierta": 286.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "TELEFONICA",
       "tipo": "PUT",
       "fecha_vencimiento": "Sep-28",
@@ -43555,15 +43348,15 @@
       "posicion_abierta": 50.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "UNICAJA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 148.0
+      "posicion_abierta": 160.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "UNICAJA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -43571,15 +43364,15 @@
       "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "UNICAJA",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 167.0
+      "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "UNICAJA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
@@ -43587,15 +43380,15 @@
       "posicion_abierta": 39.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "UNICAJA",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 300.0
+      "posicion_abierta": 3.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VIDRALA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
@@ -43603,7 +43396,7 @@
       "posicion_abierta": 6.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VIDRALA",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
@@ -43611,15 +43404,15 @@
       "posicion_abierta": 16.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VIDRALA",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 100.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VIDRALA",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
@@ -43627,7 +43420,7 @@
       "posicion_abierta": 7.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VIDRALA",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
@@ -43635,63 +43428,63 @@
       "posicion_abierta": 14.0
     },
     {
-      "fecha_boletin": "11/09/26",
-      "accion": "VIDRALA",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 14.0
-    },
-    {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-26",
-      "volumen_contratos": 0.0,
-      "posicion_abierta": 3.0
+      "volumen_contratos": 2.0,
+      "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "CALL",
       "fecha_vencimiento": "Jun-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 6.0
+      "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "CALL",
       "fecha_vencimiento": "Mar-27",
-      "volumen_contratos": 4.0,
-      "posicion_abierta": 7.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 8.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "CALL",
-      "fecha_vencimiento": "Oct-26",
+      "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
       "posicion_abierta": 5.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "CALL",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Oct-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 72.0
+      "posicion_abierta": 10.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
+      "accion": "VISCOFAN",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Sep-27",
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 4.0
+    },
+    {
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
       "volumen_contratos": 2.0,
-      "posicion_abierta": 48.0
+      "posicion_abierta": 54.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-27",
@@ -43699,7 +43492,7 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-28",
@@ -43707,44 +43500,44 @@
       "posicion_abierta": 1.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
       "fecha_vencimiento": "Jun-27",
-      "volumen_contratos": 2.0,
-      "posicion_abierta": 14.0
+      "volumen_contratos": 0.0,
+      "posicion_abierta": 17.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
       "fecha_vencimiento": "Mar-27",
       "volumen_contratos": 3.0,
-      "posicion_abierta": 35.0
+      "posicion_abierta": 50.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 1.0
+      "posicion_abierta": 31.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
       "fecha_vencimiento": "Oct-26",
-      "volumen_contratos": 3.0,
-      "posicion_abierta": 13.0
+      "volumen_contratos": 1.0,
+      "posicion_abierta": 18.0
     },
     {
-      "fecha_boletin": "11/09/26",
+      "fecha_boletin": "12/10/26",
       "accion": "VISCOFAN",
       "tipo": "PUT",
-      "fecha_vencimiento": "Sep-26",
+      "fecha_vencimiento": "Sep-27",
       "volumen_contratos": 0.0,
-      "posicion_abierta": 104.0
+      "posicion_abierta": 2.0
     },
     {
       "fecha_boletin": "14/09/26",
