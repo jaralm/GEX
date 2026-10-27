@@ -230,11 +230,46 @@ def es_vacio(v):
     return v.strip() in ("", "-", "\u2013", "\u2014", "N/A")
 
 
+# Celda "vencimiento + strike" del boletín MEFF.
+# Hasta el boletín del 22/10/26 MEFF escribía "Nov-26 17.300"; desde el del
+# 23/10/26 escribe "Nov.-26 17.300" (punto tras el mes). Se aceptan ambos y el
+# vencimiento se normaliza SIEMPRE sin punto ("Nov-26"), que es el formato que
+# esperan el histórico, gex_calculator.py y el dashboard.
+_PAT_FECHA_STRIKE = re.compile(
+    r"^(\d{0,2}-?)([A-Za-z]{3})\.?-(\d{2,4})\s*([\d.,]*)$"
+)
+
+
 def separar_fecha_strike(celda):
-    m = re.match(r"^(\d{0,2}-?[A-Za-z]{3}-\d{2,4})\s*([\d.,]*)$", celda)
+    m = _PAT_FECHA_STRIKE.match(str(celda).strip())
     if m:
-        return m.group(1), m.group(2)
+        fecha = f"{m.group(1)}{m.group(2)}-{m.group(3)}"
+        return fecha, m.group(4)
     return celda, ""
+
+
+def vcto_bien_formado(v) -> bool:
+    """True si el vencimiento tiene la forma normalizada 'Mmm-YY' (o 'dd-Mmm-YY')."""
+    return bool(re.fullmatch(r"(\d{1,2}-)?[A-Za-z]{3}-\d{2,4}", str(v).strip()))
+
+
+def validar_formato(df: pd.DataFrame, max_malas: float = 0.05):
+    """Comprueba que el scraping ha separado bien vencimiento y strike.
+
+    Devuelve (ok, mensaje). Si más de un 5 % de las filas tiene el strike
+    vacío o un vencimiento con forma desconocida, se considera que MEFF ha
+    cambiado el formato del boletín y el boletín NO debe guardarse.
+    """
+    if df.empty:
+        return False, "sin filas"
+    strike_vacio = df["strike"].astype(str).str.strip().eq("").mean()
+    vcto_malo = (~df["fecha_vencimiento"].apply(vcto_bien_formado)).mean()
+    if strike_vacio > max_malas or vcto_malo > max_malas:
+        ejemplos = df.loc[~df["fecha_vencimiento"].apply(vcto_bien_formado),
+                          "fecha_vencimiento"].head(3).tolist()
+        return False, (f"strike vacío en {strike_vacio:.0%} de filas, vencimiento "
+                       f"irreconocible en {vcto_malo:.0%} (ej.: {ejemplos})")
+    return True, ""
 
 
 # ── Extracción de spots ────────────────────────────────────────────────────────
@@ -1079,8 +1114,85 @@ def nombre_csv_libre(hoy, fecha_bol):
     return f"{CARPETA}/meff_opciones_{hoy}_b{suf}.csv"
 
 
-def procesar_principal(df, hoy, nombre_csv):
-    """Pipeline completo (CSV + TXT + email + JSONs) para el boletín más reciente."""
+def leer_csv_texto(ruta):
+    """Lee un CSV del pipeline como texto, con las celdas vacías como '' (no NaN)."""
+    return pd.read_csv(ruta, sep=";", encoding="utf-8-sig", dtype=str,
+                       keep_default_na=False, na_filter=False)
+
+
+def reparar_csvs():
+    """Repara los CSV guardados con vencimiento y strike juntos en una columna.
+
+    Afecta a los boletines del 23/10/26 en adelante guardados antes del arreglo
+    de separar_fecha_strike(): 'fecha_vencimiento' = 'Nov.-26 17.300' y
+    'strike' vacío. Se separan, se normaliza el vencimiento ('Nov-26') y se
+    reescribe el CSV en su sitio. Es idempotente: un CSV sano no se toca.
+
+    Devuelve la lista de rutas reparadas.
+    """
+    reparados = []
+    for ruta in sorted(glob.glob(f"{CARPETA}/meff_opciones_*.csv")):
+        try:
+            d = leer_csv_texto(ruta)
+        except Exception as exc:
+            print(f"AVISO: no se pudo leer {ruta} para revisarlo ({exc})")
+            continue
+        if "fecha_vencimiento" not in d.columns or "strike" not in d.columns:
+            continue
+        mal = (d["strike"].str.strip() == "") & ~d["fecha_vencimiento"].apply(vcto_bien_formado)
+        if not mal.any():
+            continue
+        partes = d.loc[mal, "fecha_vencimiento"].apply(separar_fecha_strike)
+        d.loc[mal, "fecha_vencimiento"] = partes.str[0]
+        d.loc[mal, "strike"] = partes.str[1]
+        ok, msg = validar_formato(d)
+        if not ok:
+            print(f"AVISO: {ruta} no se ha podido reparar ({msg}); se deja como estaba.")
+            continue
+        d.to_csv(ruta, index=False, sep=";", encoding="utf-8-sig")
+        print(f"CSV reparado (vencimiento/strike separados): {ruta}  ({int(mal.sum())} filas)")
+        reparados.append(ruta)
+    return reparados
+
+
+def hoy_de_csv(ruta):
+    """'YYYYMMDD' de ejecución con que se nombró el CSV (meff_opciones_YYYYMMDD*.csv)."""
+    m = re.search(r"meff_opciones_(\d{8})", os.path.basename(ruta))
+    return m.group(1) if m else None
+
+
+def regenerar_txt(df, hoy):
+    """Reescribe los informes TXT de un boletín ya guardado (sin email ni JSON)."""
+    fecha_boletin_val = df["fecha_boletin"].iloc[0]
+    titulo_top10 = f"MEFF - TOP 10 VOLUMEN CONTRATOS  |  Boletin: {fecha_boletin_val}"
+    txt_top10 = construir_informe(titulo_top10, df, n=10, incluir_spot_col=True)
+    txt_top10 += f"Generado: {datetime.today().strftime('%d/%m/%Y %H:%M')}\n"
+    with open(f"{CARPETA}/meff_top10_{hoy}.txt", "w", encoding="utf-8") as f:
+        f.write(txt_top10)
+    mask_mini = df["accion"].str.upper().str.contains("MINI IBEX", na=False)
+    df_mini = df[mask_mini].copy()
+    if not df_mini.empty:
+        titulo_mini = (f"MEFF - TOP 5 {df_mini['accion'].iloc[0].upper()} (CALL+PUT)"
+                       f"  |  Boletin: {fecha_boletin_val}")
+        spot_mini_raw = df_mini["spot"].replace("", pd.NA).dropna()
+        spot_mini_val = None
+        if not spot_mini_raw.empty:
+            v = a_float(str(spot_mini_raw.iloc[0]))
+            if not np.isnan(v):
+                spot_mini_val = v
+        txt_mini = construir_informe(titulo_mini, df_mini, n=5, spot_footer=spot_mini_val)
+        txt_mini += f"Generado: {datetime.today().strftime('%d/%m/%Y %H:%M')}\n"
+        with open(f"{CARPETA}/meff_mini_ibex_{hoy}.txt", "w", encoding="utf-8") as f:
+            f.write(txt_mini)
+    print(f"TXT regenerados: meff_top10_{hoy}.txt / meff_mini_ibex_{hoy}.txt")
+
+
+def procesar_principal(df, hoy, nombre_csv, enviar=True):
+    """Pipeline completo (CSV + TXT + email + JSONs) para el boletín más reciente.
+
+    enviar=False se usa al regenerar un boletín ya guardado tras repararlo:
+    se rehacen TXT y JSON, pero no se manda el email otra vez.
+    """
     # ── Diagnóstico rápido ─────────────────────────────────────────────────────
     spots_encontrados = df[df["spot"] != ""][["accion", "spot"]].drop_duplicates()
     if not spots_encontrados.empty:
@@ -1144,7 +1256,10 @@ def procesar_principal(df, hoy, nombre_csv):
     contenido_email = txt_top10
     if txt_mini:
         contenido_email += "\n\n" + txt_mini
-    enviar_email(contenido_email)
+    if enviar:
+        enviar_email(contenido_email)
+    else:
+        print("Email no enviado (regeneración de un boletín ya guardado).")
 
     # ── JSON Tab TOP POSICIONES ────────────────────────────────────────────────
     # (llamada al generador que faltaba — FIX del bug de fecha atrasada)
@@ -1176,6 +1291,12 @@ def main():
     almacenan las nuevas. Si no hay nada nuevo, no se toca nada.
     """
     hoy = datetime.today().strftime("%Y%m%d")
+
+    # Reparación de CSV guardados con vencimiento y strike juntos (cambio de
+    # formato de MEFF del 23/10/26). Idempotente: si no hay nada que reparar,
+    # no hace nada.
+    reparados = reparar_csvs()
+
     conocidas = fechas_conocidas()
 
     candidatos = {}   # fecha (date) -> soup
@@ -1202,12 +1323,17 @@ def main():
     nuevas = sorted(f for f in candidatos if f not in conocidas)
     if not nuevas:
         print(f"Sin boletines nuevos (último guardado: "
-              f"{max(conocidas).strftime('%d/%m/%Y') if conocidas else '—'}). No se modifica nada.")
+              f"{max(conocidas).strftime('%d/%m/%Y') if conocidas else '—'}).")
+        if reparados:
+            regenerar_tras_reparar(reparados)
+        else:
+            print("No se modifica nada.")
         return
 
     print("Boletines nuevos: " + ", ".join(f.strftime("%d/%m/%Y") for f in nuevas))
     ultimo_guardado = max(conocidas) if conocidas else None
     procesados = 0
+    errores_formato = []
     principal = None   # (df, nombre_csv) del boletín más reciente si supera al último guardado
 
     for f in nuevas:
@@ -1218,6 +1344,14 @@ def main():
             continue
         if df.empty:
             print(f"AVISO: boletín {f} sin datos; se ignora.")
+            continue
+        ok, msg = validar_formato(df)
+        if not ok:
+            # Formato del boletín irreconocible: no se guarda nada de este
+            # boletín (así se reintenta en la próxima ejecución, una vez
+            # corregido el scraper) y el workflow terminará en error.
+            print(f"ERROR: boletín {f} con formato inesperado: {msg}. No se guarda.")
+            errores_formato.append(f)
             continue
         nombre_csv = nombre_csv_libre(hoy, f)
         cols_presentes = [c for c in COLS_CSV if c in df.columns]
@@ -1232,8 +1366,15 @@ def main():
         procesados += 1
 
     if procesados == 0:
+        if reparados:
+            regenerar_tras_reparar(reparados)
         print("ERROR: había boletines nuevos pero ninguno procesable.")
         raise SystemExit(1)
+
+    if reparados:
+        # Los boletines nuevos se procesan a continuación y rehacen los
+        # "latest"; de los reparados solo hace falta rehacer sus TXT.
+        regenerar_tras_reparar(reparados, rehacer_latest=False)
 
     if principal is not None:
         procesar_principal(principal[0], hoy, principal[1])
@@ -1241,6 +1382,48 @@ def main():
         mantener_ultimos_20()
         construir_historico()
         print("\n✓ Histórico reconstruido con boletines recuperados (JSON latest sin cambios).")
+
+    if errores_formato:
+        print("ERROR: boletines no guardados por formato inesperado: "
+              + ", ".join(f.strftime("%d/%m/%Y") for f in errores_formato))
+        raise SystemExit(1)
+
+
+def regenerar_tras_reparar(reparados, rehacer_latest=True):
+    """Rehace las salidas que dependían de CSV reparados.
+
+    - TXT de cada boletín reparado (selector de fecha de Top Posiciones).
+    - Si rehacer_latest y entre los reparados está el boletín más reciente
+      guardado: rehace también los JSON "latest" (GEX, DEX, Opciones,
+      Informes) sin enviar el email. Si no, solo el histórico.
+    """
+    for ruta in reparados:
+        h = hoy_de_csv(ruta)
+        if h:
+            try:
+                regenerar_txt(leer_csv_texto(ruta), h)
+            except Exception as exc:
+                print(f"AVISO: no se pudieron regenerar los TXT de {ruta} ({exc})")
+
+    if not rehacer_latest:
+        return
+
+    por_fecha = {}
+    for r in glob.glob(f"{CARPETA}/meff_opciones_*.csv"):
+        fch = fecha_de_csv(r)
+        if fch and (fch not in por_fecha or r > por_fecha[fch]):
+            por_fecha[fch] = r
+    if not por_fecha:
+        return
+    ruta_ultimo = por_fecha[max(por_fecha)]
+    if ruta_ultimo in reparados and hoy_de_csv(ruta_ultimo):
+        print(f"\nRegenerando salidas 'latest' del boletín reparado más reciente: {ruta_ultimo}")
+        procesar_principal(leer_csv_texto(ruta_ultimo), hoy_de_csv(ruta_ultimo),
+                           ruta_ultimo, enviar=False)
+    else:
+        mantener_ultimos_20()
+        construir_historico()
+        print("\n✓ Histórico reconstruido con CSV reparados (JSON latest sin cambios).")
 
 
 if __name__ == "__main__":
