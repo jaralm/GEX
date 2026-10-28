@@ -31,6 +31,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    // Tema claro/oscuro: se aplica antes de pintar para evitar parpadeo
+    (function () {
+      var t = 'dark';
+      try { var g = localStorage.getItem('gammaibex-tema'); if (g === 'light' || g === 'dark') t = g; } catch (e) {}
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 
   <style>
@@ -53,8 +61,101 @@
       --violet:     #a78bfa;
       --violet-dim: rgba(167,139,250,.15);
       --accent:     #6366f1;
+      --accent-dim: rgba(99,102,241,.08);
       --cyan:       #06b6d4;
+      --on-accent:  #ffffff;
+      --overlay:    rgba(5,5,8,.85);
+      --overlay2:   rgba(5,5,8,.65);
+      --shadow:     rgba(0,0,0,.6);
+      --shadow2:    rgba(0,0,0,.5);
+      --row-spot:   rgba(245,158,11,.06);
+      --row-cw:     rgba(34,197,94,.06);
+      --row-pw:     rgba(239,68,68,.06);
+      --badge-spot: rgba(245,158,11,.2);
+      --badge-cw:   rgba(34,197,94,.2);
+      --badge-pw:   rgba(239,68,68,.2);
+      /* Gráficos (Chart.js lee estas variables al pintar) */
+      --ch-bar-call:   rgba(34,197,94,.65);
+      --ch-bar-call-b: rgba(34,197,94,.9);
+      --ch-bar-put:    rgba(239,68,68,.65);
+      --ch-bar-put-b:  rgba(239,68,68,.9);
+      --ch-fill-call:  rgba(34,197,94,.12);
+      --ch-fill-put:   rgba(239,68,68,.12);
+      --ch-legend:     #94a3b8;
+      --ch-tick:       #64748b;
+      --ch-grid:       #1e1e2e;
+      --ch-tip-bg:     #13131e;
+      --ch-tip-border: #2a2a40;
+      --ch-tip-title:  #e2e8f0;
+      --ch-tip-body:   #94a3b8;
+      color-scheme: dark;
     }
+
+    /* ── Tema claro ── */
+    :root[data-theme="light"] {
+      --bg:         #f4f5f8;
+      --bg2:        #ffffff;
+      --bg3:        #eceef3;
+      --border:     #dde1e8;
+      --border2:    #c8ced8;
+      --text:       #1e293b;
+      --muted:      #5b6577;
+      --call:       #15803d;
+      --call-dim:   rgba(21,128,61,.12);
+      --put:        #dc2626;
+      --put-dim:    rgba(220,38,38,.12);
+      --spot:       #b45309;
+      --spot-dim:   rgba(180,83,9,.12);
+      --violet:     #7c3aed;
+      --violet-dim: rgba(124,58,237,.12);
+      --accent:     #4f46e5;
+      --accent-dim: rgba(79,70,229,.08);
+      --cyan:       #0e7490;
+      --on-accent:  #ffffff;
+      --overlay:    rgba(15,23,42,.45);
+      --overlay2:   rgba(15,23,42,.35);
+      --shadow:     rgba(15,23,42,.18);
+      --shadow2:    rgba(15,23,42,.15);
+      --row-spot:   rgba(180,83,9,.08);
+      --row-cw:     rgba(21,128,61,.07);
+      --row-pw:     rgba(220,38,38,.07);
+      --badge-spot: rgba(180,83,9,.14);
+      --badge-cw:   rgba(21,128,61,.14);
+      --badge-pw:   rgba(220,38,38,.14);
+      --ch-bar-call:   rgba(22,163,74,.70);
+      --ch-bar-call-b: rgba(21,128,61,.95);
+      --ch-bar-put:    rgba(220,38,38,.70);
+      --ch-bar-put-b:  rgba(185,28,28,.95);
+      --ch-fill-call:  rgba(22,163,74,.12);
+      --ch-fill-put:   rgba(220,38,38,.12);
+      --ch-legend:     #475569;
+      --ch-tick:       #5b6577;
+      --ch-grid:       #e3e7ee;
+      --ch-tip-bg:     #ffffff;
+      --ch-tip-border: #c8ced8;
+      --ch-tip-title:  #1e293b;
+      --ch-tip-body:   #475569;
+      color-scheme: light;
+    }
+
+    /* ── Botón de tema ── */
+    .header-right { margin-left: auto; }
+    .theme-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; margin-left: 14px; flex-shrink: 0;
+      background: var(--bg3); color: var(--muted);
+      border: 1px solid var(--border2); border-radius: 6px;
+      cursor: pointer; transition: color .15s, border-color .15s;
+    }
+    .theme-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .theme-btn svg { width: 15px; height: 15px; }
+    .theme-btn .ico-sun  { display: block; }
+    .theme-btn .ico-moon { display: none; }
+    :root[data-theme="light"] .theme-btn .ico-sun  { display: none; }
+    :root[data-theme="light"] .theme-btn .ico-moon { display: block; }
+    /* En móvil el botón de la cabecera se oculta y el cambio va en el menú */
+    .ham-theme-btn { margin-top: auto; border-top: 1px solid var(--border); }
+    @media (max-width: 700px) { .theme-btn { display: none; } }
 
     body {
       background: var(--bg);
@@ -180,7 +281,7 @@
     .toggle-btn:first-child { border-radius: 4px 0 0 4px; }
     .toggle-btn:last-child  { border-radius: 0 4px 4px 0; }
     .toggle-btn:not(:first-child) { border-left: none; }
-    .toggle-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .toggle-btn.active { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
 
     /* ── KPI strip ── */
     .kpi-strip {
@@ -247,7 +348,7 @@
       white-space: normal;
       text-align: left;
       pointer-events: none;
-      box-shadow: 0 8px 32px rgba(0,0,0,.6);
+      box-shadow: 0 8px 32px var(--shadow);
     }
     .kpi-tooltip::after {
       content: '';
@@ -300,9 +401,9 @@
     }
     .data-table td:first-child { text-align: left; padding-left: 16px; }
     .data-table tr:hover td { background: var(--bg3) !important; }
-    .row-spot td { background: rgba(245,158,11,.06); }
-    .row-cw   td { background: rgba(34,197,94,.06);  }
-    .row-pw   td { background: rgba(239,68,68,.06);  }
+    .row-spot td { background: var(--row-spot); }
+    .row-cw   td { background: var(--row-cw);   }
+    .row-pw   td { background: var(--row-pw);   }
 
     /* ── Fila TOTAL (Tabla OI en modo "filas = vencimiento") ── */
     .data-table tr.row-total td {
@@ -344,9 +445,9 @@
       display: inline-block; padding: 1px 4px; border-radius: 3px;
       font-size: 7px; font-weight: 700; letter-spacing: .04em; vertical-align: middle;
     }
-    .badge-spot { background: rgba(245,158,11,.2); color: var(--spot); }
-    .badge-cw   { background: rgba(34,197,94,.2);  color: var(--call); }
-    .badge-pw   { background: rgba(239,68,68,.2);  color: var(--put); }
+    .badge-spot { background: var(--badge-spot); color: var(--spot); }
+    .badge-cw   { background: var(--badge-cw);  color: var(--call); }
+    .badge-pw   { background: var(--badge-pw);  color: var(--put); }
 
     /* ── IV cell ── */
     .iv-cell { display: flex; align-items: center; justify-content: flex-end; gap: 5px; }
@@ -499,7 +600,7 @@
     /* ── Error overlay ── */
     .err-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(5,5,8,.85);
+      background: var(--overlay);
       justify-content: center; align-items: center; z-index: 100;
     }
     .err-overlay.show { display: flex; }
@@ -556,7 +657,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(5,5,8,.65);
+      background: var(--overlay2);
       z-index: 300;
       backdrop-filter: blur(2px);
     }
@@ -571,7 +672,7 @@
       display: flex;
       flex-direction: column;
       padding-bottom: 20px;
-      box-shadow: -8px 0 32px rgba(0,0,0,.5);
+      box-shadow: -8px 0 32px var(--shadow2);
     }
     .ham-drawer-header {
       display: flex;
@@ -625,7 +726,7 @@
     .ham-nav-btn.active {
       color: var(--accent);
       border-left-color: var(--accent);
-      background: rgba(99,102,241,.08);
+      background: var(--accent-dim);
     }
     .ham-nav-icon { font-size: 14px; }
 
@@ -650,6 +751,14 @@
       .dot    { font-size: 11px; }
       .title  { display: none; }
       .meta-update { display: none; }
+      /* Cabecera: marca y menú en la primera línea; fecha del boletín debajo */
+      .header        { flex-wrap: wrap; row-gap: 4px; }
+      .header h1     { flex-wrap: nowrap; gap: 6px; min-width: 0; order: 1; }
+      .brand, .subbrand { white-space: nowrap; }
+      .header h1 .dot:nth-child(4) { display: none; }
+      .ham-btn       { order: 2; margin-left: auto; }
+      .header-right  { order: 3; flex-basis: 100%; margin-left: 0; align-items: flex-start; }
+      .meta-fecha    { white-space: normal; font-size: 9px; }
 
       /* Controls */
       .controls { padding: 10px 14px; gap: 10px; }
@@ -714,6 +823,10 @@
     </span>
     <span class="meta-update">Actualización: diaria · próximo boletín al cierre del siguiente día hábil</span>
   </div>
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar a tema claro">
+    <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
   <button class="ham-btn" onclick="hamOpen()" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
@@ -743,6 +856,9 @@
     </button>
     <button class="ham-nav-btn"        id="hbtn-glosario" onclick="hamSwitch('glosario')">
       <span class="ham-nav-icon">≡</span> GLOSARIO
+    </button>
+    <button class="ham-nav-btn ham-theme-btn" id="hbtn-tema" onclick="toggleTheme()">
+      <span class="ham-nav-icon">◐</span> <span id="hbtn-tema-txt">TEMA CLARO</span>
     </button>
   </div>
 </div>
@@ -1336,6 +1452,30 @@
 <script>
 'use strict';
 
+// ── Tema claro/oscuro ────────────────────────────────────────────────────────
+function cv(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue('--' + name).trim();
+}
+function themeSyncBtn() {
+  const b = document.getElementById('theme-btn');
+  const light = document.documentElement.getAttribute('data-theme') === 'light';
+  if (b) b.title = light ? 'Cambiar a tema oscuro' : 'Cambiar a tema claro';
+  const t = document.getElementById('hbtn-tema-txt');
+  if (t) t.textContent = light ? 'TEMA OSCURO' : 'TEMA CLARO';
+}
+function toggleTheme() {
+  const root = document.documentElement;
+  const nuevo = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  root.setAttribute('data-theme', nuevo);
+  try { localStorage.setItem('gammaibex-tema', nuevo); } catch (e) {}
+  themeSyncBtn();
+  // Repintar los gráficos con la paleta nueva
+  try { if (typeof gexRefresh === 'function') gexRefresh(); } catch (e) { console.warn(e); }
+  try { if (typeof dexRefresh === 'function') dexRefresh(); } catch (e) { console.warn(e); }
+  try { if (state.historico && state.historico.data) hisRender(); } catch (e) { console.warn(e); }
+}
+document.addEventListener('DOMContentLoaded', themeSyncBtn);
+
 const state = {
   gex: {
     data: null, chart: null, activo: null, vcto: null,
@@ -1632,10 +1772,10 @@ const gexLinesPlugin = {
       ctx.restore();
     }
 
-    drawLine(kpis.spot,       '#f59e0b', 'SPOT');
-    drawLine(kpis.call_wall,  '#22c55e', 'C·WALL');
-    drawLine(kpis.put_wall,   '#ef4444', 'P·WALL');
-    drawLine(kpis.zero_gamma, '#a78bfa', 'ZERO·γ');
+    drawLine(kpis.spot,       cv('spot'), 'SPOT');
+    drawLine(kpis.call_wall,  cv('call'), 'C·WALL');
+    drawLine(kpis.put_wall,   cv('put'), 'P·WALL');
+    drawLine(kpis.zero_gamma, cv('violet'), 'ZERO·γ');
   }
 };
 
@@ -1647,16 +1787,16 @@ function gexRenderGraph(rows, kpis) {
     datasets = [{
       label: 'NET GEX',
       data:  rows.map(r => r.net_gex || 0),
-      backgroundColor: rows.map(r => (r.net_gex || 0) >= 0 ? 'rgba(34,197,94,.65)' : 'rgba(239,68,68,.65)'),
-      borderColor:     rows.map(r => (r.net_gex || 0) >= 0 ? 'rgba(34,197,94,.9)'  : 'rgba(239,68,68,.9)'),
+      backgroundColor: rows.map(r => (r.net_gex || 0) >= 0 ? cv('ch-bar-call') : cv('ch-bar-put')),
+      borderColor:     rows.map(r => (r.net_gex || 0) >= 0 ? cv('ch-bar-call-b')  : cv('ch-bar-put-b')),
       borderWidth: 1, borderRadius: 1,
     }];
   } else {
     datasets = [
       { label: 'CALL GEX', data: rows.map(r => r.call_gex || 0),
-        backgroundColor: 'rgba(34,197,94,.65)', borderColor: 'rgba(34,197,94,.9)', borderWidth: 1, borderRadius: 1 },
+        backgroundColor: cv('ch-bar-call'), borderColor: cv('ch-bar-call-b'), borderWidth: 1, borderRadius: 1 },
       { label: 'PUT GEX',  data: rows.map(r => r.put_gex  || 0),
-        backgroundColor: 'rgba(239,68,68,.65)', borderColor: 'rgba(239,68,68,.9)', borderWidth: 1, borderRadius: 1 },
+        backgroundColor: cv('ch-bar-put'), borderColor: cv('ch-bar-put-b'), borderWidth: 1, borderRadius: 1 },
     ];
   }
   if (state.gex.chart) { state.gex.chart.destroy(); state.gex.chart = null; }
@@ -1666,10 +1806,10 @@ function gexRenderGraph(rows, kpis) {
       responsive: true, maintainAspectRatio: false, animation: { duration: 200 },
       plugins: {
         legend: { display: mode === 'callput',
-          labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 }, boxWidth: 12 } },
+          labels: { color: cv('ch-legend'), font: { family: 'JetBrains Mono', size: 11 }, boxWidth: 12 } },
         tooltip: {
-          backgroundColor: '#13131e', borderColor: '#2a2a40', borderWidth: 1,
-          titleColor: '#e2e8f0', bodyColor: '#94a3b8',
+          backgroundColor: cv('ch-tip-bg'), borderColor: cv('ch-tip-border'), borderWidth: 1,
+          titleColor: cv('ch-tip-title'), bodyColor: cv('ch-tip-body'),
           titleFont: { family: 'JetBrains Mono', size: 11 }, bodyFont: { family: 'JetBrains Mono', size: 11 },
           callbacks: {
             title: items => 'Strike ' + Number(items[0].label).toLocaleString('es-ES'),
@@ -1678,11 +1818,11 @@ function gexRenderGraph(rows, kpis) {
         },
       },
       scales: {
-        x: { ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 20,
+        x: { ticks: { color: cv('ch-tick'), font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 20,
               callback: v => { const l = labels[v]; return l >= 1000 ? l.toLocaleString('es-ES') : l; } },
-             grid: { color: '#1e1e2e' } },
-        y: { ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 }, callback: v => fmtGex(v) },
-             grid: { color: '#1e1e2e' } },
+             grid: { color: cv('ch-grid') } },
+        y: { ticks: { color: cv('ch-tick'), font: { family: 'JetBrains Mono', size: 10 }, callback: v => fmtGex(v) },
+             grid: { color: cv('ch-grid') } },
       },
     },
     plugins: [gexLinesPlugin],
@@ -1931,10 +2071,10 @@ const dexLinesPlugin = {
       ctx.fillText(label, x, yTop - 4); ctx.restore();
     }
 
-    drawLine(kpis.spot,       '#f59e0b', 'SPOT');
-    drawLine(kpis.call_wall,  '#22c55e', 'C·WALL');
-    drawLine(kpis.put_wall,   '#ef4444', 'P·WALL');
-    drawLine(kpis.zero_delta, '#06b6d4', 'ZERO·Δ');
+    drawLine(kpis.spot,       cv('spot'), 'SPOT');
+    drawLine(kpis.call_wall,  cv('call'), 'C·WALL');
+    drawLine(kpis.put_wall,   cv('put'), 'P·WALL');
+    drawLine(kpis.zero_delta, cv('cyan'), 'ZERO·Δ');
   }
 };
 
@@ -1943,15 +2083,15 @@ function dexRenderGraph(rows, kpis) {
   let datasets;
   if (mode === 'net') {
     datasets = [{ label: 'NET DEX', data: rows.map(r => r.net_dex || 0),
-      backgroundColor: rows.map(r => (r.net_dex||0) >= 0 ? 'rgba(34,197,94,.65)' : 'rgba(239,68,68,.65)'),
-      borderColor:     rows.map(r => (r.net_dex||0) >= 0 ? 'rgba(34,197,94,.9)'  : 'rgba(239,68,68,.9)'),
+      backgroundColor: rows.map(r => (r.net_dex||0) >= 0 ? cv('ch-bar-call') : cv('ch-bar-put')),
+      borderColor:     rows.map(r => (r.net_dex||0) >= 0 ? cv('ch-bar-call-b')  : cv('ch-bar-put-b')),
       borderWidth: 1, borderRadius: 1 }];
   } else {
     datasets = [
       { label: 'CALL DEX', data: rows.map(r => r.call_dex || 0),
-        backgroundColor: 'rgba(34,197,94,.65)', borderColor: 'rgba(34,197,94,.9)', borderWidth: 1, borderRadius: 1 },
+        backgroundColor: cv('ch-bar-call'), borderColor: cv('ch-bar-call-b'), borderWidth: 1, borderRadius: 1 },
       { label: 'PUT DEX',  data: rows.map(r => r.put_dex  || 0),
-        backgroundColor: 'rgba(239,68,68,.65)', borderColor: 'rgba(239,68,68,.9)', borderWidth: 1, borderRadius: 1 },
+        backgroundColor: cv('ch-bar-put'), borderColor: cv('ch-bar-put-b'), borderWidth: 1, borderRadius: 1 },
     ];
   }
   if (state.dex.chart) { state.dex.chart.destroy(); state.dex.chart = null; }
@@ -1961,10 +2101,10 @@ function dexRenderGraph(rows, kpis) {
       responsive: true, maintainAspectRatio: false, animation: { duration: 200 },
       plugins: {
         legend: { display: mode === 'callput',
-          labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 }, boxWidth: 12 } },
+          labels: { color: cv('ch-legend'), font: { family: 'JetBrains Mono', size: 11 }, boxWidth: 12 } },
         tooltip: {
-          backgroundColor: '#13131e', borderColor: '#2a2a40', borderWidth: 1,
-          titleColor: '#e2e8f0', bodyColor: '#94a3b8',
+          backgroundColor: cv('ch-tip-bg'), borderColor: cv('ch-tip-border'), borderWidth: 1,
+          titleColor: cv('ch-tip-title'), bodyColor: cv('ch-tip-body'),
           titleFont: { family: 'JetBrains Mono', size: 11 }, bodyFont: { family: 'JetBrains Mono', size: 11 },
           callbacks: {
             title: items => 'Strike ' + Number(items[0].label).toLocaleString('es-ES'),
@@ -1973,11 +2113,11 @@ function dexRenderGraph(rows, kpis) {
         },
       },
       scales: {
-        x: { ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 20,
+        x: { ticks: { color: cv('ch-tick'), font: { family: 'JetBrains Mono', size: 9 }, maxTicksLimit: 20,
               callback: v => { const l = labels[v]; return l >= 1000 ? l.toLocaleString('es-ES') : l; } },
-             grid: { color: '#1e1e2e' } },
-        y: { ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 }, callback: v => fmtGex(v) },
-             grid: { color: '#1e1e2e' } },
+             grid: { color: cv('ch-grid') } },
+        y: { ticks: { color: cv('ch-tick'), font: { family: 'JetBrains Mono', size: 10 }, callback: v => fmtGex(v) },
+             grid: { color: cv('ch-grid') } },
       },
     },
     plugins: [dexLinesPlugin],
@@ -2170,19 +2310,19 @@ function hisRender() {
   const cfg = {
     type: 'line',
     data: { labels: labFechas, datasets: [
-      { label: 'CALL', data: callData, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,.12)',
-        borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#22c55e', tension: 0.3, fill: true },
-      { label: 'PUT',  data: putData,  borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,.12)',
-        borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#ef4444', tension: 0.3, fill: true },
+      { label: 'CALL', data: callData, borderColor: cv('call'), backgroundColor: cv('ch-fill-call'),
+        borderWidth: 2, pointRadius: 3, pointBackgroundColor: cv('call'), tension: 0.3, fill: true },
+      { label: 'PUT',  data: putData,  borderColor: cv('put'), backgroundColor: cv('ch-fill-put'),
+        borderWidth: 2, pointRadius: 3, pointBackgroundColor: cv('put'), tension: 0.3, fill: true },
     ]},
     options: {
       responsive: true, maintainAspectRatio: false, animation: { duration: 200 },
       plugins: {
         legend: { display: true, position: 'top',
-          labels: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 }, boxWidth: 12 } },
+          labels: { color: cv('ch-legend'), font: { family: 'JetBrains Mono', size: 11 }, boxWidth: 12 } },
         tooltip: {
-          backgroundColor: '#13131e', borderColor: '#2a2a40', borderWidth: 1,
-          titleColor: '#e2e8f0', bodyColor: '#94a3b8',
+          backgroundColor: cv('ch-tip-bg'), borderColor: cv('ch-tip-border'), borderWidth: 1,
+          titleColor: cv('ch-tip-title'), bodyColor: cv('ch-tip-body'),
           titleFont: { family: 'JetBrains Mono', size: 11 }, bodyFont: { family: 'JetBrains Mono', size: 11 },
           callbacks: {
             title: items => 'Boletín ' + fechas[items[0].dataIndex],
@@ -2191,8 +2331,8 @@ function hisRender() {
         },
       },
       scales: {
-        x: { ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 15 }, grid: { color: '#1e1e2e' } },
-        y: { ticks: { color: '#64748b', font: { family: 'JetBrains Mono', size: 10 }, callback: v => fmtNum(v) }, grid: { color: '#1e1e2e' } },
+        x: { ticks: { color: cv('ch-tick'), font: { family: 'JetBrains Mono', size: 10 }, maxTicksLimit: 15 }, grid: { color: cv('ch-grid') } },
+        y: { ticks: { color: cv('ch-tick'), font: { family: 'JetBrains Mono', size: 10 }, callback: v => fmtNum(v) }, grid: { color: cv('ch-grid') } },
       },
     },
   };
