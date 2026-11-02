@@ -5,9 +5,29 @@ Calcula Gamma Exposure (GEX) y Delta Exposure (DEX) y KPIs derivados
 desde el CSV de meff_opciones.py.
 
 Parámetros del modelo:
-  R            = 0.025  (BCE, tasa libre de riesgo)
+  R            = 0.0244 (€STR, tasa libre de riesgo; dato BCE del 30/09/2026: 2,437 %)
   SWEEP_MARGIN = 0.15   (±15% del spot para buscar Zero Gamma / Zero Delta)
   N_SWEEP      = 600    (resolución del barrido)
+
+Arrastre implícito (tipo − dividendos) por subyacente y vencimiento:
+  El modelo trabaja con el forward F = S · e^x, donde x = ln(F/S) recoge el
+  tipo de interés y los dividendos esperados hasta el vencimiento. x no se
+  estima a partir de dividendos supuestos: se ajusta, para cada subyacente y
+  vencimiento, minimizando el error entre la delta del modelo y la delta de
+  cierre que publica MEFF en el boletín (columna delta_cierre). Así gamma y
+  delta quedan coherentes con el modelo con el que MEFF calcula su volatilidad
+  y su delta, dividendos incluidos.
+
+  Con forward F y descuento e^(−rT) (Black-76 expresado sobre el spot):
+    d1     = (ln(S/K) + x + σ²T/2) / (σ√T)
+    Δ_call = e^(x−rT) · N(d1)        Δ_put = e^(x−rT) · (N(d1) − 1)
+    Γ      = e^(x−rT) · n(d1) / (S σ √T)
+  En el barrido de Zero Gamma / Zero Delta, x se mantiene fijo (el forward se
+  mueve proporcionalmente al spot).
+
+  Si un vencimiento no tiene deltas MEFF suficientes, se usa el arrastre anual
+  mediano de los demás vencimientos del mismo subyacente; si tampoco hay, x = r·T
+  (sin dividendos).
 
 Multiplicadores por contrato:
   MINI IBEX-35 → 1 €/punto
@@ -21,7 +41,9 @@ Convenio GEX (SpotGamma):
 
 Convenio DEX:
   DEX(K) = OI_call × Δ_call × S × mult  +  OI_put × Δ_put × S × mult
-  Δ_call = N(d1) ∈ (0,1)   Δ_put = N(d1) − 1 ∈ (−1,0)
+  Δ al spot actual: la delta de cierre de MEFF cuando existe; si falta, la del
+  modelo con el arrastre implícito. En el barrido de Zero Delta se usa siempre
+  la delta del modelo.
   DEX positivo (LONG)  → dealers son long delta → venden rallies (techo).
   DEX negativo (SHORT) → dealers son short delta → compran caídas (suelo).
 """
@@ -33,9 +55,14 @@ import pandas as pd
 from datetime import date, datetime
 
 # ── Parámetros ────────────────────────────────────────────────────────────────
-R            = 0.025
+R            = 0.0244
 SWEEP_MARGIN = 0.15
 N_SWEEP      = 600
+
+# Ajuste del arrastre implícito
+X_MIN, X_MAX     = -0.40, 0.15   # límites de ln(F/S)
+DELTA_MIN_AJUSTE = 0.03          # se usan opciones con 0,03 < |Δ MEFF| < 0,97
+MIN_PUNTOS       = 3             # mínimo de opciones para ajustar un vencimiento
 
 MESES = {
     "ene": 1, "jan": 1, "feb": 2, "mar": 3, "abr": 4, "apr": 4,
@@ -102,92 +129,78 @@ def _parsear_vencimiento(texto: str) -> date | None:
         return None
 
 
-# ── Normal CDF (usada por Delta BS) ──────────────────────────────────────────
+# ── Normal CDF ───────────────────────────────────────────────────────────────
 
 def _ncdf(x) -> np.ndarray:
     """
     CDF de la normal estándar. Compatible con escalares float y arrays numpy.
-    Usa math.erf (stdlib) a través de np.vectorize — sin dependencias externas.
+    Usa math.erf (stdlib) a través de np.vectorize.
     """
     return np.vectorize(lambda v: 0.5 * (1.0 + math.erf(v / math.sqrt(2.0))))(
         np.asarray(x, dtype=float)
     )
 
 
-# ── Modelo Black-Scholes: Gamma ───────────────────────────────────────────────
+# ── Modelo: gamma y delta con forward implícito ───────────────────────────────
 
-def bs_gamma(S: float, K: float, T: float, sigma: float, r: float = R) -> float:
-    """Gamma BS escalar (idéntica para CALL y PUT). Usada en cálculos puntuales."""
+def bs_gamma(S: float, K: float, T: float, sigma: float,
+             r: float = R, x: float | None = None) -> float:
+    """Gamma escalar (idéntica para CALL y PUT). x = ln(F/S); si es None, x = r·T."""
     if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
         return 0.0
+    if x is None:
+        x = r * T
     try:
-        d1 = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
-        return float(np.exp(-0.5 * d1**2) / (np.sqrt(2 * np.pi) * S * sigma * np.sqrt(T)))
+        d1 = (np.log(S / K) + x + 0.5 * sigma**2 * T) / (sigma * np.sqrt(T))
+        return float(np.exp(x - r * T) * np.exp(-0.5 * d1**2)
+                     / (np.sqrt(2 * np.pi) * S * sigma * np.sqrt(T)))
     except Exception:
         return 0.0
 
 
-def _bs_gamma_vec(S: float,
-                  K: np.ndarray,
-                  T: np.ndarray,
-                  sigma: np.ndarray,
-                  r: float = R) -> np.ndarray:
-    """
-    Gamma BS vectorizada para arrays numpy.
+def bs_delta(S: float, K: float, T: float, sigma: float,
+             tipo: str = "CALL", r: float = R, x: float | None = None) -> float:
+    """Delta escalar. x = ln(F/S); si es None, x = r·T."""
+    if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
+        return 0.0
+    if x is None:
+        x = r * T
+    try:
+        d1  = (np.log(S / K) + x + 0.5 * sigma**2 * T) / (sigma * np.sqrt(T))
+        nd1 = float(_ncdf(d1))
+        df  = math.exp(x - r * T)
+        return df * nd1 if tipo.upper() == "CALL" else df * (nd1 - 1.0)
+    except Exception:
+        return 0.0
 
-    Procesa todo el DataFrame de una vez en lugar de fila a fila.
-    Es ~50x más rápida que el equivalente con iterrows() en el barrido de zero-gamma.
-    """
+
+def _bs_gamma_vec(S: float, K: np.ndarray, T: np.ndarray, sigma: np.ndarray,
+                  x: np.ndarray, r: float = R) -> np.ndarray:
+    """Gamma vectorizada con forward implícito por fila (x = ln(F/S))."""
     gamma = np.zeros(len(K))
     valid = (T > 0) & (sigma > 0) & (S > 0) & (K > 0)
     if not valid.any():
         return gamma
-    Kv, Tv, sv = K[valid], T[valid], sigma[valid]
-    d1 = (np.log(S / Kv) + (r + 0.5 * sv ** 2) * Tv) / (sv * np.sqrt(Tv))
-    gamma[valid] = np.exp(-0.5 * d1 ** 2) / (np.sqrt(2 * np.pi) * S * sv * np.sqrt(Tv))
+    Kv, Tv, sv, xv = K[valid], T[valid], sigma[valid], x[valid]
+    d1 = (np.log(S / Kv) + xv + 0.5 * sv ** 2 * Tv) / (sv * np.sqrt(Tv))
+    gamma[valid] = (np.exp(xv - r * Tv) * np.exp(-0.5 * d1 ** 2)
+                    / (np.sqrt(2 * np.pi) * S * sv * np.sqrt(Tv)))
     return gamma
 
 
-# ── Modelo Black-Scholes: Delta ───────────────────────────────────────────────
-
-def bs_delta(S: float, K: float, T: float, sigma: float,
-             tipo: str = "CALL", r: float = R) -> float:
-    """
-    Delta BS escalar.
-    Δ_call = N(d1)       ∈ (0, 1)
-    Δ_put  = N(d1) − 1  ∈ (−1, 0)
-    """
-    if T <= 0 or sigma <= 0 or S <= 0 or K <= 0:
-        return 0.0
-    try:
-        d1  = (np.log(S / K) + (r + 0.5 * sigma**2) * T) / (sigma * np.sqrt(T))
-        nd1 = float(_ncdf(d1))
-        return nd1 if tipo.upper() == "CALL" else nd1 - 1.0
-    except Exception:
-        return 0.0
-
-
-def _bs_delta_vec(S: float,
-                  K: np.ndarray,
-                  T: np.ndarray,
-                  sigma: np.ndarray,
-                  tipos: np.ndarray,
-                  r: float = R) -> np.ndarray:
-    """
-    Delta BS vectorizada para arrays numpy.
-    tipos: array de strings 'CALL'/'PUT' (en mayúsculas).
-
-    Implementación vectorizada — misma velocidad que _bs_gamma_vec.
-    """
+def _bs_delta_vec(S: float, K: np.ndarray, T: np.ndarray, sigma: np.ndarray,
+                  tipos: np.ndarray, x: np.ndarray, r: float = R) -> np.ndarray:
+    """Delta vectorizada con forward implícito por fila. tipos: 'CALL'/'PUT'."""
     delta = np.zeros(len(K))
     valid = (T > 0) & (sigma > 0) & (S > 0) & (K > 0)
     if not valid.any():
         return delta
-    Kv, Tv, sv = K[valid], T[valid], sigma[valid]
-    d1   = (np.log(S / Kv) + (r + 0.5 * sv**2) * Tv) / (sv * np.sqrt(Tv))
-    nd1  = _ncdf(d1)
+    Kv, Tv, sv, xv = K[valid], T[valid], sigma[valid], x[valid]
+    d1  = (np.log(S / Kv) + xv + 0.5 * sv**2 * Tv) / (sv * np.sqrt(Tv))
+    nd1 = _ncdf(d1)
+    dfac = np.exp(xv - r * Tv)
     is_call = tipos[valid] == "CALL"
-    delta[valid] = np.where(is_call, nd1, nd1 - 1.0)
+    delta[valid] = dfac * np.where(is_call, nd1, nd1 - 1.0)
     return delta
 
 
@@ -205,41 +218,159 @@ def _preparar(df_raw: pd.DataFrame, accion: str, hoy: date) -> pd.DataFrame:
     if df.empty:
         return df
 
+    df["tipo"]       = df["tipo"].str.upper().str.strip()
     df["strike_pts"] = df["strike"].apply(parse_es)
     df["oi"]         = df["posicion_abierta"].apply(parse_es)
     df["sigma"]      = df["volatilidad_cierre"].apply(parse_es) / 100
     df["spot_val"]   = df["spot"].apply(parse_es)
+    df["delta_meff"] = (df["delta_cierre"].apply(parse_es)
+                        if "delta_cierre" in df.columns else float("nan"))
     df["fv_date"]    = df["fecha_vencimiento"].apply(_parsear_vencimiento)
     df["T"]          = df["fv_date"].apply(
         lambda d: max((d - hoy).days, 0) / 365.0 if d is not None else float("nan")
     )
 
     mask = (
-        (df["oi"] > 0)         &
-        df["oi"].notna()        &
-        df["strike_pts"].notna() &
-        df["sigma"].notna()     &
-        (df["sigma"] > 0)       &
-        (df["T"] > 0)           &
-        df["tipo"].str.upper().isin(["CALL", "PUT"])
+        (df["oi"] > 0)           &
+        df["oi"].notna()          &
+        df["strike_pts"].notna()  &
+        df["sigma"].notna()       &
+        (df["sigma"] > 0)         &
+        (df["T"] > 0)             &
+        df["tipo"].isin(["CALL", "PUT"])
     )
     return df[mask].copy()
+
+
+# ── Arrastre implícito (ln F/S) por vencimiento ───────────────────────────────
+
+def _ajustar_x(K, T, sigma, tipos, delta_meff, S0, r=R):
+    """Ajusta x = ln(F/S) minimizando Σ (Δ_modelo − Δ_MEFF)². Devuelve (x, rmse)."""
+    def err(x):
+        d = _bs_delta_vec(S0, K, T, sigma, tipos, np.full(len(K), x), r)
+        return float(np.mean((d - delta_meff) ** 2))
+
+    # Rejilla gruesa (evita mínimos locales) + sección áurea alrededor del mejor punto
+    rejilla = np.linspace(X_MIN, X_MAX, 111)
+    errores = [err(v) for v in rejilla]
+    i = int(np.argmin(errores))
+    a = rejilla[max(i - 1, 0)]
+    b = rejilla[min(i + 1, len(rejilla) - 1)]
+    gr = (math.sqrt(5) - 1) / 2
+    c, d = b - gr * (b - a), a + gr * (b - a)
+    fc, fd = err(c), err(d)
+    while b - a > 1e-6:
+        if fc < fd:
+            b, d, fd = d, c, fc
+            c = b - gr * (b - a)
+            fc = err(c)
+        else:
+            a, c, fc = c, d, fd
+            d = a + gr * (b - a)
+            fd = err(d)
+    x = (a + b) / 2
+    return float(x), math.sqrt(err(x))
+
+
+def _calcular_carry(df_raw: pd.DataFrame, accion: str, hoy: date, S0: float,
+                    r: float = R) -> dict:
+    """
+    Arrastre implícito por vencimiento de un subyacente.
+
+    Para el ajuste se usan TODAS las filas con delta MEFF y volatilidad (no solo
+    las que tienen posición abierta), para tener más puntos.
+
+    Devuelve {vencimiento: {"x", "T", "carry_anual", "fwd_spot", "n", "rmse", "fuente"}}
+    con fuente = "ajuste" | "mediana subyacente" | "sin dividendos".
+    """
+    df = df_raw[df_raw["accion"].str.upper() == accion.upper()].copy()
+    if df.empty:
+        return {}
+    df["tipo"]   = df["tipo"].str.upper().str.strip()
+    df["K"]      = df["strike"].apply(parse_es)
+    df["sigma"]  = df["volatilidad_cierre"].apply(parse_es) / 100
+    df["dm"]     = (df["delta_cierre"].apply(parse_es)
+                    if "delta_cierre" in df.columns else float("nan"))
+    df["fv"]     = df["fecha_vencimiento"].apply(_parsear_vencimiento)
+    df["T"]      = df["fv"].apply(
+        lambda d: max((d - hoy).days, 0) / 365.0 if d is not None else float("nan")
+    )
+
+    carry = {}
+    for vcto, g in df.groupby("fecha_vencimiento"):
+        T_v = g["T"].dropna()
+        if T_v.empty or T_v.iloc[0] <= 0:
+            continue
+        T0 = float(T_v.iloc[0])
+        ok = (
+            g["K"].notna() & g["sigma"].notna() & (g["sigma"] > 0) &
+            g["dm"].notna() & g["tipo"].isin(["CALL", "PUT"]) &
+            (g["dm"].abs() > DELTA_MIN_AJUSTE) & (g["dm"].abs() < 1 - DELTA_MIN_AJUSTE)
+        )
+        gg = g[ok]
+        if len(gg) >= MIN_PUNTOS:
+            x, rmse = _ajustar_x(gg["K"].values.astype(float), gg["T"].values.astype(float),
+                                 gg["sigma"].values.astype(float), gg["tipo"].values,
+                                 gg["dm"].values.astype(float), S0, r)
+            # Si el ajuste queda pegado a un límite, no se fía de él
+            if X_MIN + 1e-3 < x < X_MAX - 1e-3:
+                carry[vcto] = {"x": x, "T": T0, "n": int(len(gg)),
+                               "rmse": rmse, "fuente": "ajuste"}
+                continue
+        carry[vcto] = {"x": None, "T": T0, "n": int(len(gg)),
+                       "rmse": None, "fuente": None}
+
+    # Relleno de vencimientos sin ajuste válido
+    anuales = [c["x"] / c["T"] for c in carry.values()
+               if c["fuente"] == "ajuste" and c["T"] >= 0.1]
+    mediana = float(np.median(anuales)) if anuales else None
+    for c in carry.values():
+        if c["fuente"] is None:
+            if mediana is not None:
+                c["x"], c["fuente"] = mediana * c["T"], "mediana subyacente"
+            else:
+                c["x"], c["fuente"] = r * c["T"], "sin dividendos"
+
+    for c in carry.values():
+        c["carry_anual"] = c["x"] / c["T"]
+        c["fwd_spot"]    = math.exp(c["x"])
+    return carry
+
+
+def _asignar_x(df: pd.DataFrame, carry: dict, r: float = R) -> pd.DataFrame:
+    """Añade la columna x (ln F/S) a cada fila según su vencimiento."""
+    df = df.copy()
+    df["x"] = [
+        carry[v]["x"] if v in carry else r * t
+        for v, t in zip(df["fecha_vencimiento"], df["T"])
+    ]
+    return df
+
+
+def _preparar_con_carry(df_raw: pd.DataFrame, accion: str, hoy: date):
+    """_preparar + spot + multiplicador + arrastre implícito. (df, S0, mult, carry)"""
+    df = _preparar(df_raw, accion, hoy)
+    if df.empty:
+        return df, None, None, {}
+    S0    = float(df["spot_val"].dropna().iloc[0])
+    mult  = get_multiplicador(accion)
+    carry = _calcular_carry(df_raw, accion, hoy, S0)
+    df    = _asignar_x(df, carry)
+    return df, S0, mult, carry
 
 
 # ── GEX por fila y por strike ─────────────────────────────────────────────────
 
 def _calcular_gex_filas(df: pd.DataFrame, S0: float, mult: int) -> pd.DataFrame:
-    """
-    Calcula gamma y GEX para cada fila.
-    Usa la versión vectorizada de bs_gamma para mayor rendimiento.
-    """
+    """Calcula gamma y GEX para cada fila (con el forward implícito de su vencimiento)."""
     df = df.copy()
     K     = df["strike_pts"].values.astype(float)
     T     = df["T"].values.astype(float)
     sigma = df["sigma"].values.astype(float)
-    signs = np.where(df["tipo"].str.upper() == "CALL", 1.0, -1.0)
+    x     = df["x"].values.astype(float)
+    signs = np.where(df["tipo"] == "CALL", 1.0, -1.0)
 
-    df["gamma_bs"] = _bs_gamma_vec(S0, K, T, sigma)
+    df["gamma_bs"] = _bs_gamma_vec(S0, K, T, sigma, x)
     df["gex"]      = signs * df["oi"].values * df["gamma_bs"].values * S0 ** 2 * mult
     return df
 
@@ -266,10 +397,8 @@ def _agregar_por_strike(df: pd.DataFrame) -> pd.DataFrame:
 def _calcular_zero_gamma(S0: float, df: pd.DataFrame, mult: int):
     """
     Busca el nivel de spot donde el GEX neto cruza cero mediante un barrido
-    de N_SWEEP puntos en el rango S0 × (1 ± SWEEP_MARGIN).
-
-    Implementación vectorizada: extrae arrays numpy una sola vez y opera
-    en batch en lugar de iterar fila a fila. Resultado idéntico, ~50x más rápido.
+    de N_SWEEP puntos en el rango S0 × (1 ± SWEEP_MARGIN). El forward de cada
+    vencimiento se mueve proporcionalmente al spot (x fijo).
 
     Devuelve el precio interpolado en el cruce más cercano al spot actual,
     o None si no hay cruce en el rango.
@@ -278,12 +407,13 @@ def _calcular_zero_gamma(S0: float, df: pd.DataFrame, mult: int):
     T     = df["T"].values.astype(float)
     sigma = df["sigma"].values.astype(float)
     oi    = df["oi"].values.astype(float)
-    signs = np.where(df["tipo"].str.upper() == "CALL", 1.0, -1.0)
+    x     = df["x"].values.astype(float)
+    signs = np.where(df["tipo"] == "CALL", 1.0, -1.0)
 
     spots = np.linspace(S0 * (1 - SWEEP_MARGIN), S0 * (1 + SWEEP_MARGIN), N_SWEEP)
 
     gex_s = np.array([
-        float((signs * oi * _bs_gamma_vec(s, K, T, sigma) * s ** 2 * mult).sum())
+        float((signs * oi * _bs_gamma_vec(s, K, T, sigma, x) * s ** 2 * mult).sum())
         for s in spots
     ])
 
@@ -300,25 +430,27 @@ def _calcular_zero_gamma(S0: float, df: pd.DataFrame, mult: int):
 
 def _calcular_dex_filas(df: pd.DataFrame, S0: float, mult: int) -> pd.DataFrame:
     """
-    Calcula delta BS y DEX para cada fila.
-    El signo del delta ya incluye la dirección: Δ_call > 0, Δ_put < 0.
-    Usa la versión vectorizada de bs_delta para mayor rendimiento.
+    Calcula la delta y el DEX de cada fila.
+    Delta: la de cierre de MEFF si existe; si no, la del modelo con forward implícito.
+    El signo de la delta ya incluye la dirección: Δ_call > 0, Δ_put < 0.
     """
     df    = df.copy()
     K     = df["strike_pts"].values.astype(float)
     T     = df["T"].values.astype(float)
     sigma = df["sigma"].values.astype(float)
-    tipos = df["tipo"].str.upper().values
+    x     = df["x"].values.astype(float)
+    tipos = df["tipo"].values
 
-    df["delta_bs"] = _bs_delta_vec(S0, K, T, sigma, tipos)
-    # DEX = OI × Δ × S × mult  (signo ya incluido en delta)
+    d_modelo = _bs_delta_vec(S0, K, T, sigma, tipos, x)
+    d_meff   = df["delta_meff"].values.astype(float)
+    usa_meff = ~np.isnan(d_meff)
+    df["delta_bs"]     = np.where(usa_meff, d_meff, d_modelo)
+    df["delta_fuente"] = np.where(usa_meff, "MEFF", "modelo")
     df["dex"] = df["oi"].values * df["delta_bs"].values * S0 * mult
     return df
 
 
 def _agregar_por_strike_dex(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.copy()
-    df["tipo"] = df["tipo"].str.upper()
     gs = (
         df.groupby(["strike_pts", "tipo"])["dex"]
         .sum()
@@ -340,21 +472,20 @@ def _agregar_por_strike_dex(df: pd.DataFrame) -> pd.DataFrame:
 def _calcular_zero_delta(S0: float, df: pd.DataFrame, mult: int):
     """
     Busca el nivel de spot donde el DEX neto cruza cero mediante un barrido
-    de N_SWEEP puntos en el rango S0 × (1 ± SWEEP_MARGIN).
-
-    Misma lógica que _calcular_zero_gamma pero aplicada sobre la curva DEX.
-    Devuelve None si no hay cruce en el rango.
+    de N_SWEEP puntos en el rango S0 × (1 ± SWEEP_MARGIN), con la delta del
+    modelo (forward implícito, x fijo). Devuelve None si no hay cruce.
     """
     K     = df["strike_pts"].values.astype(float)
     T     = df["T"].values.astype(float)
     sigma = df["sigma"].values.astype(float)
     oi    = df["oi"].values.astype(float)
-    tipos = df["tipo"].str.upper().values
+    x     = df["x"].values.astype(float)
+    tipos = df["tipo"].values
 
     spots = np.linspace(S0 * (1 - SWEEP_MARGIN), S0 * (1 + SWEEP_MARGIN), N_SWEEP)
 
     dex_s = np.array([
-        float((oi * _bs_delta_vec(s, K, T, sigma, tipos) * s * mult).sum())
+        float((oi * _bs_delta_vec(s, K, T, sigma, tipos, x) * s * mult).sum())
         for s in spots
     ])
 
@@ -367,6 +498,21 @@ def _calcular_zero_delta(S0: float, df: pd.DataFrame, mult: int):
     return float(x0 - y0 * (x1 - x0) / (y1 - y0))
 
 
+# ── Lectura del CSV ───────────────────────────────────────────────────────────
+
+def _leer_csv(csv_path: str) -> pd.DataFrame:
+    df_raw = pd.read_csv(csv_path, sep=";", encoding="utf-8-sig", dtype=str)
+    requeridas = {"accion", "tipo", "strike", "posicion_abierta",
+                  "volatilidad_cierre", "spot", "fecha_vencimiento"}
+    faltantes = requeridas - set(df_raw.columns)
+    if faltantes:
+        raise ValueError(
+            f"El CSV no tiene las columnas necesarias: {sorted(faltantes)}\n"
+            f"Asegúrate de correr meff_opciones.py antes de calcular GEX/DEX."
+        )
+    return df_raw
+
+
 # ── Función pública: GEX ──────────────────────────────────────────────────────
 
 def calcular_kpis(csv_path: str, accion: str = None,
@@ -374,23 +520,13 @@ def calcular_kpis(csv_path: str, accion: str = None,
     """
     Calcula KPIs de GEX desde el CSV de meff_opciones.py.
 
-    Args:
-        csv_path: ruta al CSV (sep=";", utf-8-sig)
-        accion:   nombre del subyacente. Si es None → calcula todos.
-        hoy:      fecha de referencia. Si es None → date.today()
-
     Returns (si accion especificado):
         {
-            "accion":         str,
-            "spot":           float,
-            "call_wall":      float | None,
-            "put_wall":       float | None,
+            "accion", "spot", "call_wall", "put_wall",
             "zero_gamma":     float | None,   # None si GEX no cruza cero en ±15%
-            "gex_total":      float,
-            "regime":         "POSITIVO" | "NEGATIVO",
-            "multiplicador":  int,
-            "fecha":          date,
+            "gex_total", "regime" ("POSITIVO" | "NEGATIVO"), "multiplicador", "fecha",
             "gex_por_strike": pd.DataFrame,   # strike|call_gex|put_gex|net_gex
+            "carry":          dict,           # arrastre implícito por vencimiento
         }
 
     Returns (si accion=None):
@@ -398,17 +534,7 @@ def calcular_kpis(csv_path: str, accion: str = None,
     """
     if hoy is None:
         hoy = date.today()
-
-    df_raw = pd.read_csv(csv_path, sep=";", encoding="utf-8-sig", dtype=str)
-
-    requeridas = {"accion", "tipo", "strike", "posicion_abierta",
-                  "volatilidad_cierre", "spot", "fecha_vencimiento"}
-    faltantes = requeridas - set(df_raw.columns)
-    if faltantes:
-        raise ValueError(
-            f"El CSV no tiene las columnas necesarias: {sorted(faltantes)}\n"
-            f"Asegúrate de correr meff_opciones.py antes de meff_gex.py."
-        )
+    df_raw = _leer_csv(csv_path)
 
     if accion is not None:
         return _kpis_accion(df_raw, accion, hoy)
@@ -422,12 +548,9 @@ def calcular_kpis(csv_path: str, accion: str = None,
 
 
 def _kpis_accion(df_raw: pd.DataFrame, accion: str, hoy: date) -> dict | None:
-    df = _preparar(df_raw, accion, hoy)
+    df, S0, mult, carry = _preparar_con_carry(df_raw, accion, hoy)
     if df.empty:
         return None
-
-    S0   = float(df["spot_val"].dropna().iloc[0])
-    mult = get_multiplicador(accion)
 
     df  = _calcular_gex_filas(df, S0, mult)
     gs  = _agregar_por_strike(df)
@@ -458,6 +581,7 @@ def _kpis_accion(df_raw: pd.DataFrame, accion: str, hoy: date) -> dict | None:
         "multiplicador":  mult,
         "fecha":          fecha,
         "gex_por_strike": gs,
+        "carry":          carry,
     }
 
 
@@ -467,42 +591,20 @@ def calcular_kpis_dex(csv_path: str, accion: str = None,
                       hoy: date = None) -> dict:
     """
     Calcula KPIs de DEX desde el CSV de meff_opciones.py.
-    Misma interfaz que calcular_kpis() pero usando delta en lugar de gamma.
-
-    Args:
-        csv_path: ruta al CSV (sep=";", utf-8-sig)
-        accion:   nombre del subyacente. Si es None → calcula todos.
-        hoy:      fecha de referencia. Si es None → date.today()
+    Misma interfaz que calcular_kpis() pero con delta en lugar de gamma.
 
     Returns (si accion especificado):
         {
-            "accion":         str,
-            "spot":           float,
-            "call_wall":      float | None,   # strike con mayor DEX call
-            "put_wall":       float | None,   # strike con menor DEX put (más negativo)
+            "accion", "spot", "call_wall", "put_wall",
             "zero_delta":     float | None,   # None si DEX no cruza cero en ±15%
-            "dex_total":      float,
-            "regime":         "LONG" | "SHORT",
-            "multiplicador":  int,
+            "dex_total", "regime" ("LONG" | "SHORT"), "multiplicador",
             "dex_por_strike": pd.DataFrame,   # strike|call_dex|put_dex|net_dex
+            "pct_delta_meff": float,          # % de filas con delta MEFF
         }
-
-    Returns (si accion=None):
-        { accion: kpis_dict, ... }  para todos los subyacentes del CSV
     """
     if hoy is None:
         hoy = date.today()
-
-    df_raw = pd.read_csv(csv_path, sep=";", encoding="utf-8-sig", dtype=str)
-
-    requeridas = {"accion", "tipo", "strike", "posicion_abierta",
-                  "volatilidad_cierre", "spot", "fecha_vencimiento"}
-    faltantes = requeridas - set(df_raw.columns)
-    if faltantes:
-        raise ValueError(
-            f"El CSV no tiene las columnas necesarias: {sorted(faltantes)}\n"
-            f"Asegúrate de correr meff_opciones.py antes de calcular DEX."
-        )
+    df_raw = _leer_csv(csv_path)
 
     if accion is not None:
         return _kpis_dex_accion(df_raw, accion, hoy)
@@ -516,12 +618,9 @@ def calcular_kpis_dex(csv_path: str, accion: str = None,
 
 
 def _kpis_dex_accion(df_raw: pd.DataFrame, accion: str, hoy: date) -> dict | None:
-    df = _preparar(df_raw, accion, hoy)
+    df, S0, mult, carry = _preparar_con_carry(df_raw, accion, hoy)
     if df.empty:
         return None
-
-    S0   = float(df["spot_val"].dropna().iloc[0])
-    mult = get_multiplicador(accion)
 
     df  = _calcular_dex_filas(df, S0, mult)
     gs  = _agregar_por_strike_dex(df)
@@ -542,4 +641,37 @@ def _kpis_dex_accion(df_raw: pd.DataFrame, accion: str, hoy: date) -> dict | Non
         "regime":         regime,
         "multiplicador":  mult,
         "dex_por_strike": gs,
+        "pct_delta_meff": float((df["delta_fuente"] == "MEFF").mean()),
     }
+
+
+# ── Función pública: GEX y DEX fila a fila (desglose por vencimiento) ─────────
+
+def calcular_filas(df_raw: pd.DataFrame, hoy: date = None) -> pd.DataFrame:
+    """
+    GEX y DEX de cada fila (opción) de todos los subyacentes, con el mismo modelo
+    que calcular_kpis / calcular_kpis_dex. Lo usa meff_opciones.py para el
+    desglose por vencimiento del dashboard.
+
+    Columnas: accion, tipo, fecha_vencimiento, strike, spot, gex, dex
+    """
+    if hoy is None:
+        hoy = date.today()
+    cols = ["accion", "tipo", "fecha_vencimiento", "strike", "spot", "gex", "dex"]
+    frames = []
+    for ac in df_raw["accion"].dropna().unique():
+        df, S0, mult, _ = _preparar_con_carry(df_raw, ac, hoy)
+        if df.empty:
+            continue
+        df = _calcular_gex_filas(df, S0, mult)
+        df = _calcular_dex_filas(df, S0, mult)
+        frames.append(pd.DataFrame({
+            "accion":            df["accion"].str.strip().values,
+            "tipo":              df["tipo"].values,
+            "fecha_vencimiento": df["fecha_vencimiento"].str.strip().values,
+            "strike":            df["strike_pts"].values,
+            "spot":              S0,
+            "gex":               np.round(df["gex"].values, 2),
+            "dex":               np.round(df["dex"].values, 2),
+        }))
+    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(columns=cols)

@@ -34,7 +34,7 @@
   <script>
     // Tema claro/oscuro: se aplica antes de pintar para evitar parpadeo
     (function () {
-      var t = 'dark';
+      var t = 'light';   // tema por defecto: claro
       try { var g = localStorage.getItem('gammaibex-tema'); if (g === 'light' || g === 'dark') t = g; } catch (e) {}
       document.documentElement.setAttribute('data-theme', t);
     })();
@@ -823,7 +823,7 @@
     </span>
     <span class="meta-update">Actualización: diaria · próximo boletín al cierre del siguiente día hábil</span>
   </div>
-  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar a tema claro">
+  <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar a tema oscuro">
     <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
     <svg class="ico-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
   </button>
@@ -858,7 +858,7 @@
       <span class="ham-nav-icon">≡</span> GLOSARIO
     </button>
     <button class="ham-nav-btn ham-theme-btn" id="hbtn-tema" onclick="toggleTheme()">
-      <span class="ham-nav-icon">◐</span> <span id="hbtn-tema-txt">TEMA CLARO</span>
+      <span class="ham-nav-icon">◐</span> <span id="hbtn-tema-txt">TEMA OSCURO</span>
     </button>
   </div>
 </div>
@@ -1583,7 +1583,7 @@ function initGex() {
     el('meta-fecha').textContent = parts.join(' · ');
     if (d.meta.tasa_libre_riesgo != null) {
       el('footer-tasa').textContent =
-        (d.meta.tasa_libre_riesgo * 100).toFixed(1).replace('.', ',') + '%';
+        (d.meta.tasa_libre_riesgo * 100).toFixed(2).replace('.', ',') + '%';
     }
   }
 
@@ -2740,7 +2740,8 @@ loadAll();
 <!-- ── Footer ── -->
 <div class="footer">
   <div class="footer-line">
-    Tasa libre de riesgo BCE: <span id="footer-tasa">2,5%</span>
+    Tasa libre de riesgo (€STR): <span id="footer-tasa">2,44%</span>
+    &nbsp;·&nbsp; Dividendos: implícitos en la delta de MEFF
     &nbsp;·&nbsp; Vencimiento: 3er viernes del mes
     &nbsp;·&nbsp; Fuente: MEFF
     &nbsp;·&nbsp; GEX = Gamma × OI × Multiplicador × Spot²

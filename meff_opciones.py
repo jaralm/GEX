@@ -35,6 +35,7 @@ from bs4 import BeautifulSoup, Tag
 from datetime import datetime, date
 from email.message import EmailMessage
 from gex_calculator import calcular_kpis as _calcular_kpis, calcular_kpis_dex as _calcular_kpis_dex
+from gex_calculator import calcular_filas as _calcular_filas, R as _R_GEX
 
 
 # ── Configuración ──────────────────────────────────────────────────────────────
@@ -46,7 +47,7 @@ PASSWORD_APP  = os.getenv("PASSWORD_APP")
 CARPETA = "data"
 os.makedirs(CARPETA, exist_ok=True)
 
-TASA_LIBRE_RIESGO = 0.025   # BCE — igual que gex_calculator.py
+TASA_LIBRE_RIESGO = _R_GEX   # €STR; se define en un solo sitio: R de gex_calculator.py
 
 URLS = {
     "lunes":     "https://www.meff.es/docs/Ficheros/boletin/esp/boletinpmon.htm",
@@ -567,49 +568,15 @@ def bs_gamma_escalar(S, K, T, iv, r) -> float:
 
 def calcular_gex_vcto(df_raw: pd.DataFrame, r: float = TASA_LIBRE_RIESGO) -> pd.DataFrame:
     """
-    Calcula GEX fila a fila para generar el desglose por vencimiento.
-    Necesario para el selector de vencimiento del Tab GEX (dashboard).
+    GEX fila a fila para el desglose por vencimiento del Tab GEX (dashboard).
+    Usa exactamente el mismo modelo que los KPIs (gex_calculator.calcular_filas:
+    €STR + arrastre implícito por vencimiento ajustado a la delta de MEFF).
+    El parámetro r se conserva por compatibilidad; la tasa es R de gex_calculator.
     """
-    hoy = date.today()
-    filas = []
-    for _, row in df_raw.iterrows():
-        S      = a_float(row.get("spot", ""))
-        K      = a_float(row.get("strike", ""))
-        oi     = a_float(row.get("posicion_abierta", ""))
-        iv_pct = a_float(row.get("volatilidad_cierre", ""))
-        tipo   = str(row.get("tipo", "")).upper().strip()
-        accion = str(row.get("accion", "")).strip()
-        fv_str = str(row.get("fecha_vencimiento", "")).strip()
-
-        if any(np.isnan(x) for x in [S, K, oi, iv_pct]):
-            continue
-        if oi <= 0 or S <= 0 or K <= 0 or iv_pct <= 0:
-            continue
-        if tipo not in ("CALL", "PUT"):
-            continue
-
-        fv_date = parsear_vencimiento(fv_str)
-        if fv_date is None:
-            continue
-
-        dias = (fv_date - hoy).days
-        T    = max(dias, 1) / 365.0
-        iv   = iv_pct / 100.0
-        gamma = bs_gamma_escalar(S, K, T, iv, r)
-        mult  = get_mult_gex(accion)
-
-        gex_bruto = gamma * oi * mult * S ** 2
-        gex = gex_bruto if tipo == "CALL" else -gex_bruto
-
-        filas.append({
-            "accion":            accion,
-            "tipo":              tipo,
-            "fecha_vencimiento": fv_str,
-            "strike":            K,
-            "spot":              S,
-            "gex":               round(gex, 2),
-        })
-    return pd.DataFrame(filas)
+    filas = _calcular_filas(df_raw)
+    if filas.empty:
+        return pd.DataFrame(columns=["accion", "tipo", "fecha_vencimiento", "strike", "spot", "gex"])
+    return filas[["accion", "tipo", "fecha_vencimiento", "strike", "spot", "gex"]].copy()
 
 
 def agregar_gex_df(df_gex: pd.DataFrame):
@@ -645,56 +612,15 @@ def agregar_gex_df(df_gex: pd.DataFrame):
 
 def calcular_dex_vcto(df_raw: pd.DataFrame, r: float = TASA_LIBRE_RIESGO) -> pd.DataFrame:
     """
-    Calcula DEX fila a fila para generar el desglose por vencimiento.
-    Análogo a calcular_gex_vcto() pero usando delta en lugar de gamma.
-    Necesario para el selector de vencimiento del Tab DEX (dashboard).
+    DEX fila a fila para el desglose por vencimiento del Tab DEX (dashboard).
+    Mismo modelo que los KPIs (gex_calculator.calcular_filas): delta de cierre
+    de MEFF cuando existe y, si falta, delta del modelo con arrastre implícito.
+    El parámetro r se conserva por compatibilidad; la tasa es R de gex_calculator.
     """
-    hoy = date.today()
-    filas = []
-    for _, row in df_raw.iterrows():
-        S      = a_float(row.get("spot", ""))
-        K      = a_float(row.get("strike", ""))
-        oi     = a_float(row.get("posicion_abierta", ""))
-        iv_pct = a_float(row.get("volatilidad_cierre", ""))
-        tipo   = str(row.get("tipo", "")).upper().strip()
-        accion = str(row.get("accion", "")).strip()
-        fv_str = str(row.get("fecha_vencimiento", "")).strip()
-
-        if any(np.isnan(x) for x in [S, K, oi, iv_pct]):
-            continue
-        if oi <= 0 or S <= 0 or K <= 0 or iv_pct <= 0:
-            continue
-        if tipo not in ("CALL", "PUT"):
-            continue
-
-        fv_date = parsear_vencimiento(fv_str)
-        if fv_date is None:
-            continue
-
-        dias = (fv_date - hoy).days
-        T    = max(dias, 1) / 365.0
-        iv   = iv_pct / 100.0
-
-        # Delta Black-Scholes escalar usando math.erf (stdlib, sin dependencias externas)
-        try:
-            d1  = (math.log(S / K) + (r + 0.5 * iv**2) * T) / (iv * math.sqrt(T))
-            nd1 = 0.5 * (1.0 + math.erf(d1 / math.sqrt(2.0)))
-        except Exception:
-            continue
-
-        delta = nd1 if tipo == "CALL" else nd1 - 1.0
-        mult  = get_mult_gex(accion)
-        dex   = delta * oi * mult * S
-
-        filas.append({
-            "accion":            accion,
-            "tipo":              tipo,
-            "fecha_vencimiento": fv_str,
-            "strike":            K,
-            "spot":              S,
-            "dex":               round(dex, 2),
-        })
-    return pd.DataFrame(filas)
+    filas = _calcular_filas(df_raw)
+    if filas.empty:
+        return pd.DataFrame(columns=["accion", "tipo", "fecha_vencimiento", "strike", "spot", "dex"])
+    return filas[["accion", "tipo", "fecha_vencimiento", "strike", "spot", "dex"]].copy()
 
 
 def agregar_dex_df(df_dex: pd.DataFrame):
@@ -848,16 +774,33 @@ def generar_json_gex(df_raw: pd.DataFrame, csv_path: str, fecha_boletin: str, ho
     def to_records(df):
         return json.loads(df.to_json(orient="records", force_ascii=False))
 
+    # Arrastre implícito por subyacente y vencimiento (transparencia / depuración)
+    carry_json = {
+        ac: {
+            v: {
+                "fwd_spot":    round(c["fwd_spot"], 6),
+                "carry_anual": round(c["carry_anual"], 6),
+                "fuente":      c["fuente"],
+                "n":           c["n"],
+                "rmse_delta":  round(c["rmse"], 4) if c["rmse"] is not None else None,
+            }
+            for v, c in sorted(k.get("carry", {}).items(), key=lambda it: vcto_sort_key(it[0]))
+        }
+        for ac, k in todos_kpis.items()
+    }
+
     resultado = {
         "meta": {
             "fecha_boletin":     fecha_boletin,
             "generado":          datetime.now().strftime("%Y-%m-%d %H:%M"),
             "tasa_libre_riesgo": TASA_LIBRE_RIESGO,
-            "nota_tasa":         "Tipo BCE. Revisar periodicamente.",
+            "nota_tasa":         ("€STR (BCE). Dividendos: arrastre implícito por subyacente y "
+                                  "vencimiento, ajustado a la delta de cierre de MEFF. Revisar la tasa periódicamente."),
             "fuente":            "MEFF",
         },
         "subyacentes":          subyacentes,
         "vencimientos":         vencimientos,
+        "carry_implicito":      carry_json,
         # ── GEX ──────────────────────────────────────────────────────────────
         "kpis_por_accion":      kpis_json,
         "gex_por_strike_vcto":  to_records(gex_por_strike_vcto) if not gex_por_strike_vcto.empty else [],
