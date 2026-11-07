@@ -1,147 +1,147 @@
 {
   "meta": {
-    "fecha_boletin": "05/11/26",
-    "generado": "06/11/2026 10:20"
+    "fecha_boletin": "06/11/26",
+    "generado": "07/11/2026 09:34"
   },
-  "top10_text": "=========================================================================================================\n  MEFF - TOP 10 VOLUMEN CONTRATOS  |  Boletin: 05/11/26\n=========================================================================================================\n\nFECHA_BOLETIN  ACCION        TIPO  FECHA_VENCIMIENTO  STRIKE  SPOT    VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  ------------  ----  -----------------  ------  ------  -----------------  ----------------\n05/11/26       TELEFONICA    CALL  Dic-26             3,50    3.45    15.010             55.071          \n05/11/26       SANTANDER     CALL  Jun-27             14,00   10.82   10.000             15.001          \n05/11/26       IBERDROLA     CALL  Jun-28             23,00   22.77   7.500              7.500           \n05/11/26       IBERDROLA     CALL  Dic-27             21,00   22.77   6.000              2.750           \n05/11/26       SANTANDER     PUT   Jun-29             7,00    10.82   5.000              5.000           \n05/11/26       ACS           PUT   Nov-26             82,00   84.95   1.400              1.441           \n05/11/26       SANTANDER     PUT   Dic-26             11,00   10.82   720                1.739           \n05/11/26       SANTANDER     PUT   Ene-27             10,50   10.82   720                300             \n05/11/26       MINI IBEX-35  PUT   Nov-26             18.250  19,486  489                503             \n05/11/26       MINI IBEX-35  PUT   Nov-26             18.200  19,486  483                976             \n-------------  ------------  ----  -----------------  ------  ------  -----------------  ----------------\nGenerado: 06/11/2026 10:20\n",
-  "mini_ibex_text": "=================================================================================================\n  MEFF - TOP 5 MINI IBEX-35 (CALL+PUT)  |  Boletin: 05/11/26\n=================================================================================================\n\nFECHA_BOLETIN  ACCION        TIPO  FECHA_VENCIMIENTO  STRIKE  VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n05/11/26       MINI IBEX-35  PUT   Nov-26             18.250  489                503             \n05/11/26       MINI IBEX-35  PUT   Nov-26             18.200  483                976             \n05/11/26       MINI IBEX-35  CALL  Nov-26             20.000  475                31              \n05/11/26       MINI IBEX-35  PUT   Dic-26             19.500  118                4.810           \n05/11/26       MINI IBEX-35  CALL  Nov-26             19.300  25                 203             \n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n  Spot MINI IBEX-35: 19,486\nGenerado: 06/11/2026 10:20\n",
+  "top10_text": "======================================================================================================\n  MEFF - TOP 10 VOLUMEN CONTRATOS  |  Boletin: 06/11/26\n======================================================================================================\n\nFECHA_BOLETIN  ACCION      TIPO  FECHA_VENCIMIENTO  STRIKE  SPOT   VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  ----------  ----  -----------------  ------  -----  -----------------  ----------------\n06/11/26       SANTANDER   PUT   Dic-28             10,00   10.70  25.150             32.000          \n06/11/26       SANTANDER   CALL  Dic-28             14,00   10.70  20.000             20.000          \n06/11/26       TELEFONICA  PUT   Dic-26             3,40    3.39   4.100              65.000          \n06/11/26       IBERDROLA   PUT   Dic-27             22,00   22.65  4.000              4.050           \n06/11/26       IBERDROLA   CALL  Dic-27             22,00   22.65  4.000              9.004           \n06/11/26       INDITEX     PUT   Dic-26             55,57   59.04  1.106              1.232           \n06/11/26       IBERDROLA   CALL  Mar-27             24,00   22.65  1.000              1.161           \n06/11/26       IBERDROLA   CALL  Mar-27             23,00   22.65  516                774             \n06/11/26       IBERDROLA   CALL  Dic-26             22,50   22.65  516                250             \n06/11/26       BBVA        PUT   Nov-26             20,50   22.73  200                230             \n-------------  ----------  ----  -----------------  ------  -----  -----------------  ----------------\nGenerado: 07/11/2026 09:34\n",
+  "mini_ibex_text": "=================================================================================================\n  MEFF - TOP 5 MINI IBEX-35 (CALL+PUT)  |  Boletin: 06/11/26\n=================================================================================================\n\nFECHA_BOLETIN  ACCION        TIPO  FECHA_VENCIMIENTO  STRIKE  VOLUMEN_CONTRATOS  POSICION_ABIERTA\n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n06/11/26       MINI IBEX-35  CALL  Dic-26             19.250  58                 68              \n06/11/26       MINI IBEX-35  PUT   Nov-26             19.000  37                 52              \n06/11/26       MINI IBEX-35  CALL  Dic-26             19.000  29                 60              \n06/11/26       MINI IBEX-35  PUT   Nov-26             17.300  21                 26              \n06/11/26       MINI IBEX-35  PUT   Mar-27             16.000  17                 17              \n-------------  ------------  ----  -----------------  ------  -----------------  ----------------\n  Spot MINI IBEX-35: 19,370\nGenerado: 07/11/2026 09:34\n",
   "top10_data": [
     {
-      "fecha_boletin": "05/11/26",
-      "accion": "TELEFONICA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Dic-26",
-      "strike": "3,50",
-      "volumen_contratos": "15.010",
-      "posicion_abierta": "55.071"
+      "fecha_boletin": "06/11/26",
+      "accion": "SANTANDER",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-28",
+      "strike": "10,00",
+      "volumen_contratos": "25.150",
+      "posicion_abierta": "32.000"
     },
     {
-      "fecha_boletin": "05/11/26",
+      "fecha_boletin": "06/11/26",
       "accion": "SANTANDER",
       "tipo": "CALL",
-      "fecha_vencimiento": "Jun-27",
+      "fecha_vencimiento": "Dic-28",
       "strike": "14,00",
-      "volumen_contratos": "10.000",
-      "posicion_abierta": "15.001"
+      "volumen_contratos": "20.000",
+      "posicion_abierta": "20.000"
     },
     {
-      "fecha_boletin": "05/11/26",
+      "fecha_boletin": "06/11/26",
+      "accion": "TELEFONICA",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-26",
+      "strike": "3,40",
+      "volumen_contratos": "4.100",
+      "posicion_abierta": "65.000"
+    },
+    {
+      "fecha_boletin": "06/11/26",
       "accion": "IBERDROLA",
-      "tipo": "CALL",
-      "fecha_vencimiento": "Jun-28",
-      "strike": "23,00",
-      "volumen_contratos": "7.500",
-      "posicion_abierta": "7.500"
+      "tipo": "PUT",
+      "fecha_vencimiento": "Dic-27",
+      "strike": "22,00",
+      "volumen_contratos": "4.000",
+      "posicion_abierta": "4.050"
     },
     {
-      "fecha_boletin": "05/11/26",
+      "fecha_boletin": "06/11/26",
       "accion": "IBERDROLA",
       "tipo": "CALL",
       "fecha_vencimiento": "Dic-27",
-      "strike": "21,00",
-      "volumen_contratos": "6.000",
-      "posicion_abierta": "2.750"
+      "strike": "22,00",
+      "volumen_contratos": "4.000",
+      "posicion_abierta": "9.004"
     },
     {
-      "fecha_boletin": "05/11/26",
-      "accion": "SANTANDER",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Jun-29",
-      "strike": "7,00",
-      "volumen_contratos": "5.000",
-      "posicion_abierta": "5.000"
-    },
-    {
-      "fecha_boletin": "05/11/26",
-      "accion": "ACS",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Nov-26",
-      "strike": "82,00",
-      "volumen_contratos": "1.400",
-      "posicion_abierta": "1.441"
-    },
-    {
-      "fecha_boletin": "05/11/26",
-      "accion": "SANTANDER",
+      "fecha_boletin": "06/11/26",
+      "accion": "INDITEX",
       "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "strike": "11,00",
-      "volumen_contratos": "720",
-      "posicion_abierta": "1.739"
+      "strike": "55,57",
+      "volumen_contratos": "1.106",
+      "posicion_abierta": "1.232"
     },
     {
-      "fecha_boletin": "05/11/26",
-      "accion": "SANTANDER",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Ene-27",
-      "strike": "10,50",
-      "volumen_contratos": "720",
-      "posicion_abierta": "300"
+      "fecha_boletin": "06/11/26",
+      "accion": "IBERDROLA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "strike": "24,00",
+      "volumen_contratos": "1.000",
+      "posicion_abierta": "1.161"
     },
     {
-      "fecha_boletin": "05/11/26",
-      "accion": "MINI IBEX-35",
+      "fecha_boletin": "06/11/26",
+      "accion": "IBERDROLA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Mar-27",
+      "strike": "23,00",
+      "volumen_contratos": "516",
+      "posicion_abierta": "774"
+    },
+    {
+      "fecha_boletin": "06/11/26",
+      "accion": "IBERDROLA",
+      "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "strike": "22,50",
+      "volumen_contratos": "516",
+      "posicion_abierta": "250"
+    },
+    {
+      "fecha_boletin": "06/11/26",
+      "accion": "BBVA",
       "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "strike": "18.250",
-      "volumen_contratos": "489",
-      "posicion_abierta": "503"
-    },
-    {
-      "fecha_boletin": "05/11/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Nov-26",
-      "strike": "18.200",
-      "volumen_contratos": "483",
-      "posicion_abierta": "976"
+      "strike": "20,50",
+      "volumen_contratos": "200",
+      "posicion_abierta": "230"
     }
   ],
   "mini_ibex_data": [
     {
-      "fecha_boletin": "05/11/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Nov-26",
-      "strike": "18.250",
-      "volumen_contratos": "489",
-      "posicion_abierta": "503"
-    },
-    {
-      "fecha_boletin": "05/11/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "PUT",
-      "fecha_vencimiento": "Nov-26",
-      "strike": "18.200",
-      "volumen_contratos": "483",
-      "posicion_abierta": "976"
-    },
-    {
-      "fecha_boletin": "05/11/26",
+      "fecha_boletin": "06/11/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
-      "fecha_vencimiento": "Nov-26",
-      "strike": "20.000",
-      "volumen_contratos": "475",
-      "posicion_abierta": "31"
-    },
-    {
-      "fecha_boletin": "05/11/26",
-      "accion": "MINI IBEX-35",
-      "tipo": "PUT",
       "fecha_vencimiento": "Dic-26",
-      "strike": "19.500",
-      "volumen_contratos": "118",
-      "posicion_abierta": "4.810"
+      "strike": "19.250",
+      "volumen_contratos": "58",
+      "posicion_abierta": "68"
     },
     {
-      "fecha_boletin": "05/11/26",
+      "fecha_boletin": "06/11/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Nov-26",
+      "strike": "19.000",
+      "volumen_contratos": "37",
+      "posicion_abierta": "52"
+    },
+    {
+      "fecha_boletin": "06/11/26",
       "accion": "MINI IBEX-35",
       "tipo": "CALL",
+      "fecha_vencimiento": "Dic-26",
+      "strike": "19.000",
+      "volumen_contratos": "29",
+      "posicion_abierta": "60"
+    },
+    {
+      "fecha_boletin": "06/11/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
       "fecha_vencimiento": "Nov-26",
-      "strike": "19.300",
-      "volumen_contratos": "25",
-      "posicion_abierta": "203"
+      "strike": "17.300",
+      "volumen_contratos": "21",
+      "posicion_abierta": "26"
+    },
+    {
+      "fecha_boletin": "06/11/26",
+      "accion": "MINI IBEX-35",
+      "tipo": "PUT",
+      "fecha_vencimiento": "Mar-27",
+      "strike": "16.000",
+      "volumen_contratos": "17",
+      "posicion_abierta": "17"
     }
   ]
 }
